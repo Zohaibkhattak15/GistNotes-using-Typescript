@@ -4,8 +4,16 @@ import { Input, Tooltip } from "antd";
 
 const { Search } = Input;
 
+type SearcValueType = {
+  value : string
+}
+
+type Props = {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
 const SearchBar = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<SearcValueType>({} as SearcValueType);
   const searchGists = () => {
   };
   return (
@@ -14,7 +22,6 @@ const SearchBar = () => {
         <Search
           placeholder="Enter search text"
           size="large"
-          onChange={(e) => setValue(e.target.value)}
           onSearch={searchGists}
         />
       </Tooltip>
