@@ -1,5 +1,4 @@
-import React from "react";
-import PrivateGists from "../components/private-gists-list/PrivateGists";
+import PrivateGists from "../components/private-gist-list/PrivateGist";
 
 const ListPrivateGistsScreen = () => {
   return (

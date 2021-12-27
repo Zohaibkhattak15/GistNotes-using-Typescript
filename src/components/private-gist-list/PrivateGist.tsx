@@ -1,11 +1,12 @@
-import React, { useEffect, useState , useCallback } from "react";
-import { privateGistsRecord, checkGistStared } from "../../utils/fetchAPIs";
+import  React, { useEffect, useState , useCallback } from "react";
+import { privateGistsRecord } from "../../utils/fetchAPIs";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
-import { Section, Div } from "../publicgistslist/style";
+import { Section, Div } from "../public-gist-list/style";
 
-const PrivateGists = () => {
+
+const PrivateGists: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [privateGistsList, setPrivateGistsList] = useState([]);
   const [isListView, setIsListView] = useState(true);

@@ -8,7 +8,7 @@ export type StateType = {
     PAT : string ;
     isLoggedin : boolean;
     tab : number ;  
-    gistID : string | null | undefined;
+    gistID ?: string | null;
     searchValue : string;
 }
 
@@ -55,8 +55,6 @@ export type Action =
     tab : number
    }} 
   
-
-
 
 export const GistContext = createContext<{
   state: StateType;

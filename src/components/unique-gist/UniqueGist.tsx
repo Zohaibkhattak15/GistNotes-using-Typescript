@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { GistIcons, Icon1 } from "../../githubprofilepage/style";
+import  { useState, useContext, useEffect } from "react";
+import { GistIcons, Icon1 } from "../github-profile-page/GithubProfilePage";
 
 import {
   Div,
@@ -22,8 +22,8 @@ import {
   unStaredAGist,
   forkedGist,
   checkGistStared
-} from "../../../utils/fetchAPIs";
-import { GistContext } from "../../../context/GistContext";
+} from "../../utils/fetchAPIs";
+import { GistContext } from "../../context/GistContext";
 
 const UniqueGist = () => {
   const [uniqueData, setUniqueData] = useState([]);
@@ -86,7 +86,7 @@ const UniqueGist = () => {
     });
   };
 
-  const updateGist = (id) => {
+  const updateGist = (id : string) => {
     dispatch({
       type: "VISIBLESCREEN",
       payload: {

@@ -13,14 +13,14 @@ import {
 } from "./style";
 
 
-const TableData = ({ publicGistsDisplay, privateGistsDisplay }) => {
+const TableData = ({ publicGistsDisplay  , privateGistsDisplay } :any ) => {
   const date = new Date("2021-01-09T14:56:23");
   const { dispatch } = useContext(GistContext);
 
   const filledStar = <i className="fas fa-star" />;
   const unFilledStart = <i className="far fa-star" />;
   
-  const showUniqueGistRecord = (id) => {
+  const showUniqueGistRecord = (id:string) => {
     dispatch({
       type:"VISIBLESCREEN",
       payload : {
@@ -30,7 +30,7 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay }) => {
     })
   };
 
-  const checkStarGist = async (id) => {
+  const checkStarGist = async (id : string) => {
     let value = await checkGistStared(id)
     .then(data => data)
     .catch(err => err);

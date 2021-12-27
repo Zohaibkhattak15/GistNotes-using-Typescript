@@ -31,7 +31,7 @@ const StaredGists = () => {
     },
     [getStaredGists],
   );
-  const showUniqueGistRecord = (id) => {
+  const showUniqueGistRecord = (id:string) => {
     dispatch({
       type:"VISIBLESCREEN",
       payload : {

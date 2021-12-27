@@ -1,5 +1,4 @@
-import React from "react";
-import StaredGists from "../components/star-gists/StarGists";
+import StaredGists from "../components/stared-gists/StaredGists";
 
 const StarGistScreen = () => {
   return (

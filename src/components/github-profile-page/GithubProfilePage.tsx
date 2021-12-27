@@ -1,5 +1,4 @@
-import { Avatar } from "antd";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { loginAuthUser, privateGistsRecord } from "../../utils/fetchAPIs";
 import {
   Section,
@@ -19,15 +18,15 @@ import {
   ProfileImage,
   Img,
 } from "./style";
-import { Span, SpanValues } from "../uniquegist/style";
+import { Span, SpanValues } from "../unique-gist/style";
+import { NOCONTENT, USERNAME } from "../../constants/Constants";
 
 const GitHubProfilePage = () => {
-  const [authUserRecord, setAuthUserRecord] = useState();
-  const [gists, setGists] = useState("");
+  const [authUserRecord, setAuthUserRecord] = useState<any>("");
+  const [gists, setGists] = useState<any>("");
 
   const getLoginData = async () => {
-    const userName = "Zohaibkhattak15";
-    let authData = await loginAuthUser(userName).then((data) =>
+    let authData = await loginAuthUser(USERNAME).then((data) =>
       setAuthUserRecord(data)
     );
   };
@@ -38,14 +37,14 @@ const GitHubProfilePage = () => {
   };
 
   const { files } = gists;
-  let filename;
-  let content;
-  let myContentArray;
+  let filename: string | undefined ; 
+  let content: string | undefined;
+  let myContentArray: any[] | undefined;
 
-  if (files !== undefined) {
+  if (files) {
     Object.values(files).map((file) => {
-      filename = file.filename;
-      content = file.content;
+      filename = file?.filename;
+      content = file?.content;
     });
     myContentArray = content.split("\n");
   }
@@ -74,7 +73,7 @@ const GitHubProfilePage = () => {
 
         <CardSection>
           {gists &&
-            gists.map((item, index) => (
+            gists.map((item : any, index : number) => (
               <CardHeader key={index}>
                 <LeftSec>
                   <ProfileCol>
@@ -134,7 +133,7 @@ const GitHubProfilePage = () => {
                             </span>
                           );
                         })
-                      : "No Content There......."}
+                      : <p>{NOCONTENT}</p>}
                   </CardBodyContent>
                 </ContentBody>
               </CardHeader>

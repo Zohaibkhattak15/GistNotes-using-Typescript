@@ -18,7 +18,7 @@ const SearchGists = () => {
 
   const {gistID , searchValue} = state;
 
-  const showUniqueGistRecord = (gistID) => {
+  const showUniqueGistRecord = (gistID : string) => {
     dispatch({
       type:"VISIBLESCREEN",
       payload : {

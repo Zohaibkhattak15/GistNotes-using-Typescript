@@ -1,5 +1,4 @@
-import React from "react";
-import CreateGistForm from "../components/create-gist-form/CreateGistForm";
+import CreateGistForm from "../components/create-a-gist/CreateGistForm";
 
 const CreateGistPage = () => {
   return <CreateGistForm /> ;

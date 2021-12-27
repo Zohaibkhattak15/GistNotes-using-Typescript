@@ -1,5 +1,4 @@
-import React from 'react'
-import PublicGists from '../components/public-gists-list/PublicGists'
+import PublicGists from '../components/public-gist-list/PublicGist'
 
 const ListsPublicGistScreen = () => {
     return (

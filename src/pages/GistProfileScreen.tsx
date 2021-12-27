@@ -1,5 +1,4 @@
-import React from 'react'
-import GitHubProfilePage from '../components/profile/GitHubProfilePage'
+import GitHubProfilePage from '../components/github-profile-page/GithubProfilePage'
 
 const GistProfileScreen = () => {
     return (

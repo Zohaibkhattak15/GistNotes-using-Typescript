@@ -1,7 +1,7 @@
 import  { useState, useContext, useCallback } from "react";
-import { FormDiv, Heading } from "./style";
+import { Heading } from "./style";
 import { createAGist } from "../../utils/fetchAPIs";
-import { GistContext } from "../../App";
+import { GistContext } from "../../context/GistContext";
 import { Form, Input, Select, Button } from "antd";
 import {  formInputRules, openNotification } from "../../utils/createGistUtilis";
 
@@ -9,56 +9,48 @@ import {  formInputRules, openNotification } from "../../utils/createGistUtilis"
 const { TextArea } = Input;
 const { Option } = Select;
 
+interface gistDataFormType {
+  description : string ;
+  fileName : string ;
+  content : string  ;
+  privacy : boolean ;
+}
+
 const CreateAGist = () => {
-  const [gistFormData, setGistFormData] = useState({
+  const [gistFormData, setGistFormData] = useState<gistDataFormType>({
     description: "" ,
     fileName : "" ,
     content : "" ,
-    privacy: ""
+    privacy: true
   })
 
-  const changeDescription = e => {
+  const changeDescription = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setGistFormData({
       ...gistFormData,
-      description: e.target.value
+      description: event.currentTarget.value
       });
  };
-  const changeFileName = e => {
+  const changeFileName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGistFormData({
       ...gistFormData,
-      fileName: e.target.value
+      fileName: event.currentTarget.value
       });
   };
-  const changeContent = e => {
+  const changeContent = (event: React.ChangeEvent<HTMLTextAreaElement>) : void => {
     setGistFormData({
       ...gistFormData,
-      content: e.target.value
+      content: event.currentTarget.value
       });
   };
   
-  const getStatus = (value) => {
-    if (value === "public") {
-      setGistFormData({
-        ...gistFormData,
-        privacy:"public"
-      });
-    } else 
-    {
-      setGistFormData({
-        ...gistFormData,
-       privacy: "private"
-      });
-    }
-  }
-
   const { dispatch } = useContext(GistContext);
   const creatGist = useCallback(() => {
     const gistData = {
-      description: gistFormData.description,
-      privacy : gistFormData.privacy,
+      description: gistFormData?.description,
+      privacy : gistFormData?.privacy,
       files: {
-        [gistFormData.fileName]: {
-          content: gistFormData.content,
+        [gistFormData?.fileName]: {
+          content: gistFormData?.content,
         },
       },
     }
@@ -73,10 +65,7 @@ const CreateAGist = () => {
     });
   }, []);
 
-
-
   return (
-    <FormDiv>
       <Form onFinish={creatGist} autoComplete="off" >
         <Heading>Create A Gist</Heading>
         <Form.Item
@@ -108,7 +97,6 @@ const CreateAGist = () => {
         <Form.Item>
           <Select
            size="large"
-           onChange={(value) => getStatus(value)}
           >
             <Option value="public"> Public</Option>
             <Option value="private">Private</Option>
@@ -121,7 +109,6 @@ const CreateAGist = () => {
           </Button>
         </Form.Item>
       </Form>
-    </FormDiv>
   );
 };
 
