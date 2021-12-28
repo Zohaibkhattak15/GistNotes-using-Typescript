@@ -6,17 +6,17 @@ import SearchBar from "./Search-Bar/SearchBar";
 import { GistContext } from "../../context/GistContext";
 import { Button, Col, Row } from "antd";
 import { USERNAME } from "../../constants/index";
-import { VISIABLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../context/ActionTypes";
 
 const Navbar = () => {
   const { dispatch } = useContext(GistContext);
-  const get : any =localStorage.getItem("authUserName");
+  const get : any = localStorage.getItem("authUserName");
   const val = JSON.parse(get) ;
   const checkUserName = val === USERNAME;
   
   const GoToHomeScreen = () => {
   dispatch({
-    type: VISIABLESCREEN,
+    type: VISIBLESCREEN,
     payload: {
       tab: 1,
       gistID: "",
@@ -26,7 +26,7 @@ const Navbar = () => {
 
 const GoToLoginScreen = () => {
   dispatch({
-    type: VISIABLESCREEN,
+    type: VISIBLESCREEN,
     payload: {
       tab: 2,
       gistID:"",

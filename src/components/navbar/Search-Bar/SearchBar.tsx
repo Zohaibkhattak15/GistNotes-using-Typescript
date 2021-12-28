@@ -1,7 +1,7 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useContext } from "react";
 import { GistContext } from "../../../context/GistContext";
 import { Div } from "./style";
-import { Input, Tooltip } from "antd";
+import { Input, Tooltip ,} from "antd";
 import { SEARCH } from "../../../context/ActionTypes";
 
 const { Search } = Input;

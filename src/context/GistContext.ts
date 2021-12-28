@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { USERNAME , PAT } from "../constants/index";
-import {LOGIN , LOGOUT , VISIABLESCREEN ,SEARCH } from "./ActionTypes";
+import {LOGIN , LOGOUT , VISIBLESCREEN ,SEARCH } from "./ActionTypes";
 
 
 export type StateType = {
@@ -12,7 +12,9 @@ export type StateType = {
     searchValue : string ;
 }
 
+
 export const initialState : StateType = {
+  // will be in the constant folder
   userName: USERNAME,
   PAT: PAT,
   isLoggedin: false,
@@ -67,7 +69,7 @@ export const GistReducer = (state : StateType , action: Action ) : StateType => 
         tab : action.payload.tab
       };
 
-    case VISIABLESCREEN:
+    case VISIBLESCREEN:
       return {
         ...state,
         tab: action.payload.tab,

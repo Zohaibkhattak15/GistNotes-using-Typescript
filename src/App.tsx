@@ -1,6 +1,5 @@
 import { useReducer} from 'react';
 import Navbar from './components/navbar/Navbar';
-import './App.css';
 import { GistReducer , initialState , GistContext } from './context/GistContext';
 import LoginScreen from './pages/LoginScreen';
 import ListsPublicGistScreen from './pages/ListsPublicGistScreen';
@@ -11,14 +10,15 @@ import GistProfileScreen from './pages/GistProfileScreen';
 import UniqueGistScreen from './pages/UniqueGistScreen';
 import SearchGistScreen from './pages/SearchGistScreen';
 import EdistGistScreen from './pages/EdistGistScreen';
+import './App.css';
 
 const App:React.FC = () => {
   const [state, dispatch] = useReducer( GistReducer , initialState);
   const { tab } = state;
-
+  const ScreenNumber = tab;
+  
   const displayScreenTabs = (() => {
-            
-    switch (tab) {
+    switch (ScreenNumber) {
       case 1:
         return <ListsPublicGistScreen />;
       case 2:

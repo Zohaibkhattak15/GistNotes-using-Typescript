@@ -4,12 +4,13 @@ import { createAGist } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Select, Button } from "antd";
 import {  formInputRules, openNotification } from "../../utils/createGistUtilis";
-import { VISIABLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../context/ActionTypes";
 
 
 const { TextArea } = Input;
 const { Option } = Select;
 
+//will be in the types files 
 interface gistDataFormType {
   description : string ;
   fileName : string ;
@@ -58,7 +59,7 @@ const CreateAGist = () => {
     createAGist(gistData);
     openNotification();
     dispatch({
-      type: VISIABLESCREEN,
+      type: VISIBLESCREEN,
       payload: {
         tab: 3,
         gistID: "",

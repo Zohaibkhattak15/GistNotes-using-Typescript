@@ -3,7 +3,7 @@ import { GistContext } from "../../../context/GistContext";
 import { Row } from "antd";
 import PublicGistsGrid from "./PublicGistsGrid";
 import PrivateGistsGrid from "./PrivateGistsGrid";
-import { VISIABLESCREEN } from "../../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../../context/ActionTypes";
 
 const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay } : any) => {
   const { dispatch } = useContext(GistContext);
@@ -21,7 +21,7 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay } : any) => {
 
   const showUniqueGistRecord = (id : string) => {
     dispatch({
-      type: VISIABLESCREEN,
+      type: VISIBLESCREEN,
       payload: {
         tab: 9,
         gistID: id,

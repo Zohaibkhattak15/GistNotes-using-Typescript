@@ -18,7 +18,7 @@ import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { VISIABLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../context/ActionTypes";
 
 const { confirm } = Modal;
 
@@ -66,7 +66,7 @@ const UniqueGist = () => {
       onOk() {
         delAGist(id);
         dispatch({
-          type: VISIABLESCREEN,
+          type: VISIBLESCREEN,
           payload: {
             tab: 3,
             gistID: "",
@@ -75,7 +75,7 @@ const UniqueGist = () => {
       },
       onCancel() {
         dispatch({
-          type: VISIABLESCREEN,
+          type: VISIBLESCREEN,
           payload: {
             tab: 9,
             gistID: "",
@@ -87,7 +87,7 @@ const UniqueGist = () => {
 
   const updateGist = useCallback((id) => {
     dispatch({
-      type: VISIABLESCREEN,
+      type: VISIBLESCREEN,
       payload: {
         tab: 11,
         gistID: id,

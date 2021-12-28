@@ -3,7 +3,7 @@ import { Section, Heading } from "../create-a-gist/style";
 import { updateAGist, getGistObj } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
-import { VISIABLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../context/ActionTypes";
 
 const EditAGist = () => {
   const [gistData, setGistData] = useState<any>("");
@@ -14,7 +14,7 @@ const EditAGist = () => {
     const { description } = gistData;
     await updateAGist(gistID, description);
     dispatch({
-      type: VISIABLESCREEN,
+      type: VISIBLESCREEN,
       payload: {
         tab: 3,
         gistID: "",

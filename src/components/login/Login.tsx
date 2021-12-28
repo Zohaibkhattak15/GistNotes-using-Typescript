@@ -1,10 +1,10 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, {  useContext, useState } from "react";
 import { FormDiv } from "./style";
 import { loginAuthUser } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Button, Input, Form, Alert } from "antd";
 import { openNotification, loginInputFormRules } from "../../utils/loginUtils";
-import { LOGIN, VISIABLESCREEN } from "../../context/ActionTypes";
+import { LOGIN, VISIBLESCREEN } from "../../context/ActionTypes";
 
 const Login = () => {
   const [name, setName] = useState<string>("");
@@ -21,11 +21,18 @@ const Login = () => {
     loginAuthUser(name)
       .then((resp) => {
         if (resp?.login === name) {
-          localStorage.setItem("authUserName", JSON.stringify(name));
-          localStorage.setItem("token", JSON.stringify(PAT));
+          // localStorage.setItem("authUserName", JSON.stringify(name));
+          // localStorage.setItem("token", JSON.stringify(PAT));
+          dispatch({
+            type: LOGIN,
+            payload: {
+              userName : name,
+              isLoggedin : true
+            },
+          });
           openNotification();
           dispatch({
-            type: VISIABLESCREEN,
+            type: VISIBLESCREEN,
             payload: {
               tab: 3,
               gistID: "",
@@ -34,13 +41,7 @@ const Login = () => {
         }
       })
       .catch(err => setShowError(true));
-      dispatch({
-        type: LOGIN,
-        payload: {
-          userName : name,
-          isLoggedin : true
-        },
-      });
+     
   };
   const displayError = showError ? ( <Alert message="Wrong Username..." type="error" />) : null;
 

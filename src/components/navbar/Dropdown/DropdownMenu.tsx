@@ -1,10 +1,9 @@
 import { Menu, Dropdown } from "antd";
 import { useContext } from "react";
 import Zohaib from "../../../assets/zohaib.png";
-import { LOGOUT, VISIABLESCREEN } from "../../../context/ActionTypes";
+import { LOGOUT, VISIBLESCREEN } from "../../../context/ActionTypes";
 import { GistContext } from "../../../context/GistContext";
 import { Img } from './style';
-
 
 const DropdownMenu = () => {
   const { dispatch } = useContext(GistContext);
@@ -20,7 +19,7 @@ const DropdownMenu = () => {
         key="1"
         onClick={() => {
           dispatch({
-            type: VISIABLESCREEN,
+            type: VISIBLESCREEN,
             payload: {
               tab: 3,
               gistID: "",
@@ -34,7 +33,7 @@ const DropdownMenu = () => {
         key="2"
         onClick={() => {
           dispatch({
-            type: VISIABLESCREEN,
+            type: VISIBLESCREEN,
             payload: {
               tab: 5,
               gistID: "",
@@ -48,7 +47,7 @@ const DropdownMenu = () => {
         key="3"
         onClick={() => {
           dispatch({
-            type: VISIABLESCREEN,
+            type: VISIBLESCREEN,
             payload: {
               tab: 6,
               gistID: "",
@@ -66,7 +65,7 @@ const DropdownMenu = () => {
         key="5"
         onClick={() => {
           dispatch({
-            type: VISIABLESCREEN,
+            type: VISIBLESCREEN,
             payload: {
               tab: 7,
               gistID: "",
