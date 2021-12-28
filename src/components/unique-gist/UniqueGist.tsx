@@ -1,26 +1,16 @@
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import {
   Div,
   Section,
   ContentBody,
 } from "./style";
-import {
-  getPublicGist,
-  delAGist,
-  staredAGist,
-  unStaredAGist,
-  forkedGist,
-  checkGistStared,
-} from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
-import { Modal } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { VISIBLESCREEN } from "../../constants/index";
+import { getGistData , checkGist , updateGist , deleteGist , starThisGist , forkThisGist } from "../../utils/UniqueGist";
 
-const { confirm } = Modal;
+
 
 const UniqueGist = () => {
   const [uniqueData, setUniqueData] = useState([]);
@@ -30,78 +20,14 @@ const UniqueGist = () => {
   const { tab, gistID } = state;
   let filename;
 
-  
-  const getGistData = async () => {
-    const resp = await getPublicGist(gistID);
-    setUniqueData(resp);
-  };
-
-  const starThisGist = async () => {
-    if (gistStarValue === 0) {
-      await staredAGist(gistID)
-        .then(() => setGistStarValue(gistStarValue + 1))
-        .catch((err) => err);
-    } else {
-      await unStaredAGist(gistID)
-        .then(() => setGistStarValue(gistStarValue - 1))
-        .catch((err) => err);
-    }
-  };
-
-  const forkThisGist = async () => {
-    let alreadyFork = 0;
-    await forkedGist(gistID)
-      .then(() => (alreadyFork = 1))
-      .catch(() => alreadyFork);
-    if (alreadyFork) {
-      setGistForkValue(gistForkValue + 1);
-    }
-  };
-
-  const deleteGist = (id : string) => {
-    confirm({
-      title: "Do you Want to delete these Gist?",
-      icon: <ExclamationCircleOutlined />,
-      content: "",
-      onOk() {
-        delAGist(id);
-        dispatch({
-          type: VISIBLESCREEN,
-          payload: {
-            tab: 3,
-            gistID: "",
-          },
-        });
-      },
-      onCancel() {
-        dispatch({
-          type: VISIBLESCREEN,
-          payload: {
-            tab: 9,
-            gistID: "",
-          },
-        });
-      },
-    });
-  };
-
-  const updateGist = useCallback((id) => {
-    dispatch({
-      type: VISIBLESCREEN,
-      payload: {
-        tab: 11,
-        gistID: id,
-      },
-    });
-  },[dispatch]);
-
-  const checkGist = useCallback(() => {
-    checkGistStared(gistID).then(() => setGistStarValue(1));
-  },[checkGistStared]);
+  forkThisGist(gistForkValue , setGistForkValue, gistID)
+  starThisGist(gistStarValue,setGistStarValue , gistID );
+  deleteGist(dispatch , gistID)
+  updateGist(dispatch , gistID);
 
   useEffect(() => {
-    getGistData();
-    checkGist();
+    getGistData(uniqueData, setUniqueData , gistID);
+    checkGist(gistStarValue , setGistStarValue, gistID );
   }, []);
 
   return (

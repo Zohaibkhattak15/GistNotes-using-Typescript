@@ -13,7 +13,6 @@ const PrivateGists = () => {
   const [isGridView, setIsGridView] = useState(false);
   const [layout, setLayout] = useState("list");
 
-
   const listToggle = useCallback(() => {
     setIsListView(true);
     setIsGridView(false);
