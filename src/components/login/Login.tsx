@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useState } from "react";
 import { FormDiv } from "./style";
 import { loginAuthUser } from "../../utils/fetchAPIs";
-import { GistContext } from "../../App";
+import { GistContext } from "../../context/GistContext";
 import { Button, Input, Form, Alert } from "antd";
 import { openNotification, loginInputFormRules } from "../../utils/loginUtils";
-import { USERNAME } from "../../constants/Constants";
+import { LOGIN, VISIABLESCREEN } from "../../context/ActionTypes";
 
 const Login = () => {
   const [name, setName] = useState<string>("");
@@ -17,54 +17,47 @@ const Login = () => {
 
   const loginAuth = () => {
     const { PAT } = state;
-    dispatch({
-      type: "LOGIN",
-      payload: {
-        userName: name,
-      },
-    });
-
+   
     loginAuthUser(name)
       .then((resp) => {
-        if (resp?.login === USERNAME) {
-          localStorage.setItem("authUserName", JSON.stringify(USERNAME));
+        if (resp?.login === name) {
+          localStorage.setItem("authUserName", JSON.stringify(name));
           localStorage.setItem("token", JSON.stringify(PAT));
           openNotification();
           dispatch({
-            type: "VISIBLESCREEN",
+            type: VISIABLESCREEN,
             payload: {
               tab: 3,
-              gistID: null,
+              gistID: "",
             },
           });
         }
       })
-      .catch(() => setShowError(true));
+      .catch(err => setShowError(true));
+      dispatch({
+        type: LOGIN,
+        payload: {
+          userName : name,
+          isLoggedin : true
+        },
+      });
   };
-  const clearInput = useCallback(() => {
-    setName("");
-    setShowError(false);
-  }, [name, showError]);
-
-  const displayError = showError ? (
-    <Alert message="Wrong Username..." type="error" />
-  ) : null;
+  const displayError = showError ? ( <Alert message="Wrong Username..." type="error" />) : null;
 
   return (
     <>
       <FormDiv>
+      {displayError}
         <Form onFinish={loginAuth} autoComplete="off">
-          {displayError}
           <Form.Item
             name="username"
-            // rules={loginInputFormRules(true, "username")}
+            rules={loginInputFormRules(true, "username")}
           >
             <Input
               size="large"
               placeholder="Enter username"
               value={name}
               onChange={handleInputChange}
-              onFocus={clearInput}
             />
           </Form.Item>
           <Form.Item>

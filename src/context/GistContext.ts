@@ -1,15 +1,15 @@
 import { createContext } from "react";
-import { USERNAME , PAT } from "../constants/Constants";
-import * as ActionTypes from "./ActionTypes";
+import { USERNAME , PAT } from "../constants/index";
+import {LOGIN , LOGOUT , VISIABLESCREEN ,SEARCH } from "./ActionTypes";
 
 
 export type StateType = {
     userName : string ;
     PAT : string ;
     isLoggedin : boolean;
-    tab : number ;  
-    gistID ?: string | null;
-    searchValue : string;
+    tab : number  ;  
+    gistID : string ;
+    searchValue : string ;
 }
 
 export const initialState : StateType = {
@@ -17,41 +17,25 @@ export const initialState : StateType = {
   PAT: PAT,
   isLoggedin: false,
   tab:1,
-  gistID: null,
+  gistID: "",
   searchValue: "",
 };
 
 export type Action = 
    | {type : "LOGIN" , payload : {
     isLoggedin : boolean ,
-    userName ?: string ,
-    gistID ?: string ,
-    PAT ?: string ,
-    searchValue ?:string ,
-    tab ?: number
+    userName : string
    } } 
    | {type : "LOGOUT" , payload : {
-    isLoggedin ?: boolean ,
-    userName ?: string ,
-    gistID ?: string ,
-    PAT ?: string ,
-    searchValue ?:string ,
-    tab ?: number
-   }} 
+      isLoggedin : boolean ,
+      tab: number
+   } } 
    | {type : "VISIBLESCREEN" , payload : {
-    isLoggedin ?: boolean ,
-    userName ?: string ,
-    gistID ?: string | null ,
-    PAT ?: string ,
-    searchValue ?:string ,
-    tab : number
+     gistID : string,
+     tab : number
    }} 
-   | {type : "SEARCH" , payload ?: {
-    isLoggedin ?: boolean ,
-    userName ?: string ,
-    gistID ?: string ,
-    PAT ?: string ,
-    searchValue :string ,
+   | {type : "SEARCH" , payload : {
+    searchValue :string,
     tab : number
    }} 
   
@@ -67,29 +51,33 @@ export const GistContext = createContext<{
 export const GistReducer = (state : StateType , action: Action ) : StateType => {
   const {
     type,
-    payload: { user, gistID, searchValue, tab },
+    // payload: { userName, gistID, searchValue, tab },
   } = action;
   switch (type) {
-    case ActionTypes.LOGIN:
+    case LOGIN:
       return {
         ...state,
         isLoggedin: true,
-        userName: user,
+        userName: action.payload.userName,
       };
-    case ActionTypes.LOGOUT:
-      return state;
+    case LOGOUT:
+      return {
+        ...state ,
+        isLoggedin: false,
+        tab : action.payload.tab
+      };
 
-    case ActionTypes.VISIABLESCREEN:
+    case VISIABLESCREEN:
       return {
         ...state,
-        tab: tab,
-        gistID: gistID,
+        tab: action.payload.tab,
+        gistID: action.payload.gistID,
       };
-    case ActionTypes.SEARCH:
+    case SEARCH:
       return {
         ...state,
-        searchValue: searchValue,
-        tab: tab,
+        searchValue: action.payload.searchValue,
+        tab: action.payload.tab,
       };
     default:
       return state;

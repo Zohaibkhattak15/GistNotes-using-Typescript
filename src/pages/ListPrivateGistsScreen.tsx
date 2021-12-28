@@ -1,4 +1,4 @@
-import PrivateGists from "../components/private-gist-list/PrivateGist";
+import PrivateGists from "../components/private-gist-list/PrivateGists";
 
 const ListPrivateGistsScreen = () => {
   return (

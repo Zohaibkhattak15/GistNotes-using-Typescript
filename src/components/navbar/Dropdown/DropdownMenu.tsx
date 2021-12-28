@@ -1,8 +1,9 @@
 import { Menu, Dropdown } from "antd";
 import { useContext } from "react";
 import Zohaib from "../../../assets/zohaib.png";
+import { LOGOUT, VISIABLESCREEN } from "../../../context/ActionTypes";
 import { GistContext } from "../../../context/GistContext";
-import {Img} from './style';
+import { Img } from './style';
 
 
 const DropdownMenu = () => {
@@ -19,10 +20,10 @@ const DropdownMenu = () => {
         key="1"
         onClick={() => {
           dispatch({
-            type: "VISIBLESCREEN",
+            type: VISIABLESCREEN,
             payload: {
               tab: 3,
-              gistID: null,
+              gistID: "",
             },
           });
         }}
@@ -33,10 +34,10 @@ const DropdownMenu = () => {
         key="2"
         onClick={() => {
           dispatch({
-            type: "VISIBLESCREEN",
+            type: VISIABLESCREEN,
             payload: {
               tab: 5,
-              gistID: null,
+              gistID: "",
             },
           });
         }}
@@ -47,10 +48,10 @@ const DropdownMenu = () => {
         key="3"
         onClick={() => {
           dispatch({
-            type: "VISIBLESCREEN",
+            type: VISIABLESCREEN,
             payload: {
               tab: 6,
-              gistID: null,
+              gistID: "",
             },
           });
         }}
@@ -65,10 +66,10 @@ const DropdownMenu = () => {
         key="5"
         onClick={() => {
           dispatch({
-            type: "VISIBLESCREEN",
+            type: VISIABLESCREEN,
             payload: {
               tab: 7,
-              gistID: null,
+              gistID: "",
             },
           });
         }}
@@ -79,10 +80,11 @@ const DropdownMenu = () => {
         key="6"
         onClick={() => {
           dispatch({
-            type: "LOGOUT",
-            payload: {
-              tab: 8,
-            },
+            type: LOGOUT ,
+            payload : {
+              isLoggedin : false,
+              tab : 1
+            }
           });
           localStorage.clear();
         }}

@@ -1,9 +1,10 @@
 import  { useState, useContext, useCallback } from "react";
-import { Heading } from "./style";
+import { Heading , Section} from "./style";
 import { createAGist } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Select, Button } from "antd";
 import {  formInputRules, openNotification } from "../../utils/createGistUtilis";
+import { VISIABLESCREEN } from "../../context/ActionTypes";
 
 
 const { TextArea } = Input;
@@ -57,15 +58,16 @@ const CreateAGist = () => {
     createAGist(gistData);
     openNotification();
     dispatch({
-      type: "VISIBLESCREEN",
+      type: VISIABLESCREEN,
       payload: {
         tab: 3,
-        gistID: null,
+        gistID: "",
       },
     });
   }, []);
 
   return (
+    <Section>
       <Form onFinish={creatGist} autoComplete="off" >
         <Heading>Create A Gist</Heading>
         <Form.Item
@@ -109,6 +111,7 @@ const CreateAGist = () => {
           </Button>
         </Form.Item>
       </Form>
+      </Section>
   );
 };
 

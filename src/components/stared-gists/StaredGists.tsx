@@ -1,115 +1,114 @@
-import React, { useState, useEffect, useContext , useCallback } from "react";
+import {FC , useState, useEffect, useContext, useCallback } from 'react';
+import { StarOutlined, ForkOutlined } from "@ant-design/icons/lib/icons";
+import { Table, Row , Col} from "antd";
+import { ColumnsType } from 'antd/lib/table';
 import { GistContext } from "../../context/GistContext";
-import { getStaredGists } from "../../utils/fetchAPIs";
 import Loader from "../common/Spinner/Spinner";
-import {
-  Table,
-  Th,
-  Td,
-  UserNameSection,
-  Img,
-  Username,
-  Icons,
-  GistIcons,
-} from "../common/Table/style";
+import { UserNameSection, Img, Username } from "../common/Table/style";
 import { Section } from "./style";
+import { getStaredGists } from "../../utils/fetchAPIs";
+import { VISIABLESCREEN } from '../../context/ActionTypes';
 
-const StaredGists = () => {
-  const [staredGists, setStaredGists] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const {dispatch} = useContext(GistContext);
-  const date = new Date("2021-01-09T14:56:23");
-
-
-  const getStared = useCallback(
-    async () => {
-      setLoading(true);
-      let val = await getStaredGists().then((data) => {
-        setStaredGists(data);
-        setLoading(false);
-      });
+const columns : ColumnsType<any> = [
+  {
+    key: "1",
+    title: "Name",
+    dataIndex: "owner",
+    sorter: true,
+    render: (owner : any)  =>  {
+      return (
+        <UserNameSection>
+          <span>
+            <Img src={owner?.avatar_url} alt="Profile Pics" />
+          </span>
+          <Username>{owner?.login}</Username>
+        </UserNameSection>
+      );
     },
-    [getStaredGists],
-  );
-  const showUniqueGistRecord = (id:string) => {
-    dispatch({
-      type:"VISIBLESCREEN",
-      payload : {
-        tab : 9,
-        gistID : id 
-      }
-    })
-  };
+    width: "20%",
+  },
+  {
+    key: "2",
+    title: "Date",
+    dataIndex: "created_at",
+    width: "20%",
+  },
+  {
+    key: "3",
+    title: "Time",
+    dataIndex: "created_at",
+  },
+  {
+    key: "4",
+    title: "Keyword",
+    dataIndex: "files",
+    render: (files : any) => <span> ${Object.keys(files)[0]} </span>,
+  },
+  {
+    key: "5",
+    title: "Notebok Name",
+    dataIndex: "description",
+  },
+  {
+    key: "6",
+    title: "Actions",
+    dataIndex: "",
+    render: (value : any)  =>  {
+     return ( <Row gutter={[16, 16]}>
+      <Col>
+        <StarOutlined style={{ color: "#5acba1" }} />
+      </Col>
+      <Col>
+        <ForkOutlined style={{ color: "#5acba1" }} />
+      </Col>
+    </Row>);
+    },
+  },
+];
+
+const StaredGists: FC = () => {
+  const [staredGists, setStaredGists] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { dispatch } = useContext(GistContext);
+
+  const getStared = useCallback(async () => {
+    setLoading(true);
+    const resp = await getStaredGists();
+    setStaredGists(resp);
+    setLoading(false);
+  }, []);
+  const showUniqueGistRecord = useCallback(
+    (id) => {
+      dispatch({
+        type: VISIABLESCREEN,
+        payload: {
+          tab: 9,
+          gistID: id,
+        },
+      });
+    },[]);
+
+  const onRow = useCallback((record : any) => {
+      return { onClick: () => showUniqueGistRecord(record?.id) };
+  },[])
 
   useEffect(() => {
     getStared();
   }, []);
 
   return (
-    <>
-      {loading ? (
+      loading ? 
         <Loader />
-      ) : (
-        <Section >
-          <Table>
-            <thead>
-              <tr>
-                <Th>
-                  <input type="checkbox" />
-                </Th>
-                <Th>Name</Th>
-                <Th>Date</Th>
-                <Th>Time</Th>
-                <Th>Keyword</Th>
-                <Th>Notebook Name</Th>
-                <Th></Th>
-              </tr>
-            </thead>
-            <tbody>
-              {staredGists
-                ? staredGists.map((gist, index) => (
-                    <tr
-                      key={index}
-                      onClick={() => {
-                        showUniqueGistRecord(gist?.id);
-                      }}
-                    >
-                      <Td>
-                        {" "}
-                        <input type="checkbox" />{" "}
-                      </Td>
-                      <Td>
-                        <UserNameSection>
-                          <span>
-                            {" "}
-                            <Img
-                              className="profile-img"
-                              src={gist?.owner?.avatar_url}
-                              alt="Profile Pics"
-                            />
-                          </span>
-                          <Username>{gist?.owner?.login}</Username>
-                        </UserNameSection>
-                      </Td>
-                      <Td>{date.toLocaleDateString()}</Td>
-                      <Td>{date.toLocaleTimeString()}</Td>
-                      <Td>{Object.keys(gist?.files)[0]}</Td>
-                      <Td>{gist?.description}</Td>
-                      <Td>
-                        <GistIcons>
-                          <Icons className="fas fa-star" />
-                          <Icons className="fas fa-code-branch" />
-                        </GistIcons>
-                      </Td>
-                    </tr>
-                  ))
-                : "No Stared Gists Found there"}
-            </tbody>
-          </Table>
+       : 
+        <Section>
+          <Table
+            rowKey="id"
+            columns={columns}
+            dataSource={[...staredGists]}
+            onRow={onRow}  
+          />
         </Section>
-      )}
-    </>
-  );
+      );
 };
 
 export default StaredGists;

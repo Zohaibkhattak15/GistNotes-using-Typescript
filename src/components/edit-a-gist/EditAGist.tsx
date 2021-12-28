@@ -1,46 +1,59 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Form, Input, Button } from "../create-a-gist/style";
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import { Section, Heading } from "../create-a-gist/style";
 import { updateAGist, getGistObj } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
+import { Form, Input, Button } from "antd";
+import { VISIABLESCREEN } from "../../context/ActionTypes";
 
 const EditAGist = () => {
   const [gistData, setGistData] = useState<any>("");
   const { state, dispatch } = useContext(GistContext);
   const { gistID } = state;
 
-  const editGist = async () => {
+  const editGist = useCallback(async () => {
     const { description } = gistData;
-    let val = await updateAGist(gistID , description );
+    await updateAGist(gistID, description);
     dispatch({
-      type: "VISIBLESCREEN",
+      type: VISIABLESCREEN,
       payload: {
         tab: 3,
-        gistID: null,
+        gistID: "",
       },
     });
-  };
+  }, []);
 
-  const getAGist = async () => {
-    let gistOBJ = await getGistObj(gistID).then((data) => setGistData(data));
-  };
+  const getAGist = useCallback(async () => {
+    const resp = await getGistObj(gistID);
+    setGistData(resp);
+  }, [gistData]);
+
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
 
   useEffect(() => {
     getAGist();
   }, []);
 
   return (
-    <section>
-      <Form onSubmit={(e) => e.preventDefault()}>
-        <h1 className="create-gist-heading">Update Gist Description</h1>
-        <Input
-          type="text"
-          onChange={(e:React.ChangeEvent<HTMLInputElement>) : void => setGistData({ description: e.target.value })}
-          placeholder="Enter gist Discription..."
-          value={gistData?.description}
-        />
-        <Button onClick={() => editGist()}>Save Gist</Button>
+    <Section>
+      <Form onFinish={editGist}>
+        <Heading className="create-gist-heading">
+          Update Gist Description
+        </Heading>
+        <Form.Item>
+          <Input
+            size="large"
+            placeholder="Enter gist Discription..."
+            onChange={handleInputChange}
+            value={gistData?.description}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button size="large" htmlType="submit">
+            Save Gist
+          </Button>
+        </Form.Item>
       </Form>
-    </section>
+    </Section>
   );
 };
 

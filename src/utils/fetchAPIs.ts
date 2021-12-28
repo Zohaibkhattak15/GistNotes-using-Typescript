@@ -1,7 +1,16 @@
 import axios from "axios";
-import { USERNAME , BASE_URL , PAT} from "../constants/Constants";
+import { USERNAME , BASE_URL , PAT} from "../constants/index";
 
 //auth user API loginng in
+declare module 'axios' {
+   interface AxiosRequestConfig {
+     gist_id ?: string;
+     UserName?: string;
+
+  }
+}
+
+
 
 export const loginAuthUser = async (UserName : string) => {
   const authUserRecord = await axios
@@ -37,10 +46,10 @@ export const privateGistsRecord = async () => {
   return privateGistsRecord;
 };
 
-export const searchRecords = async (UserName : string) => {
+export const searchRecords = async (name : string) => {
   const searchedUserRecords = await axios
-    .get(`${BASE_URL}/users/${UserName}/gists`, {
-      UserName: UserName,
+    .get(`${BASE_URL}/users/${name}/gists`, {
+      UserName: name,
     })
     .then(resp => resp.data)
     .catch(err => err);

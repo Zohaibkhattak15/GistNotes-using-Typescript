@@ -4,6 +4,7 @@ export const Section = styled.section`
   display: flex;
   justify-content: flex-start;
   margin: 150px 150px auto;
+  width : 100%;
 `;
 
 export const ProlfieLeft = styled.div`
@@ -13,6 +14,7 @@ export const ProlfieLeft = styled.div`
   width: 30%;
   border-right: 1px solid lightgray;
   padding: 20px 30px;
+
 `;
 
 export const Heading = styled.div`
@@ -20,6 +22,7 @@ export const Heading = styled.div`
   font-size: 30px;
   display: flex;
   justify-content: center;
+
 `;
 
 export const Button = styled.button`
@@ -32,7 +35,9 @@ export const Button = styled.button`
 `;
 export const CardSection = styled.div`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+
 `;
 
 export const CardHeader = styled.section`
@@ -106,4 +111,9 @@ export const Img = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
+`
+
+export const Span1 = styled.span`
+     font-Weight: "700";
+     margin-Right: "10px";
 `

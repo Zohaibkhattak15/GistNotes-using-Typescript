@@ -11,6 +11,7 @@ export const Div = styled.div`
   margin: 15px 200px 5px auto;
   gap: 15px;
   cursor: pointer;
+  padding-bottom: 30px;
 
   i{
     &.list-active{
@@ -21,5 +22,9 @@ export const Div = styled.div`
     }
   }
 `;
+
+export const SpanBorder = styled.span`
+   border : 1px solid #5acba1 ;
+`
 
 

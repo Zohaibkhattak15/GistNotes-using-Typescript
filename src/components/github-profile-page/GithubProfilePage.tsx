@@ -1,57 +1,61 @@
-import { useState, useEffect } from "react";
-import { loginAuthUser, privateGistsRecord } from "../../utils/fetchAPIs";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  loginAuthUser,
+  privateGistsRecord,
+  checkGistStared,
+  staredAGist,
+  unStaredAGist,
+} from "../../utils/fetchAPIs";
 import {
   Section,
   ProlfieLeft,
   Button,
   Heading,
   CardSection,
-  CardHeader,
-  ProfileCol,
-  LeftSec,
-  GistIcons,
-  ContentBody,
-  CardBody,
-  CardBodyContent,
-  Icon1,
   ProfilePicSec,
   ProfileImage,
-  Img,
 } from "./style";
-import { Span, SpanValues } from "../unique-gist/style";
-import { NOCONTENT, USERNAME } from "../../constants/Constants";
+import { GistContext } from "../../context/GistContext";
+import { USERNAME } from "../../constants/index";
+import CardaContent from "./CardaContent";
 
 const GitHubProfilePage = () => {
-  const [authUserRecord, setAuthUserRecord] = useState<any>("");
+  const [authUserRecord, setAuthUserRecord] = useState<any>();
   const [gists, setGists] = useState<any>("");
+  const [gistStarValue, setGistStarValue] = useState<number>(0);
+
+  const { state } = useContext(GistContext);
+  const { tab, gistID } = state;
 
   const getLoginData = async () => {
-    let authData = await loginAuthUser(USERNAME).then((data) =>
-      setAuthUserRecord(data)
-    );
+    let authResp = await loginAuthUser(USERNAME);
+    setAuthUserRecord(authResp);
   };
   const getGists = async () => {
-    const getAuthGists = await privateGistsRecord().then((data) =>
-      setGists(data)
-    );
+    const getAuthGistsResp = await privateGistsRecord();
+    setGists(getAuthGistsResp);
   };
 
-  const { files } = gists;
-  let filename: string | undefined ; 
-  let content: string | undefined;
-  let myContentArray: any[] | undefined;
+  const starThisGist = async () => {
+    if (gistStarValue === 0) {
+      staredAGist(gistID)
+        .then(() => setGistStarValue(gistStarValue + 1))
+        .catch((err) => err);
+    } else {
+      await unStaredAGist(gistID)
+        .then(() => setGistStarValue(gistStarValue - 1))
+        .catch((err) => err);
+    }
+  };
 
-  if (files) {
-    Object.values(files).map((file) => {
-      filename = file?.filename;
-      content = file?.content;
-    });
-    myContentArray = content.split("\n");
-  }
+  const checkGist = () => {
+    checkGistStared(gistID).then(() => setGistStarValue(1));
+  };
 
   useEffect(() => {
     getLoginData();
     getGists();
+    checkGist();
   }, []);
 
   return (
@@ -72,72 +76,11 @@ const GitHubProfilePage = () => {
         </ProlfieLeft>
 
         <CardSection>
-          {gists &&
-            gists.map((item : any, index : number) => (
-              <CardHeader key={index}>
-                <LeftSec>
-                  <ProfileCol>
-                    <Img src={item?.owner?.avatar_url} alt="profile" />
-                    <div>
-                      <span>
-                        <h4>
-                          {item?.owner?.login}/{Object.keys(item?.files)[0]}
-                        </h4>
-                        <span>Created 7 housrs Ago</span>
-                        <br />
-                        <span> Broadcast Server</span>
-                      </span>
-                    </div>
-                  </ProfileCol>
-                  <GistIcons>
-                    <Icon1>
-                      <Span>
-                        <i className="far fa-star"></i> Star
-                      </Span>
-                      <SpanValues>0</SpanValues>
-                    </Icon1>
-                    <Icon1>
-                      <Span>
-                        <i className="fas fa-code-branch"></i> Fork
-                      </Span>
-                      <SpanValues>0</SpanValues>
-                    </Icon1>
-                  </GistIcons>
-                </LeftSec>
-
-                <ContentBody>
-                  <CardBody>
-                    <i className="fas fa-code"></i>
-                    <span style={{ paddingBottom: "20px" }}>
-                      {" "}
-                      {"  "} {Object.keys(item?.files)[0]}
-                    </span>
-                  </CardBody>
-                  <CardBodyContent>
-                    {myContentArray !== undefined
-                      ? myContentArray?.map((content, index) => {
-                          return (
-                            <span>
-                              {" "}
-                              <p>
-                                <span
-                                  style={{
-                                    fontWeight: "700",
-                                    marginRight: "10px",
-                                  }}
-                                >
-                                  {++index}
-                                </span>{" "}
-                                {content}
-                              </p>{" "}
-                            </span>
-                          );
-                        })
-                      : <p>{NOCONTENT}</p>}
-                  </CardBodyContent>
-                </ContentBody>
-              </CardHeader>
-            ))}
+          <CardaContent
+            gists={gists}
+            gistStarValue={gistStarValue}
+            starThisGist={starThisGist}
+          />
         </CardSection>
       </Section>
     </>

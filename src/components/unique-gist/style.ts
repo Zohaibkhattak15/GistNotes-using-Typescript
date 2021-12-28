@@ -66,8 +66,9 @@ export const SpanValues = styled.span`
   border: 1px solid gray;
   padding: 0px 15px;
   border-radius: 5px;
-`;
 
+`;
 export const Icon = styled.i` 
 cursor: pointer;
+color: blue;
 `
