@@ -1,7 +1,8 @@
 export const USERNAME :string  = "Zohaibkhattak15";
 export const NOCONTENT:string = "No Content There.......";
 export const BASE_URL:string = "https://api.github.com";
-export const PAT :string = "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";
+export const PAT :string = "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";
+export const DATE : string = "2021-01-09T14:56:23";
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";

@@ -1,12 +1,11 @@
-import { NOCONTENT } from "../../constants/index";
+import { DATE, NOCONTENT } from "../../constants/index";
 import { Td, UserNameSection, Username, Img } from "../common/Table/style";
 
 const SearchedData = ({ searchRecordsData, showUniqueGistRecord } : any) => {
    
-  const date = new Date("2021-01-09T14:56:23");
+  const date = new Date(DATE);
   return (
-    <>
-      {searchRecordsData ? (
+  searchRecordsData ? (
         searchRecordsData.map((gist : any , index : number) => (
           <tr
             key={index}
@@ -15,7 +14,7 @@ const SearchedData = ({ searchRecordsData, showUniqueGistRecord } : any) => {
             }}
           >
             <Td>
-              <input type="checkbox" />{" "}
+              <input type="checkbox" />
             </Td>
             <Td>
               <UserNameSection>
@@ -37,8 +36,7 @@ const SearchedData = ({ searchRecordsData, showUniqueGistRecord } : any) => {
         ))
       ) : (
         <p>{NOCONTENT}</p>
-      )}
-    </>
+      )
   );
 };
 

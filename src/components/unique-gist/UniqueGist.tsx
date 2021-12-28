@@ -1,16 +1,26 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 
 import {
   Div,
   Section,
   ContentBody,
 } from "./style";
+import {
+  delAGist,
+  staredAGist,
+  unStaredAGist,
+  forkedGist,
+} from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { getGistData , checkGist , updateGist , deleteGist , starThisGist , forkThisGist } from "../../utils/UniqueGist";
+import { VISIBLESCREEN } from "../../constants/index";
+import { getGistData , checkGist } from "../../utils/UniqueGist";
 
 
+const { confirm } = Modal;
 
 const UniqueGist = () => {
   const [uniqueData, setUniqueData] = useState([]);
@@ -20,10 +30,66 @@ const UniqueGist = () => {
   const { tab, gistID } = state;
   let filename;
 
-  forkThisGist(gistForkValue , setGistForkValue, gistID)
-  starThisGist(gistStarValue,setGistStarValue , gistID );
-  deleteGist(dispatch , gistID)
-  updateGist(dispatch , gistID);
+  
+  const starThisGist = async () => {
+    if (gistStarValue === 0) {
+      await staredAGist(gistID)
+        .then(() => setGistStarValue(gistStarValue + 1))
+        .catch((err) => err);
+    } else {
+      await unStaredAGist(gistID)
+        .then(() => setGistStarValue(gistStarValue - 1))
+        .catch((err) => err);
+    }
+  };
+
+  const forkThisGist = async () => {
+    let alreadyFork = 0;
+    await forkedGist(gistID)
+      .then(() => (alreadyFork = 1))
+      .catch(() => alreadyFork);
+    if (alreadyFork) {
+      setGistForkValue(gistForkValue + 1);
+    }
+  };
+
+  const deleteGist = (id : string) => {
+    confirm({
+      title: "Do you Want to delete these Gist?",
+      icon: <ExclamationCircleOutlined />,
+      content: "",
+      onOk() {
+        delAGist(id);
+        dispatch({
+          type: VISIBLESCREEN,
+          payload: {
+            tab: 3,
+            gistID: "",
+          },
+        });
+      },
+      onCancel() {
+        dispatch({
+          type: VISIBLESCREEN,
+          payload: {
+            tab: 9,
+            gistID: "",
+          },
+        });
+      },
+    });
+  };
+
+  const updateGist = useCallback((id) => {
+    dispatch({
+      type: VISIBLESCREEN,
+      payload: {
+        tab: 11,
+        gistID: id,
+      },
+    });
+  },[]);
+
 
   useEffect(() => {
     getGistData(uniqueData, setUniqueData , gistID);
