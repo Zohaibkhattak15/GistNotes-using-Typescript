@@ -1,87 +1,31 @@
-import React, { useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { GistContext } from "../../../context/GistContext";
-import { Col, Table, Row } from "antd";
-import { Section, UserNameSection, Username, Img } from "./style";
-import { StarOutlined, ForkOutlined } from "@ant-design/icons/lib/icons";
+import { Table } from "antd";
+import { Section } from "./style";
+import { columns } from "../../../utils/TableDataUtilis";
+import { VISIBLESCREEN } from "../../../constants";
 
-const columns = [
-  {
-    key: "1",
-    title: "Name",
-    dataIndex: "owner",
-    sorter: true,
-    render: (owner : any) => {
-      return (
-        <UserNameSection>
-          <span>
-            {" "}
-            <Img src={owner?.avatar_url} alt="Profile Pics" />
-          </span>
-          <Username>{owner?.login}</Username>
-        </UserNameSection>
-      );
-    },
-    width: "20%",
-  },
-  {
-    key: "2",
-    title: "Date",
-    dataIndex: "created_at",
-    width: "20%",
-  },
-  {
-    key: "3",
-    title: "Time",
-    dataIndex: "created_at",
-  },
-  {
-    key: "4",
-    title: "Keyword",
-    dataIndex: "files",
-    render: (files : any) => <span>${Object.keys(files)[0]}</span> ,
-  },
-  {
-    key: "5",
-    title: "Notebok Name",
-    dataIndex: "description",
-  },
-  {
-    key: "6",
-    title: "Actions",
-    dataIndex: "",
-    render: () => {
-      return (
-        <Row gutter={[16, 16]}>
-          <Col>
-            <StarOutlined style={{ color: "#5acba1" }} />
-          </Col>
-          <Col>
-            <ForkOutlined style={{ color: "#5acba1" }} />
-          </Col>
-        </Row>
-      );
-    },
-  },
-];
-
-const TableData = ({ publicGistsDisplay, privateGistsDisplay } : any) => {
+const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
-  const dataSource = publicGistsDisplay
-    ? [...publicGistsDisplay]
-    : [...privateGistsDisplay];
+  const dataSource = publicGistsDisplay ? [...publicGistsDisplay] : [...privateGistsDisplay];
 
   const showUniqueGistRecord = useCallback(
     (id) => {
       dispatch({
-        type: "VISIBLESCREEN",
+        type: VISIBLESCREEN,
         payload: {
           tab: 9,
           gistID: id,
         },
       });
     },
-    [dispatch]
+    []
   );
+  const getID = (record: any) => {
+    return {
+      onClick: () => showUniqueGistRecord(record?.id)
+    }
+  }
   return (
     <>
       <Section>
@@ -89,13 +33,7 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay } : any) => {
           rowKey="id"
           columns={[...columns]}
           dataSource={dataSource}
-          onRow={(record) => {
-            return {
-              onClick: () => {
-                showUniqueGistRecord(record?.id);
-              },
-            };
-          }}
+          onRow={record => getID(record)}
         />
       </Section>
     </>

@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { privateGistsRecord } from "../../utils/fetchAPIs";
+import  { useEffect, useState, useCallback, useMemo } from "react";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
 import { Section, Div, SpanBorder } from "../public-gist-list/style";
+import { getPrivateGists } from "../../utils/PrivatreGistUtilis";
+
 
 const PrivateGists = () => {
   const [loading, setLoading] = useState(false);
@@ -12,12 +13,6 @@ const PrivateGists = () => {
   const [isGridView, setIsGridView] = useState(false);
   const [layout, setLayout] = useState("list");
 
-  const getPrivateGists = useCallback(async () => {
-    setLoading(true);
-    const resp = await privateGistsRecord();
-    setLoading(false);
-    setPrivateGistsList(resp);
-  }, [privateGistsRecord]);
 
   const listToggle = useCallback(() => {
     setIsListView(true);
@@ -43,7 +38,7 @@ const PrivateGists = () => {
   );
 
   useEffect(() => {
-    getPrivateGists();
+    getPrivateGists(loading, setLoading  , privateGistsList , setPrivateGistsList  )
   }, []);
 
   return (

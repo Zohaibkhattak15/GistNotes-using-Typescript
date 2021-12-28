@@ -1,7 +1,6 @@
 import { createContext } from "react";
-import { USERNAME , PAT } from "../constants/index";
-import {LOGIN , LOGOUT , VISIBLESCREEN ,SEARCH } from "./ActionTypes";
-
+import { GISTINITIALSTATE } from "../constants/index";
+import {LOGIN , LOGOUT , VISIBLESCREEN ,SEARCH } from "../constants/index";
 
 export type StateType = {
     userName : string ;
@@ -12,16 +11,7 @@ export type StateType = {
     searchValue : string ;
 }
 
-
-export const initialState : StateType = {
-  // will be in the constant folder
-  userName: USERNAME,
-  PAT: PAT,
-  isLoggedin: false,
-  tab:1,
-  gistID: "",
-  searchValue: "",
-};
+export const initialState : StateType = GISTINITIALSTATE ;
 
 export type Action = 
    | {type : "LOGIN" , payload : {

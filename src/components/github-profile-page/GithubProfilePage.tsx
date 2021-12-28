@@ -1,11 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  loginAuthUser,
-  privateGistsRecord,
-  checkGistStared,
-  staredAGist,
-  unStaredAGist,
-} from "../../utils/fetchAPIs";
+import { useState, useEffect, useContext } from "react";
 import {
   Section,
   ProlfieLeft,
@@ -16,46 +9,21 @@ import {
   ProfileImage,
 } from "./style";
 import { GistContext } from "../../context/GistContext";
-import { USERNAME } from "../../constants/index";
 import CardaContent from "./CardaContent";
+import { getLoginData, getGists, checkGist, starThisGist } from "../../utils/GitHubProfileUtilis";
+
 
 const GitHubProfilePage = () => {
   const [authUserRecord, setAuthUserRecord] = useState<any>();
   const [gists, setGists] = useState<any>("");
   const [gistStarValue, setGistStarValue] = useState<number>(0);
-
   const { state } = useContext(GistContext);
-  const { tab, gistID } = state;
-
-  const getLoginData = async () => {
-    let authResp = await loginAuthUser(USERNAME);
-    setAuthUserRecord(authResp);
-  };
-  const getGists = async () => {
-    const getAuthGistsResp = await privateGistsRecord();
-    setGists(getAuthGistsResp);
-  };
-
-  const starThisGist = async () => {
-    if (gistStarValue === 0) {
-      staredAGist(gistID)
-        .then(() => setGistStarValue(gistStarValue + 1))
-        .catch((err) => err);
-    } else {
-      await unStaredAGist(gistID)
-        .then(() => setGistStarValue(gistStarValue - 1))
-        .catch((err) => err);
-    }
-  };
-
-  const checkGist = () => {
-    checkGistStared(gistID).then(() => setGistStarValue(1));
-  };
+  const { gistID } = state;
 
   useEffect(() => {
-    getLoginData();
-    getGists();
-    checkGist();
+    getLoginData(setAuthUserRecord, authUserRecord);
+    getGists(setGists, gists);
+    checkGist(setGistStarValue, gistStarValue, gistID);
   }, []);
 
   return (
@@ -79,7 +47,7 @@ const GitHubProfilePage = () => {
           <CardaContent
             gists={gists}
             gistStarValue={gistStarValue}
-            starThisGist={starThisGist}
+            starThisGist={starThisGist(gistStarValue, setGistStarValue, gistID)}
           />
         </CardSection>
       </Section>

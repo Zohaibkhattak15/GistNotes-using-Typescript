@@ -18,7 +18,7 @@ import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { VISIBLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../constants/index";
 
 const { confirm } = Modal;
 

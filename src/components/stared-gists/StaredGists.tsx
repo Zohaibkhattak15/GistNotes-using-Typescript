@@ -7,7 +7,7 @@ import Loader from "../common/Spinner/Spinner";
 import { UserNameSection, Img, Username } from "../common/Table/style";
 import { Section } from "./style";
 import { getStaredGists } from "../../utils/fetchAPIs";
-import { VISIBLESCREEN } from '../../context/ActionTypes';
+import { VISIBLESCREEN } from '../../constants/index';
 
 const columns: ColumnsType<any> = [
   {

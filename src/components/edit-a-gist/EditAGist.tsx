@@ -3,7 +3,7 @@ import { Section, Heading } from "../create-a-gist/style";
 import { updateAGist, getGistObj } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
-import { VISIBLESCREEN } from "../../context/ActionTypes";
+import { VISIBLESCREEN } from "../../constants/index";
 
 const EditAGist = () => {
   const [gistData, setGistData] = useState<any>("");
@@ -25,7 +25,7 @@ const EditAGist = () => {
   const getAGist = useCallback(async () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
-  }, [gistData]);
+  }, []);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
 

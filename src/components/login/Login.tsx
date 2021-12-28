@@ -4,25 +4,21 @@ import { loginAuthUser } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Button, Input, Form, Alert } from "antd";
 import { openNotification, loginInputFormRules } from "../../utils/loginUtils";
-import { LOGIN, VISIBLESCREEN } from "../../context/ActionTypes";
+import { LOGIN, VISIBLESCREEN } from "../../constants/index";
 
 const Login = () => {
   const [name, setName] = useState<string>("");
-  const {state, dispatch } = useContext(GistContext);
+  const {dispatch } = useContext(GistContext);
   const [showError, setShowError] = useState<boolean>(false);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setName(e.currentTarget.value);
   };
-
-  const loginAuth = () => {
-    const { PAT } = state;
-   
+  
+  const loginAuth = () => {   
     loginAuthUser(name)
       .then((resp) => {
         if (resp?.login === name) {
-          // localStorage.setItem("authUserName", JSON.stringify(name));
-          // localStorage.setItem("token", JSON.stringify(PAT));
           dispatch({
             type: LOGIN,
             payload: {
@@ -46,7 +42,6 @@ const Login = () => {
   const displayError = showError ? ( <Alert message="Wrong Username..." type="error" />) : null;
 
   return (
-    <>
       <FormDiv>
       {displayError}
         <Form onFinish={loginAuth} autoComplete="off">
@@ -68,7 +63,6 @@ const Login = () => {
           </Form.Item>
         </Form>
       </FormDiv>
-    </>
   );
 };
 

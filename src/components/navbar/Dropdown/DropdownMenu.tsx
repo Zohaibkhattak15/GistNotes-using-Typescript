@@ -1,7 +1,7 @@
 import { Menu, Dropdown } from "antd";
 import { useContext } from "react";
 import Zohaib from "../../../assets/zohaib.png";
-import { LOGOUT, VISIBLESCREEN } from "../../../context/ActionTypes";
+import { LOGOUT, VISIBLESCREEN } from "../../../constants/index";
 import { GistContext } from "../../../context/GistContext";
 import { Img } from './style';
 
@@ -85,7 +85,6 @@ const DropdownMenu = () => {
               tab : 1
             }
           });
-          localStorage.clear();
         }}
       >
         <p> SignOut</p>
