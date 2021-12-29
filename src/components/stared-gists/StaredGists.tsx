@@ -7,7 +7,7 @@ import { VISIBLESCREEN } from '../../constants/index';
 import { columns, getStared } from '../../utils/StarGistUtilis';
 
 const StaredGists: FC = () => {
-  const [staredGists, setStaredGists] = useState<any>([]);
+  const [staredGists, setStaredGists] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const { dispatch } = useContext(GistContext);
 

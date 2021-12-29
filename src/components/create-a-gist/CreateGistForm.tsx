@@ -2,17 +2,17 @@ import { useState, useContext, useCallback } from "react";
 import { Heading, Section } from "./style";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Select, Button } from "antd";
-import { formInputRules , creatGist} from "../../utils/createGistUtilis";
+import { formInputRules , creatGist} from "../../utils/CreateGistUtilis";
 import { CREATEGISTOBJ } from "../../constants/index";
 import { gistDataFormType } from '../../types/index'
 
 const { TextArea } = Input;
 const { Option } = Select;
 
-
 const CreateAGist = () => {
   const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ)
-
+  const { dispatch } = useContext(GistContext);
+  
   const changeDescription = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setGistFormData({
       ...gistFormData,
@@ -32,14 +32,13 @@ const CreateAGist = () => {
     });
   };
 
-  const { dispatch } = useContext(GistContext);
-  const handliFinish = useCallback(() => {
+  const handleFinish = useCallback(() => {
     creatGist(gistFormData , dispatch);
   },[gistFormData])
 
   return (
     <Section>
-      <Form onFinish={handliFinish} autoComplete="off" >
+      <Form onFinish={handleFinish}  >
         <Heading>Create A Gist</Heading>
         <Form.Item
           rules={formInputRules(true, "description")}

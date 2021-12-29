@@ -1,18 +1,17 @@
 import { useState, useContext, useEffect, useCallback } from "react";
+import { Table } from "antd";
 import { GistContext } from "../../context/GistContext";
 import { Section } from "../stared-gists/style";
-import Spinner from "../common/Spinner/Spinner";
 import { columns } from '../../utils/StarGistUtilis';
-import { Table } from "antd";
 import { VISIBLESCREEN } from "../../constants";
-import { getFilterData } from "../../utils/searchGistUserUtilis";
+import { getFilterData } from "../../utils/SearchGistUserUtilis";
+import Spinner from "../common/Spinner/Spinner";
 
 const SearchGists = () => {
-  const [searchRecordsData, setSearchRecordsData] = useState([]);
+  const [searchRecordsData, setSearchRecordsData] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
   const { state, dispatch } = useContext(GistContext);
-  const [loading, setLoading] = useState(false);
-
-  const { gistID, searchValue } = state;
+  const { searchValue } = state;
 
   const showUniqueGistRecord = useCallback((gistID: string) => {
     dispatch({

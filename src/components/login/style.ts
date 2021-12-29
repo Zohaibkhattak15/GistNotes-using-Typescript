@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormDiv = styled.div`
+export const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,7 +11,6 @@ export const FormDiv = styled.div`
 
   Input {
     border-radius: 10px;
-
     &:hover {
       border: 1px solid #5acba1;
     }

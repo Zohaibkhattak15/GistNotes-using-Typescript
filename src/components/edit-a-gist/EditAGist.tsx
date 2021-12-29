@@ -1,38 +1,25 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Section, Heading } from "../create-a-gist/style";
-import { updateAGist, getGistObj } from "../../utils/fetchAPIs";
+import { getGistObj } from "../../utils/FetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
-import { VISIBLESCREEN } from "../../constants/index";
+import { editGist } from "../../utils/EditGistUtilis";
 
 const EditAGist = () => {
   const [gistData, setGistData] = useState<any>();
   const { state, dispatch } = useContext(GistContext);
   const { gistID } = state;
-
-  const editGist = useCallback(async () => {
-    const {description} = gistData
-    await updateAGist(gistID, description);
-    dispatch({
-      type: VISIBLESCREEN,
-      payload: {
-        tab: 3,
-        gistID: "",
-      },
-    });
-    /* eslint-disable */
-  }, []);
-/* eslint-enable */
+  const desp = gistData.description;
 
   const getAGist = useCallback(async () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
-    console.log(resp)
-        /* eslint-disable */
+  /* eslint-disable */
   }, []);
 /* eslint-enable */
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
+  const handleFinish = () => editGist(gistID ,desp, dispatch);
 
   useEffect(() => {
     getAGist();
@@ -40,7 +27,7 @@ const EditAGist = () => {
 
   return (
     <Section>
-      <Form onFinish={editGist}>
+      <Form onFinish={handleFinish}>
         <Heading className="create-gist-heading">
           Update Gist Description
         </Heading>
@@ -61,5 +48,4 @@ const EditAGist = () => {
     </Section>
   );
 };
-
 export default EditAGist;

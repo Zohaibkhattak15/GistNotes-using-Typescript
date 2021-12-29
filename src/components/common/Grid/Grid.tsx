@@ -1,6 +1,6 @@
 import { useCallback, useContext } from "react";
-import { GistContext } from "../../../context/GistContext";
 import { Row } from "antd";
+import { GistContext } from "../../../context/GistContext";
 import PublicGistsGrid from "./PublicGistsGrid";
 import PrivateGistsGrid from "./PrivateGistsGrid";
 import { VISIBLESCREEN } from "../../../constants/index";

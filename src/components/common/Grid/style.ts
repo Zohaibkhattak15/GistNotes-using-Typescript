@@ -29,12 +29,12 @@ export const Grid = styled.section`
   }
 `;
 
-export const Footer = styled.div`
+export const FooterWrapper = styled.div`
   display: flex;
   gap: 20px;
   border-top: 1px solid gray;
 `;
-export const Profile = styled.div`
+export const ProfileWrapper = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;

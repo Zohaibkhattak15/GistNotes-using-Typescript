@@ -1,4 +1,4 @@
-import { privateGistsRecord } from "./fetchAPIs";
+import { privateGistsRecord } from "./FetchAPIs";
 
 export const getPrivateGists = async (loading :boolean, setLoading: any ,privateGistsList :any, setPrivateGistsList : any ) => {
     setLoading(true);

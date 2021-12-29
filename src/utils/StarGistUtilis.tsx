@@ -2,7 +2,7 @@ import { UserNameSection, Img, Username } from "../components/common/Table/style
 import { ColumnsType } from 'antd/lib/table';
 import { StarOutlined, ForkOutlined } from "@ant-design/icons/lib/icons";
 import {  Row, Col } from "antd";
-import { getStaredGists } from "./fetchAPIs";
+import { getStaredGists } from "./FetchAPIs";
 
 export const columns: ColumnsType<any> = [
     {

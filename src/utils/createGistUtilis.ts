@@ -1,7 +1,7 @@
 import { VISIBLESCREEN } from "../constants";
-import { createAGist } from "./fetchAPIs";
+import { createAGist } from "./FetchAPIs";
 import {gistDataFormType} from '../types/index';
-import  {openNotification } from './commonUtilis';
+import  {openNotification } from './CommonUtilis';
 
 
 export const formInputRules = (required : boolean  , name: string ) =>{

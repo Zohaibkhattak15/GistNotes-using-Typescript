@@ -1,50 +1,44 @@
 import { Col } from 'antd';
-import { Grid, Footer, Span1, ProfilePic, Profile, ProfileFooter } from './style';
-
+import { Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter } from './style';
 
 const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFiles }: any) => {
-
   const dispPrivateFiles =
     privateFiles &&
     privateFiles?.map((content: any, index: number) => {
       return (
         <span key={index}>
           <p>
-            <Span1>{++index}</Span1>{content}
+            <Span1>{index+=index}</Span1>{content}
           </p>
         </span>
       );
     });
+    const fileName = (gist : any) => Object.keys(gist?.files)[0];
 
   return (
-
     privateGistsDisplay.map((gist: any, index: number) => (
       <Col xs={{ span: 12, offset: 1 }} lg={{ span: 6, offset: 1 }} key={index}>
-        <Grid
-          key={index}
-          onClick={() => showUniqueGistRecord(gist?.id)}
-        >
+        <Grid key={index} onClick={() => showUniqueGistRecord(gist?.id)}>
           <div>
             {dispPrivateFiles}
           </div>
-          <Footer>
+          <FooterWrapper>
             <div>
               <ProfilePic src={gist?.owner?.avatar_url} alt="profile" />
             </div>
-            <Profile>
+            <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login} / {Object.keys(gist.files)[0]}
+                  {gist?.owner?.login} / {fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />
               </ProfileFooter>
-            </Profile>
-          </Footer>
+            </ProfileWrapper>
+          </FooterWrapper>
         </Grid>
       </Col>
     ))
   )
 }
-
 export default PrivateGistsGrid;

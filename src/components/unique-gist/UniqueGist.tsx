@@ -9,26 +9,21 @@ import {
   staredAGist,
   unStaredAGist,
   forkedGist,
-} from "../../utils/fetchAPIs";
+} from "../../utils/FetchAPIs";
 import { GistContext } from "../../context/GistContext";
-import { Modal } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { VISIBLESCREEN } from "../../constants/index";
-import { getGistData , checkGist } from "../../utils/UniqueGist";
-
-const { confirm } = Modal;
+import { getGistData, checkGist, updateGist, deleteGist } from "../../utils/UniqueGist";
 
 const UniqueGist = () => {
-  const [uniqueData, setUniqueData] = useState([]);
-  const [gistStarValue, setGistStarValue] = useState(0);
-  const [gistForkValue, setGistForkValue] = useState(0);
+  const [uniqueData, setUniqueData] = useState<any>([]);
+  const [gistStarValue, setGistStarValue] = useState<number>(0);
+  const [gistForkValue, setGistForkValue] = useState<number>(0);
   const { state, dispatch } = useContext(GistContext);
-  const { tab, gistID } = state;
+  const { gistID } = state;
   let filename;
 
-  const starThisGist = useCallback( async () => {
+  const starThisGist = useCallback(async () => {
     if (gistStarValue === 0) {
       await staredAGist(gistID)
         .then(() => setGistStarValue(gistStarValue + 1))
@@ -38,7 +33,7 @@ const UniqueGist = () => {
         .then(() => setGistStarValue(gistStarValue - 1))
         .catch((err) => err);
     }
-  },[staredAGist , unStaredAGist]);
+  }, [staredAGist, unStaredAGist]);
 
   const forkThisGist = useCallback(async () => {
     let alreadyFork = 0;
@@ -48,70 +43,36 @@ const UniqueGist = () => {
     if (alreadyFork) {
       setGistForkValue(gistForkValue + 1);
     }
-  },[forkedGist]);
+  }, [forkedGist]);
 
-  const deleteGist = useCallback((id : string) => {
-    confirm({
-      title: "Do you Want to delete these Gist?",
-      icon: <ExclamationCircleOutlined />,
-      content: "",
-      onOk() {
-        delAGist(id);
-        dispatch({
-          type: VISIBLESCREEN,
-          payload: {
-            tab: 3,
-            gistID: "",
-          },
-        });
-      },
-      onCancel() {
-        dispatch({
-          type: VISIBLESCREEN,
-          payload: {
-            tab: 9,
-            gistID: "",
-          },
-        });
-      },
-    });
-  },[delAGist]);
-
-  const updateGist = useCallback((id) => {
-    dispatch({
-      type: VISIBLESCREEN,
-      payload: {
-        tab: 11,
-        gistID: id,
-      },
-    });
-  },[]);
-
+  const handleUpdate = useCallback(() => updateGist(gistID, dispatch),[updateGist]);
+  const handleDelete = useCallback(() => deleteGist(gistID, dispatch),[deleteGist]);
 
   useEffect(() => {
-    getGistData(uniqueData, setUniqueData , gistID);
-    checkGist(gistStarValue , setGistStarValue, gistID );
+    getGistData(uniqueData, setUniqueData, gistID);
+    checkGist(gistStarValue, setGistStarValue, gistID);
+    /* eslint-disable */
   }, []);
-
+  /* eslint-enable */
   return (
     <Div>
       <Section>
-            <ProfileContent  
-            data={uniqueData} 
-            filename={filename}  
-            updateGist={updateGist}  
-            deleteGist={deleteGist}
-            starThisGist={starThisGist}
-            forkThisGist={forkThisGist}
-            gistStarValue={gistStarValue}  
-            gistForkValue={gistForkValue}
-            />
+        <ProfileContent
+          data={uniqueData}
+          filename={filename}
+          updateGist={handleUpdate}
+          deleteGist={handleDelete}
+          starThisGist={starThisGist}
+          forkThisGist={forkThisGist}
+          gistStarValue={gistStarValue}
+          gistForkValue={gistForkValue}
+        />
       </Section>
       <ContentBody>
-            <FileContent 
-            filename={filename}
-            uniqueData={uniqueData}
-            />
+        <FileContent
+          filename={filename}
+          uniqueData={uniqueData}
+        />
       </ContentBody>
     </Div>
   );

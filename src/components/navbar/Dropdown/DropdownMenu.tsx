@@ -1,8 +1,8 @@
 import { Menu, Dropdown } from "antd";
 import { useContext } from "react";
-import Zohaib from "../../../assets/zohaib.png";
 import { LOGOUT, VISIBLESCREEN } from "../../../constants/index";
 import { GistContext } from "../../../context/GistContext";
+import Zohaib from "../../../assets/zohaib.png";
 import { Img } from './style';
 
 const DropdownMenu = () => {
@@ -95,13 +95,11 @@ const DropdownMenu = () => {
     <Dropdown overlay={menu} trigger={["click"]} >
       <p className="ant-dropdown-link" onClick={e => e.preventDefault()}>
         <Img
-          width="50px"
-          height="50px"
+         className="imgsize"
           src={Zohaib}
         />
       </p>
     </Dropdown>
   );
 };
-
 export default DropdownMenu;

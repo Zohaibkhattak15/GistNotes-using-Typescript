@@ -33,7 +33,7 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
         <Table
           rowKey="id"
           columns={[...columns]}
-          dataSource={dataSource}
+          dataSource={[...dataSource]}
           onRow={record => getID(record)}
         />
       </Section>

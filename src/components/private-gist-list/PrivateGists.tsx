@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
@@ -41,5 +41,4 @@ const PrivateGists = () => {
     </Section>
   );
 };
-
 export default PrivateGists;

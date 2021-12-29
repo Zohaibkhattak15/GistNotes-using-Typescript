@@ -1,26 +1,21 @@
 import styled from "styled-components";
 
-
-
 export const Section = styled.section`
   width: 80%;
   margin: 15px auto;
   padding-bottom: 200px;
 
 `
-
 export const Table = styled.table`
   display: table;
   width: 80%;
   margin: 15px auto;
   text-align: left;
 `;
-
 export const Th = styled.th`
   background-color: #def5ec;
   padding: 20px 20px 20px 20px;
 `;
-
 export const Td = styled.td`
   padding: 10px 10px 10px 10px;
   border-bottom: 2px solid #def5ec;
@@ -30,12 +25,10 @@ export const Td = styled.td`
     text-align: center;
   }
 `;
-
 export const UserNameSection = styled.div`
   display: flex;
   gap: 15px;
 `;
-
 export const Username = styled.span`
   justify-content: center;
   align-self: center;
@@ -51,12 +44,10 @@ export const GistIcons = styled.div`
   justify-content: center;
   height: 50px;
 `;
-
 export const Icons = styled.i`
   justify-content: center;
   align-content: center;
   align-self: center;
   cursor: pointer;
   color: #5acba1;
-
 `;

@@ -11,14 +11,13 @@ declare module 'axios' {
 }
 
 export const loginAuthUser = async (UserName: string) => {
-
   const authUserRecord = await axios
     .get(`${BASE_URL}/user`, {
       headers: {
         Authorization: `Basic ${btoa(`${UserName}:${PAT}`)}`,
       },
     })
-    .then(resp => resp)
+    .then(resp => resp?.data)
     .catch(err => err);
   return authUserRecord;
 };
@@ -84,11 +83,10 @@ export const delAGist = async (id: string) => {
 };
 
 export const updateAGist = async (id: string, disp: string) => {
-  console.log({id , disp})
   const updateGists = await axios.patch(
     `${BASE_URL}/gists/${id}`,
     {
-      id,
+      id: id,
       description : disp
     },
     {

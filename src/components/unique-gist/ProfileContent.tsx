@@ -9,7 +9,7 @@ import {
 } from "./style";
 import { GistIcons, Icon1 } from "../github-profile-page/style";
 
-const ProfileSection = ({
+const ProfileContent = ({
   data,
   filename,
   updateGist,
@@ -83,4 +83,4 @@ const ProfileSection = ({
   );
 };
 
-export default ProfileSection;
+export default ProfileContent;
