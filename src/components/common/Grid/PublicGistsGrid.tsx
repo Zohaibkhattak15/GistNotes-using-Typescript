@@ -5,7 +5,7 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
 
   const dispPublicFiles = publicFiles &&
     publicFiles?.map((content: any, index: number) => {
-      return (
+       return(
         <span key={index}>
           <p>
             <Span1>{++index}</Span1> {content}
@@ -14,6 +14,7 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
       );
     });
     const fileName = (gist : any) => Object.keys(gist?.files)[0];
+    
   return (
     publicGistsDisplay.map((gist: any, index: number) => (
       <Col xs={{ span: 12, offset: 1 }} lg={{ span: 6, offset: 1 }} key={index}>
@@ -28,7 +29,7 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
             <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login} / {fileName}{" "}
+                  {gist?.owner?.login} / {fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />

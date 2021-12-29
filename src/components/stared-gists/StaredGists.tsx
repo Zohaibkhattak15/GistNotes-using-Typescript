@@ -45,7 +45,7 @@ const StaredGists: FC = () => {
         <Table
           rowKey="id"
           columns={columns}
-          dataSource={[...staredGists]}
+          dataSource={staredGists}
           onRow={onRow}
         />
       </Section>
