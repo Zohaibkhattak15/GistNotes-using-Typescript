@@ -10,6 +10,7 @@ const SearchBar = () => {
   const [value, setValue] = useState<string>("");
   const { dispatch } = useContext(GistContext);
   const searchGists = () => {
+    if(value){
     dispatch({
       type: SEARCH,
       payload: {
@@ -17,6 +18,7 @@ const SearchBar = () => {
         tab: 10,
       },
     });
+  }
   };
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value)
