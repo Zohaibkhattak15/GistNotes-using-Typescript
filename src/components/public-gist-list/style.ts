@@ -4,7 +4,14 @@ export const Section = styled.section`
   margin-top: 60px;
 `;
 
-export const Div = styled.div`
+export const SpanBorder = styled.span`
+ &.divider{
+   border : 1px solid #5acba1 ;
+   padding: 0px;
+   }
+`
+
+export const Wrapper = styled.div`
   display: flex;
   width: 80%;
   justify-content: flex-end;
@@ -13,18 +20,20 @@ export const Div = styled.div`
   cursor: pointer;
   padding-bottom: 30px;
 
-  i{
-    &.list-active{
-      color: #5acba1;
-    }
-    &.grid-active{
-      color: #5acba1;
-    }
+  span{
+    cursor: pointer;
+    padding: 5px;
   }
 `;
 
-export const SpanBorder = styled.span`
-   border : 1px solid #5acba1 ;
+type viewIconsProps = {
+  isListView : boolean
+}
+export const ViewIcon = styled.i<viewIconsProps>` 
+   &.fa-list{
+     ${(props) => props.isListView ? `color: #5acba1;` : `color: black;` }
+   }
+   &.fa-th-large{
+     ${props => !props.isListView ? `color: #5acba1;` : `color: black;` }
+  }
 `
-
-

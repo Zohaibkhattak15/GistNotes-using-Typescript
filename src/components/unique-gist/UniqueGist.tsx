@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect, useCallback } from "react";
-
 import {
   Div,
   Section,
@@ -19,7 +18,6 @@ import FileContent from "./FileContent";
 import { VISIBLESCREEN } from "../../constants/index";
 import { getGistData , checkGist } from "../../utils/UniqueGist";
 
-
 const { confirm } = Modal;
 
 const UniqueGist = () => {
@@ -30,8 +28,7 @@ const UniqueGist = () => {
   const { tab, gistID } = state;
   let filename;
 
-  
-  const starThisGist = async () => {
+  const starThisGist = useCallback( async () => {
     if (gistStarValue === 0) {
       await staredAGist(gistID)
         .then(() => setGistStarValue(gistStarValue + 1))
@@ -41,9 +38,9 @@ const UniqueGist = () => {
         .then(() => setGistStarValue(gistStarValue - 1))
         .catch((err) => err);
     }
-  };
+  },[staredAGist , unStaredAGist]);
 
-  const forkThisGist = async () => {
+  const forkThisGist = useCallback(async () => {
     let alreadyFork = 0;
     await forkedGist(gistID)
       .then(() => (alreadyFork = 1))
@@ -51,9 +48,9 @@ const UniqueGist = () => {
     if (alreadyFork) {
       setGistForkValue(gistForkValue + 1);
     }
-  };
+  },[forkedGist]);
 
-  const deleteGist = (id : string) => {
+  const deleteGist = useCallback((id : string) => {
     confirm({
       title: "Do you Want to delete these Gist?",
       icon: <ExclamationCircleOutlined />,
@@ -78,7 +75,7 @@ const UniqueGist = () => {
         });
       },
     });
-  };
+  },[delAGist]);
 
   const updateGist = useCallback((id) => {
     dispatch({

@@ -2,7 +2,7 @@ import {useEffect,useState,useCallback,useMemo } from "react";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
-import { Section, Div, SpanBorder } from "./style";
+import { Section, Wrapper, SpanBorder, ViewIcon } from "./style";
 import { getPublicGists } from "../../utils/PublicGistUtilis";
 
 
@@ -10,32 +10,22 @@ const PublicGists = () => {
   const [publicGistsList, setPublicGistsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isListView, setIsListView] = useState(true);
-  const [isGridView, setIsGridView] = useState(false);
-  const [layout, setLayout] = useState("list");
 
-  const listLayout = useMemo(() => layout === "list" ? "fas fa-list fa-2x list-active" : "fas fa-list fa-2x",[layout]);
-  const gridLayout = useMemo(() => layout === "grid" ? "fas fa-th-large fa-2x grid-active" : "fas fa-th-large fa-2x",[layout]);
-
-  const view = loading ? (
+  const view = useMemo(() => loading ? (
     <Loader />
   ) : isListView === true ? (
     <TableData publicGistsDisplay={publicGistsList} />
   ) : (
     <GridDisplay publicGistsDisplay={publicGistsList} />
-  );
-
+  ), [loading,isListView,publicGistsList]);
 
   const listToggle = useCallback(() => {
     setIsListView(true);
-    setIsGridView(false);
-    setLayout("list");
-  }, [isGridView, isListView, layout]);
+  }, []);
 
   const gridToggle = useCallback(() => {
     setIsListView(false);
-    setIsGridView(true);
-    setLayout("grid");
-  }, [isGridView, isListView, layout]);
+  }, []);
 
   useEffect(() => {
     getPublicGists(loading , setLoading ,publicGistsList , setPublicGistsList);
@@ -43,15 +33,15 @@ const PublicGists = () => {
 
   return (
     <Section>
-      <Div>
-        <span>
-          <i className={listLayout} onClick={listToggle} />
+      <Wrapper>
+        <span onClick={listToggle}>
+          <ViewIcon className="fas fa-list fa-2x" isListView={isListView} />
         </span>
-        <SpanBorder></SpanBorder>
-        <span>
-          <i className={gridLayout} onClick={gridToggle} />
+        <SpanBorder className="divider"></SpanBorder>
+        <span onClick={gridToggle}>
+        <ViewIcon className="fas fa-th-large fa-2x" isListView={isListView}  />
         </span>
-      </Div>
+      </Wrapper>
       {view}
     </Section>
   );

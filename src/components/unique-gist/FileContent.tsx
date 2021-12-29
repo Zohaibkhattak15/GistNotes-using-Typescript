@@ -1,5 +1,5 @@
 import { NOCONTENT } from "../../constants/index";
-import { CardBody , Icon , Filename , CardBodyContent} from "./style";
+import { CardBody , Icon , Filename , CardBodyContent , SpanText} from "./style";
 
 const FileContent = ({filename , uniqueData}: any) => {
 
@@ -7,12 +7,12 @@ const FileContent = ({filename , uniqueData}: any) => {
     let content : any;
     let myContentArray;
   
-    if (files ) {
+    if (files) {
       Object.values(files).map((file: any) => {
         filename = file.filename;
         content = file.content;
       });
-      myContentArray = content.split(" \n");
+      myContentArray = content.split("\n");
     }
   
 
@@ -22,9 +22,9 @@ const FileContent = ({filename , uniqueData}: any) => {
           return (
             <span key={index}>
               <p>
-                <span style={{ fontWeight: "700", marginRight: "10px" }}>
-                  {++index}
-                </span>
+                <SpanText>
+                  {index += index}
+                </SpanText>
                 {content}
               </p>
             </span>

@@ -1,17 +1,17 @@
 import { useState, useContext, useCallback } from "react";
 import { Heading, Section } from "./style";
-import { createAGist } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Select, Button } from "antd";
-import { formInputRules, openNotification } from "../../utils/createGistUtilis";
-import { VISIBLESCREEN, CREATEGISTOBJ } from "../../constants/index";
+import { formInputRules , creatGist} from "../../utils/createGistUtilis";
+import { CREATEGISTOBJ } from "../../constants/index";
 import { gistDataFormType } from '../../types/index'
 
 const { TextArea } = Input;
 const { Option } = Select;
 
+
 const CreateAGist = () => {
-  const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ);
+  const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ)
 
   const changeDescription = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setGistFormData({
@@ -33,30 +33,13 @@ const CreateAGist = () => {
   };
 
   const { dispatch } = useContext(GistContext);
-  const creatGist = useCallback(() => {
-    const gistData = {
-      description: gistFormData?.description,
-      privacy: gistFormData?.privacy,
-      files: {
-        [gistFormData?.fileName]: {
-          content: gistFormData?.content,
-        },
-      },
-    }
-    createAGist(gistData);
-    openNotification();
-    dispatch({
-      type: VISIBLESCREEN,
-      payload: {
-        tab: 3,
-        gistID: "",
-      },
-    });
-  }, []);
+  const handliFinish = useCallback(() => {
+    creatGist(gistFormData , dispatch);
+  },[gistFormData])
 
   return (
     <Section>
-      <Form onFinish={creatGist} autoComplete="off" >
+      <Form onFinish={handliFinish} autoComplete="off" >
         <Heading>Create A Gist</Heading>
         <Form.Item
           rules={formInputRules(true, "description")}

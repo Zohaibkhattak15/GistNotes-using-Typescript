@@ -4,7 +4,6 @@ import { StarOutlined, ForkOutlined } from "@ant-design/icons/lib/icons";
 import {  Row, Col } from "antd";
 import { getStaredGists } from "./fetchAPIs";
 
-
 export const columns: ColumnsType<any> = [
     {
       key: "1",
@@ -52,7 +51,7 @@ export const columns: ColumnsType<any> = [
       render: (value: any) => {
         return (<Row gutter={[16, 16]}>
           <Col>
-            <StarOutlined style={{ color: "#5acba1" }} />
+            <StarOutlined className="color" style={{ color: "#5acba1" }} />
           </Col>
           <Col>
             <ForkOutlined style={{ color: "#5acba1" }} />
@@ -63,9 +62,10 @@ export const columns: ColumnsType<any> = [
   ];
 
   
- export const getStared = async (staredGists :any , setStaredGists :any , loading : boolean , setLoading : any) => {
+ export const getStared = async (staredGists :any , setStaredGists :any , loading : boolean , setLoading:(loading : boolean) => void) => {
     setLoading(true);
     const resp = await getStaredGists();
     setStaredGists(resp);
     setLoading(false);
+    return {staredGists , loading};
   };

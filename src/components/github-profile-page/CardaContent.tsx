@@ -27,9 +27,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
     });
     myContentArray = content.split("\n");
   }
-
   return (
-   
       gists &&
         gists.map((item : any, index : number) => (
           <CardHeader key={index}>
@@ -75,7 +73,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
                       return (
                         <span>
                           <p>
-                            <Span1>{++index}</Span1> {content}
+                            <Span1>{index+=index}</Span1> {content}
                           </p>
                         </span>
                       );

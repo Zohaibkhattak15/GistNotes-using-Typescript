@@ -72,3 +72,7 @@ export const Icon = styled.i`
 cursor: pointer;
 color: blue;
 `
+export const SpanText = styled.span` 
+  font-weight: 700;
+  margin-right: 10px 
+`

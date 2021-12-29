@@ -6,12 +6,12 @@ import { Form, Input, Button } from "antd";
 import { VISIBLESCREEN } from "../../constants/index";
 
 const EditAGist = () => {
-  const [gistData, setGistData] = useState<any>("");
+  const [gistData, setGistData] = useState<any>();
   const { state, dispatch } = useContext(GistContext);
   const { gistID } = state;
 
   const editGist = useCallback(async () => {
-    const { description } = gistData;
+    const {description} = gistData
     await updateAGist(gistID, description);
     dispatch({
       type: VISIBLESCREEN,
@@ -20,12 +20,17 @@ const EditAGist = () => {
         gistID: "",
       },
     });
+    /* eslint-disable */
   }, []);
+/* eslint-enable */
 
   const getAGist = useCallback(async () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
+    console.log(resp)
+        /* eslint-disable */
   }, []);
+/* eslint-enable */
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
 

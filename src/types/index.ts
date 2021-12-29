@@ -14,7 +14,6 @@ export interface gistDataFormType {
     description : string ,
     privacy : boolean,
     files :  Files 
-  
   }
  
   

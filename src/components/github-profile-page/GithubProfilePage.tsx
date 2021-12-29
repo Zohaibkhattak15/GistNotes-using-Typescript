@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import {
   Section,
-  ProlfieLeft,
+  LeftWrapper,
   Button,
   Heading,
   CardSection,
@@ -10,7 +10,7 @@ import {
 } from "./style";
 import { GistContext } from "../../context/GistContext";
 import CardaContent from "./CardaContent";
-import { getLoginData, getGists, checkGist, starThisGist } from "../../utils/GitHubProfileUtilis";
+import { getLoginData, getGists, } from "../../utils/GitHubProfileUtilis";
 
 
 const GitHubProfilePage = () => {
@@ -23,13 +23,12 @@ const GitHubProfilePage = () => {
   useEffect(() => {
     getLoginData(setAuthUserRecord, authUserRecord);
     getGists(setGists, gists);
-    checkGist(setGistStarValue, gistStarValue, gistID);
   }, []);
 
   return (
     <>
       <Section>
-        <ProlfieLeft>
+        <LeftWrapper>
           <ProfilePicSec>
             <ProfileImage
               id="profile-pic"
@@ -41,13 +40,12 @@ const GitHubProfilePage = () => {
             <h5>{authUserRecord?.login}</h5>
           </Heading>
           <Button>View GitHub Profile</Button>
-        </ProlfieLeft>
+        </LeftWrapper>
 
         <CardSection>
           <CardaContent
             gists={gists}
             gistStarValue={gistStarValue}
-            starThisGist={starThisGist(gistStarValue, setGistStarValue, gistID)}
           />
         </CardSection>
       </Section>

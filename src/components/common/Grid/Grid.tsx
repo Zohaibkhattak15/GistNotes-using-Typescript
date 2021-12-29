@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { GistContext } from "../../../context/GistContext";
 import { Row } from "antd";
 import PublicGistsGrid from "./PublicGistsGrid";
@@ -11,7 +11,7 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const pubFiles = publicFilesRecord(publicGistsDisplay);
   const priFiles = privateFilesRecord(privateGistsDisplay);
 
-  const showUniqueGistRecord = (id: string) => {
+  const showUniqueGistRecord = useCallback((id: string) => {
     dispatch({
       type: VISIBLESCREEN,
       payload: {
@@ -19,7 +19,9 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
         gistID: id,
       },
     });
-  };
+    /* eslint-disable */
+  },[]);
+/* eslint-enable */
 
   return (
     <>

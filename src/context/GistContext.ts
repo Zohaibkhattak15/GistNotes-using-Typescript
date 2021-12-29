@@ -1,49 +1,55 @@
 import { createContext } from "react";
 import { GISTINITIALSTATE } from "../constants/index";
-import {LOGIN , LOGOUT , VISIBLESCREEN ,SEARCH } from "../constants/index";
+import { LOGIN, LOGOUT, VISIBLESCREEN, SEARCH } from "../constants/index";
 
 export type StateType = {
-    userName : string ;
-    PAT : string ;
-    isLoggedin : boolean;
-    tab : number  ;  
-    gistID : string ;
-    searchValue : string ;
+  userName: string;
+  PAT: string;
+  isLoggedin: boolean;
+  tab: number;
+  gistID: string;
+  searchValue: string;
 }
 
-export const initialState : StateType = GISTINITIALSTATE ;
+export const initialState: StateType = GISTINITIALSTATE;
 
-export type Action = 
-   | {type : "LOGIN" , payload : {
-    isLoggedin : boolean ,
-    userName : string
-   } } 
-   | {type : "LOGOUT" , payload : {
-      isLoggedin : boolean ,
+export type Action =
+  | {
+    type: "LOGIN", payload: {
+      isLoggedin: boolean,
+      userName: string
+    }
+  }
+  | {
+    type: "LOGOUT", payload: {
+      isLoggedin: boolean,
       tab: number
-   } } 
-   | {type : "VISIBLESCREEN" , payload : {
-     gistID : string,
-     tab : number
-   }} 
-   | {type : "SEARCH" , payload : {
-    searchValue :string,
-    tab : number
-   }} 
-  
+    }
+  }
+  | {
+    type: "VISIBLESCREEN", payload: {
+      gistID: string,
+      tab: number
+    }
+  }
+  | {
+    type: "SEARCH", payload: {
+      searchValue: string,
+      tab: number
+    }
+  }
 
 export const GistContext = createContext<{
   state: StateType;
   dispatch: React.Dispatch<Action>;
-  }>({
-      state: initialState,
-      dispatch: () => undefined,
-  });;
+}>({
+  state: initialState,
+  dispatch: () => undefined,
+});;
 
-export const GistReducer = (state : StateType , action: Action ) : StateType => {
+export const GistReducer = (state: StateType, action: Action): StateType => {
   const {
     type,
-    // payload: { userName, gistID, searchValue, tab },
   } = action;
   switch (type) {
     case LOGIN:
@@ -54,9 +60,9 @@ export const GistReducer = (state : StateType , action: Action ) : StateType => 
       };
     case LOGOUT:
       return {
-        ...state ,
+        ...state,
         isLoggedin: false,
-        tab : action.payload.tab
+        tab: action.payload.tab
       };
 
     case VISIBLESCREEN:

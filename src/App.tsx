@@ -1,4 +1,4 @@
-import { useReducer} from 'react';
+import { useMemo, useReducer} from 'react';
 import Navbar from './components/navbar/Navbar';
 import {GistReducer,initialState,GistContext} from './context/GistContext';
 import LoginScreen from './pages/LoginScreen';
@@ -17,7 +17,7 @@ const App:React.FC = () => {
   const { tab } = state;
   const ScreenNumber = tab;
 
-  const displayScreenTabs = (() => {
+  const displayScreenTabs = useMemo(() => {
     switch (ScreenNumber) {
       case 1:
         return <ListsPublicGistScreen />;
@@ -42,7 +42,7 @@ const App:React.FC = () => {
       default:
         return <ListsPublicGistScreen />;
     }
-  })();
+  },[ScreenNumber]);
 
   return (
     <GistContext.Provider value={{ state, dispatch }}>

@@ -20,15 +20,22 @@ const StaredGists: FC = () => {
           gistID: id,
         },
       });
+      /* eslint-disable */
     }, []);
+    /* eslint-enable */
+
 
   const onRow = useCallback((record: any) => {
     return { onClick: () => showUniqueGistRecord(record?.id) };
+    /* eslint-disable */
   }, [])
+  /* eslint-enable */
 
   useEffect(() => {
     getStared(staredGists , setStaredGists , loading , setLoading);
+    /* eslint-disable */
   }, []);
+   /* eslint-enable */
 
   return (
     loading ?

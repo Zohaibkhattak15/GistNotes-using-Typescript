@@ -1,6 +1,6 @@
 import axios from "axios";
 import { USERNAME, BASE_URL, PAT } from "../constants/index";
-import {dataType} from '../types/index';
+import { dataType } from '../types/index';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -11,11 +11,15 @@ declare module 'axios' {
 }
 
 export const loginAuthUser = async (UserName: string) => {
+
   const authUserRecord = await axios
-    .get(`${BASE_URL}/users/${UserName}`,{
-      username : UserName
+    .get(`${BASE_URL}/user`, {
+      headers: {
+        Authorization: `Basic ${btoa(`${UserName}:${PAT}`)}`,
+      },
     })
-    .then((resp) => console.log(resp?.data)).catch(err => err);
+    .then(resp => resp)
+    .catch(err => err);
   return authUserRecord;
 };
 
@@ -51,12 +55,12 @@ export const searchRecords = async (name: string) => {
     .get(`${BASE_URL}/users/${name}/gists`, {
       username: name,
     })
-    .then(resp => resp.data)
+    .then(resp => resp?.data)
     .catch(err => err);
   return searchedUserRecords;
 };
 
-export const createAGist = async (data : dataType) => {
+export const createAGist = async (data: dataType) => {
   const json = JSON.stringify(data);
   const createGist = axios
     .post(`${BASE_URL}/gists`, json, {
@@ -80,11 +84,12 @@ export const delAGist = async (id: string) => {
 };
 
 export const updateAGist = async (id: string, disp: string) => {
+  console.log({id , disp})
   const updateGists = await axios.patch(
     `${BASE_URL}/gists/${id}`,
     {
-      id: id,
-      description: disp,
+      id,
+      description : disp
     },
     {
       headers: {

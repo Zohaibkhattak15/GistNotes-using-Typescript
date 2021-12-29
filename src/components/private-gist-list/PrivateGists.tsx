@@ -1,55 +1,42 @@
-import  { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
-import { Section, Div, SpanBorder } from "../public-gist-list/style";
+import { Section, Wrapper, SpanBorder, ViewIcon } from "../public-gist-list/style";
 import { getPrivateGists } from "../../utils/PrivateGistUtilis";
 
 const PrivateGists = () => {
   const [loading, setLoading] = useState(false);
   const [privateGistsList, setPrivateGistsList] = useState([]);
   const [isListView, setIsListView] = useState(true);
-  const [isGridView, setIsGridView] = useState(false);
-  const [layout, setLayout] = useState("list");
 
   const listToggle = useCallback(() => {
     setIsListView(true);
-    setIsGridView(false);
-    setLayout("list");
-  }, [isGridView, isListView, layout]);
+  }, []);
 
   const gridToggle = useCallback(() => {
     setIsListView(false);
-    setIsGridView(true);
-    setLayout("grid");
-  }, [isGridView, isListView, layout]);
+  }, []);
 
-  const listView = useMemo(() => layout === "list" ? "fas fa-list fa-2x list-active" : "fas fa-list fa-2x",[layout]);
-  const gridView = useMemo(() => layout === "grid" ? "fas fa-th-large fa-2x grid-active" : "fas fa-th-large fa-2x",[layout]);
-
-  const views = loading ? (
-    <Loader />
-  ) : isListView === true ? (
-    <TableData privateGistsDisplay={privateGistsList} />
-  ) : (
-    <GridDisplay privateGistsDisplay={privateGistsList} />
-  );
+  const views = loading ? <Loader /> : isListView === true ?
+    <TableData privateGistsDisplay={privateGistsList} /> :
+    <GridDisplay privateGistsDisplay={privateGistsList} />;
 
   useEffect(() => {
-    getPrivateGists(loading, setLoading  , privateGistsList , setPrivateGistsList  )
+    getPrivateGists(loading, setLoading, privateGistsList, setPrivateGistsList)
   }, []);
 
   return (
     <Section>
-      <Div>
-        <span>
-          <i className={listView} onClick={listToggle} />
+      <Wrapper>
+        <span onClick={listToggle}>
+          <ViewIcon className="fas fa-list fa-2x" isListView={isListView} />
         </span>
-        <SpanBorder></SpanBorder>
-        <span>
-          <i className={gridView} onClick={gridToggle} />
+        <SpanBorder className="divider"></SpanBorder>
+        <span onClick={gridToggle}>
+          <ViewIcon className="fas fa-th-large fa-2x" isListView={isListView} />
         </span>
-      </Div>
+      </Wrapper>
       {views}
     </Section>
   );

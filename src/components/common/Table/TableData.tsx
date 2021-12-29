@@ -18,14 +18,15 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
           gistID: id,
         },
       });
-    },
-    []
-  );
-  const getID = (record: any) => {
+      /* eslint-disable */
+    },[]);
+    /* eslint-enable */
+
+  const getID = useCallback((record: any) => {
     return {
       onClick: () => showUniqueGistRecord(record?.id)
     }
-  }
+  },[showUniqueGistRecord])
   return (
     <>
       <Section>
