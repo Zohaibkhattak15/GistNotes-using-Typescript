@@ -18,6 +18,7 @@ const Login = () => {
   const loginAuth = () => {   
     loginAuthUser(name)
       .then((resp) => {
+        console.log(resp)
         if (resp?.login === name) {
           dispatch({
             type: LOGIN,

@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { publicGistsRecord } from "../../utils/fetchAPIs";
+import {useEffect,useState,useCallback,useMemo } from "react";
 import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
 import { Section, Div, SpanBorder } from "./style";
+import { getPublicGists } from "../../utils/PublicGistUtilis";
+
 
 const PublicGists = () => {
   const [publicGistsList, setPublicGistsList] = useState([]);
@@ -23,12 +24,6 @@ const PublicGists = () => {
     <GridDisplay publicGistsDisplay={publicGistsList} />
   );
 
-  const getPublicGists = useCallback(async () => {
-    setLoading(true);
-    let resp = await publicGistsRecord();
-    setLoading(false);
-    setPublicGistsList(resp);
-  }, [publicGistsRecord]);
 
   const listToggle = useCallback(() => {
     setIsListView(true);
@@ -43,7 +38,7 @@ const PublicGists = () => {
   }, [isGridView, isListView, layout]);
 
   useEffect(() => {
-    getPublicGists();
+    getPublicGists(loading , setLoading ,publicGistsList , setPublicGistsList);
   }, []);
 
   return (

@@ -29,8 +29,8 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
   }
 
   return (
-    <>
-      {gists &&
+   
+      gists &&
         gists.map((item : any, index : number) => (
           <CardHeader key={index}>
             <LeftSec>
@@ -84,9 +84,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
               </CardBodyContent>
             </ContentBody>
           </CardHeader>
-        ))}
-      ;
-    </>
+        ))
   );
 };
 

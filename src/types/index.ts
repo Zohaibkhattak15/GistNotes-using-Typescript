@@ -4,3 +4,17 @@ export interface gistDataFormType {
     content : string  ;
     privacy : boolean ;
   }
+
+  export type Files = {
+    [fileName: string]:{
+      content : string
+    }
+  } 
+  export interface dataType {
+    description : string ,
+    privacy : boolean,
+    files :  Files 
+  
+  }
+ 
+  

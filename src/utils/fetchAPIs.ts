@@ -1,37 +1,37 @@
 import axios from "axios";
-import { USERNAME , BASE_URL , PAT} from "../constants/index";
+import { USERNAME, BASE_URL, PAT } from "../constants/index";
+import {dataType} from '../types/index';
 
-//auth user API loginng in
 declare module 'axios' {
-   interface AxiosRequestConfig {
-     gist_id ?: string;
-     UserName?: string;
+  interface AxiosRequestConfig {
+    gist_id?: string;
+    username?: string;
 
   }
 }
 
-
-
-export const loginAuthUser = async (UserName : string) => {
+export const loginAuthUser = async (UserName: string) => {
   const authUserRecord = await axios
-    .get(`${BASE_URL}/users/${UserName}`)
-    .then((resp) => resp?.data);
+    .get(`${BASE_URL}/users/${UserName}`,{
+      username : UserName
+    })
+    .then((resp) => console.log(resp?.data)).catch(err => err);
   return authUserRecord;
 };
 
 export const publicGistsRecord = async () => {
   const publicGistsRecords = await axios
     .get(`${BASE_URL}/gists`)
-    .then((resp) => resp?.data);
+    .then((resp) => resp?.data).catch(err => err);
   return publicGistsRecords;
 };
 
-export const getPublicGist = async (id : string) => {
+export const getPublicGist = async (id: string) => {
   const getPublicGistObj = await axios
     .get(`${BASE_URL}/gists/${id}`, {
-      gist_id :id,
+      gist_id: id,
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return getPublicGistObj;
 };
 
@@ -42,21 +42,21 @@ export const privateGistsRecord = async () => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return privateGistsRecord;
 };
 
-export const searchRecords = async (name : string) => {
+export const searchRecords = async (name: string) => {
   const searchedUserRecords = await axios
     .get(`${BASE_URL}/users/${name}/gists`, {
-      UserName: name,
+      username: name,
     })
     .then(resp => resp.data)
     .catch(err => err);
   return searchedUserRecords;
 };
 
-export const createAGist = async (data : any) => {
+export const createAGist = async (data : dataType) => {
   const json = JSON.stringify(data);
   const createGist = axios
     .post(`${BASE_URL}/gists`, json, {
@@ -64,7 +64,7 @@ export const createAGist = async (data : any) => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return createGist;
 };
 
@@ -75,11 +75,11 @@ export const delAGist = async (id: string) => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return delAGist;
 };
 
-export const updateAGist = async (id : string, disp : string) => {
+export const updateAGist = async (id: string, disp: string) => {
   const updateGists = await axios.patch(
     `${BASE_URL}/gists/${id}`,
     {
@@ -94,14 +94,14 @@ export const updateAGist = async (id : string, disp : string) => {
   );
   return updateGists;
 };
-export const getGistObj = async (id : string) => {
+export const getGistObj = async (id: string) => {
   const getGists = await axios
     .get(`${BASE_URL}/gists/${id} `, {
       headers: {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return getGists;
 };
 
@@ -112,11 +112,11 @@ export const getStaredGists = async () => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data);
+    .then((resp) => resp.data).catch(err => err);
   return getStaredGists;
 };
 
-export const checkGistStared = async (uniqueId : string) => {
+export const checkGistStared = async (uniqueId: string) => {
   const checkStar = await axios.get(`${BASE_URL}/gists/${uniqueId}/star`, {
     headers: {
       Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
@@ -125,7 +125,7 @@ export const checkGistStared = async (uniqueId : string) => {
   return checkStar;
 };
 
-export const staredAGist = async (gist_id:string) => {
+export const staredAGist = async (gist_id: string) => {
   const starAGist = await axios.put(
     `${BASE_URL}/gists/${gist_id}/star`,
     {
@@ -140,7 +140,7 @@ export const staredAGist = async (gist_id:string) => {
   return starAGist;
 };
 
-export const unStaredAGist = async (gist_id : string) => {
+export const unStaredAGist = async (gist_id: string) => {
   const unStarAGist = await axios.delete(`${BASE_URL}/gists/${gist_id}/star`, {
     headers: {
       Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
@@ -149,7 +149,7 @@ export const unStaredAGist = async (gist_id : string) => {
   return unStarAGist;
 };
 
-export const forkedGist = async (gist_id:string) => {
+export const forkedGist = async (gist_id: string) => {
   const forkAGist = await axios
     .post(
       `${BASE_URL}/gists/${gist_id}/forks`,
@@ -163,6 +163,6 @@ export const forkedGist = async (gist_id:string) => {
       }
     )
     .then((resp) => resp?.status)
-    .catch((err) => console.log(err));
+    .catch((err) => err);
   return forkAGist;
 };
