@@ -63,7 +63,6 @@ const CreateAGist = () => {
             placeholder="Enter File Content..."
             size="large"
             onChange={changeContent}
-
           />
         </Form.Item>
         <Form.Item>
@@ -74,7 +73,6 @@ const CreateAGist = () => {
             <Option value="private">Private</Option>
           </Select>
         </Form.Item>
-
         <Form.Item>
           <Button size="large" htmlType="submit">
             Create Gist
