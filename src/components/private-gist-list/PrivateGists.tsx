@@ -13,7 +13,7 @@ const PrivateGists = () => {
   const listToggle = useCallback(() => {
     setIsListView(true);
   }, []);
-
+  
   const gridToggle = useCallback(() => {
     setIsListView(false);
   }, []);

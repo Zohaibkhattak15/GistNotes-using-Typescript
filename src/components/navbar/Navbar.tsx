@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { Nav, Imgdiv, SearchDiv } from "./style";
 import Logo from "../../assets/emumba-logo.png";
 import DropdownMenu from "./Dropdown/DropdownMenu";
@@ -11,7 +11,7 @@ const Navbar = () => {
   const { state, dispatch } = useContext(GistContext);
   const { isLoggedin } = state;
 
-  const GoToHomeScreen = () => {
+  const GoToHomeScreen = useCallback(() => {
     dispatch({
       type: VISIBLESCREEN,
       payload: {
@@ -19,9 +19,9 @@ const Navbar = () => {
         gistID: "",
       },
     });
-  };
+  },[]);
 
-  const GoToLoginScreen = () => {
+  const GoToLoginScreen = useCallback(() => {
     dispatch({
       type: VISIBLESCREEN,
       payload: {
@@ -29,7 +29,7 @@ const Navbar = () => {
         gistID: "",
       },
     });
-  };
+  },[]);
 
   return (
     <Row>

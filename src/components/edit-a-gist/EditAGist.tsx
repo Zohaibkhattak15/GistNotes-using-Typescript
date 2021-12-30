@@ -16,7 +16,6 @@ const EditAGist = () => {
     /* eslint-disable */
   }, []);
   /* eslint-enable */
-
   const editGist = useCallback(async () => {
     const { description } = gistData;
     await updateAGist(gistID, description);
@@ -27,7 +26,7 @@ const EditAGist = () => {
         gistID: "",
       },
     });
-  }, [updateAGist]);
+  }, [updateAGist, gistData]);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
 

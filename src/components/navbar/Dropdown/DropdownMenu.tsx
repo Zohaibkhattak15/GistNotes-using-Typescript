@@ -1,5 +1,5 @@
 import { Menu, Dropdown } from "antd";
-import { useContext } from "react";
+import { useCallback,useContext } from "react";
 import { LOGOUT, VISIBLESCREEN } from "../../../constants/index";
 import { GistContext } from "../../../context/GistContext";
 import Zohaib from "../../../assets/zohaib.png";
@@ -17,7 +17,7 @@ const DropdownMenu = () => {
       <Menu.Divider />
       <Menu.Item
         key="1"
-        onClick={() => {
+        onClick={useCallback(() => {
           dispatch({
             type: VISIBLESCREEN,
             payload: {
@@ -25,13 +25,13 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        }}
+        },[])}
       >
         <p>Your Gists</p>
       </Menu.Item>
       <Menu.Item
         key="2"
-        onClick={() => {
+        onClick={useCallback(() => {
           dispatch({
             type: VISIBLESCREEN,
             payload: {
@@ -39,13 +39,13 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        }}
+        },[])}
       >
         <p>Stared Gists</p>
       </Menu.Item>
       <Menu.Item
         key="3"
-        onClick={() => {
+        onClick={useCallback(() => {
           dispatch({
             type: VISIBLESCREEN,
             payload: {
@@ -53,7 +53,7 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        }}
+        },[])}
       >
         <p>Create A Gist</p>
       </Menu.Item>
@@ -63,7 +63,7 @@ const DropdownMenu = () => {
       <Menu.Divider />
       <Menu.Item
         key="5"
-        onClick={() => {
+        onClick={useCallback(() => {
           dispatch({
             type: VISIBLESCREEN,
             payload: {
@@ -71,13 +71,13 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        }}
+        },[])}
       >
         <p> Your Github Profile</p>
       </Menu.Item>
       <Menu.Item
         key="6"
-        onClick={() => {
+        onClick={useCallback(() => {
           dispatch({
             type: LOGOUT ,
             payload : {
@@ -85,7 +85,7 @@ const DropdownMenu = () => {
               tab : 1
             }
           });
-        }}
+        },[])}
       >
         <p> SignOut</p>
       </Menu.Item>
