@@ -46,7 +46,7 @@ const SearchGists = () => {
         <Table
           rowKey="id"
           columns={columns}
-          dataSource={[...searchRecordsData]}
+          dataSource={searchRecordsData}
           onRow={onRow}
         />
       </Section>

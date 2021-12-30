@@ -12,6 +12,7 @@ import {
   Span1,
 } from "./style";
 import { Span, SpanValues, Icon } from "../unique-gist/style";
+import { useCallback } from "react";
 
 const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
   const starType = gistStarValue === 0 ? "far fa-star" : "fas fa-star";
@@ -27,6 +28,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
     });
     myContentArray = content.split("\n");
   }
+  const fileName = useCallback((item) => Object.keys(item?.files)[0],[]); 
   return (
       gists &&
         gists.map((item : any, index : number) => (
@@ -37,7 +39,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
                 <div>
                   <span>
                     <h4>
-                      {item?.owner?.login}/{Object.keys(item?.files)[0]}
+                      {item?.owner?.login}/{fileName(item)}
                     </h4>
                     <span>{item?.updated_at}</span>
                     <br />

@@ -9,7 +9,6 @@ declare module 'axios' {
 
   }
 }
-
 export const loginAuthUser = async (UserName: string) => {
   const authUserRecord = await axios
     .get(`${BASE_URL}/user`, {

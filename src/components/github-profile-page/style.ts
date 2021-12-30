@@ -6,7 +6,6 @@ export const Section = styled.section`
   margin: 150px 150px auto;
   width : 100%;
 `;
-
 export const LeftWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,15 +15,12 @@ export const LeftWrapper = styled.div`
   padding: 20px 30px;
 
 `;
-
 export const Heading = styled.div`
   text-align: start;
   font-size: 30px;
   display: flex;
   justify-content: center;
-
 `;
-
 export const Button = styled.button`
   padding: 15px 20px;
   background-color: white;
@@ -37,40 +33,33 @@ export const CardSection = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-
 `;
-
 export const CardHeader = styled.section`
   display: flex;
   flex-direction: column;
   margin-bottom: 150px;
 `;
-
 export const LeftSec = styled.div`
   display: flex;
   width: 170%;
   justify-content: space-around;
   flex-direction: row;
 `;
-
 export const ProfileCol = styled.div`
   display: flex;
   gap: 30px;
 `;
-
 export const GistIcons = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 20px;
 `;
-
 export const ContentBody = styled.section`
   box-shadow: 0px 5px 18px #c9c7c7;
   width: 160%;
   margin: 26px 50px;
   border-radius: 5px;
 `;
-
 export const CardBody = styled.div`
   justify-content: flex-start;
   margin-top: 5px;
@@ -80,25 +69,21 @@ export const CardBody = styled.div`
   height: 22px;
   border-radius: 5px;
 `;
-
 export const CardBodyContent = styled.div`
   width: 100%;
   padding: 40px 80px;
   margin: -27px auto;
 `;
-
 export const Icon1 = styled.div`
   display: flex;
   gap: 10px;
   height: 25px;
   cursor: pointer;
 `;
-
-export const ProfilePicSec = styled.div`
+export const ProfilePicWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
 export const ProfileImage = styled.img` 
  align-self: center;
   border-radius: 50%;

@@ -24,6 +24,7 @@ const UniqueGist = () => {
   let filename;
 
   const starThisGist = useCallback(async () => {
+    console.log("hello there")
     if (gistStarValue === 0) {
       await staredAGist(gistID)
         .then(() => setGistStarValue(gistStarValue + 1))

@@ -7,7 +7,7 @@ import { VISIBLESCREEN } from "../../../constants";
 
 const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
-  const dataSource = publicGistsDisplay ? [...publicGistsDisplay] : [...privateGistsDisplay];
+  const dataSource = publicGistsDisplay ? publicGistsDisplay : privateGistsDisplay;
 
   const showUniqueGistRecord = useCallback(
     (id) => {
@@ -32,8 +32,8 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
       <Section>
         <Table
           rowKey="id"
-          columns={[...columns]}
-          dataSource={[...dataSource]}
+          columns={columns}
+          dataSource={dataSource}
           onRow={record => getID(record)}
         />
       </Section>

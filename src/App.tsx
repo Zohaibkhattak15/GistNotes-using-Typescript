@@ -15,10 +15,9 @@ import './App.css';
 const App:React.FC = () => {
   const [state, dispatch] = useReducer( GistReducer , initialState);
   const { tab } = state;
-  const ScreenNumber = tab;
 
   const displayScreenTabs = useMemo(() => {
-    switch (ScreenNumber) {
+    switch (tab) {
       case 1:
         return <ListsPublicGistScreen />;
       case 2:
@@ -42,7 +41,7 @@ const App:React.FC = () => {
       default:
         return <ListsPublicGistScreen />;
     }
-  },[ScreenNumber]);
+  },[tab]);
 
   return (
     <GistContext.Provider value={{ state, dispatch }}>

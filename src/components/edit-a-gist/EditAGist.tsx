@@ -1,25 +1,35 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Section, Heading } from "../create-a-gist/style";
-import { getGistObj } from "../../utils/FetchAPIs";
+import { getGistObj, updateAGist } from "../../utils/FetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
-import { editGist } from "../../utils/EditGistUtilis";
+import { VISIBLESCREEN } from "../../constants";
 
 const EditAGist = () => {
   const [gistData, setGistData] = useState<any>();
   const { state, dispatch } = useContext(GistContext);
   const { gistID } = state;
-  const desp = gistData.description;
 
   const getAGist = useCallback(async () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
-  /* eslint-disable */
+    /* eslint-disable */
   }, []);
-/* eslint-enable */
+  /* eslint-enable */
+
+  const editGist = useCallback(async () => {
+    const { description } = gistData;
+    await updateAGist(gistID, description);
+    dispatch({
+      type: VISIBLESCREEN,
+      payload: {
+        tab: 3,
+        gistID: "",
+      },
+    });
+  }, [updateAGist]);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => setGistData({ description: e.currentTarget.value });
-  const handleFinish = () => editGist(gistID ,desp, dispatch);
 
   useEffect(() => {
     getAGist();
@@ -27,7 +37,7 @@ const EditAGist = () => {
 
   return (
     <Section>
-      <Form onFinish={handleFinish}>
+      <Form onFinish={editGist}>
         <Heading className="create-gist-heading">
           Update Gist Description
         </Heading>
