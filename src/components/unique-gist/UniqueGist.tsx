@@ -5,7 +5,6 @@ import {
   ContentBody,
 } from "./style";
 import {
-  delAGist,
   staredAGist,
   unStaredAGist,
   forkedGist,
@@ -34,7 +33,7 @@ const UniqueGist = () => {
         .then(() => setGistStarValue(gistStarValue - 1))
         .catch((err) => err);
     }
-  }, [staredAGist, unStaredAGist]);
+  }, [gistID,gistStarValue]);
 
   const forkThisGist = useCallback(async () => {
     let alreadyFork = 0;
@@ -44,10 +43,10 @@ const UniqueGist = () => {
     if (alreadyFork) {
       setGistForkValue(gistForkValue + 1);
     }
-  }, [forkedGist]);
+  }, [gistForkValue,gistID]);
 
-  const handleUpdate = useCallback(() => updateGist(gistID, dispatch),[updateGist]);
-  const handleDelete = useCallback(() => deleteGist(gistID, dispatch),[deleteGist]);
+  const handleUpdate = useCallback(() => updateGist(gistID, dispatch),[gistID,dispatch]);
+  const handleDelete = useCallback(() => deleteGist(gistID, dispatch),[gistID,dispatch]);
 
   useEffect(() => {
     getGistData(uniqueData, setUniqueData, gistID);

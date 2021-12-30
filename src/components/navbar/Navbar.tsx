@@ -19,7 +19,7 @@ const Navbar = () => {
         gistID: "",
       },
     });
-  },[]);
+  },[dispatch]);
 
   const GoToLoginScreen = useCallback(() => {
     dispatch({
@@ -29,7 +29,7 @@ const Navbar = () => {
         gistID: "",
       },
     });
-  },[]);
+  },[dispatch]);
 
   return (
     <Row>

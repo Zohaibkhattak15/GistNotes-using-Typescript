@@ -6,9 +6,9 @@ const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFi
     privateFiles &&
     privateFiles?.map((content: any, index: number) => {
       return (
-        <span key={index}>
+        <span key={index=0}>
           <p>
-            <Span1>{index+=index}</Span1>{content}
+            <Span1>{++index}</Span1>{content}
           </p>
         </span>
       );

@@ -1,7 +1,7 @@
 import { searchRecords } from "./FetchAPIs"
 
 export const getFilterData = async (searchValue:string , loading :boolean , setLoading : any, searchRecordsData : any , setSearchRecordsData : any ) => {
-    setLoading(true);
+  setLoading(true);
     await searchRecords(searchValue).then(response => {
       setLoading(false);
       setSearchRecordsData(response);

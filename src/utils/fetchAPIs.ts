@@ -6,7 +6,6 @@ declare module 'axios' {
   interface AxiosRequestConfig {
     gist_id?: string;
     username?: string;
-
   }
 }
 export const loginAuthUser = async (UserName: string) => {
@@ -86,7 +85,7 @@ export const updateAGist = async (id: string, disp: string) => {
     `${BASE_URL}/gists/${id}`,
     {
       id: id,
-      description : disp
+      description: disp
     },
     {
       headers: {

@@ -24,7 +24,9 @@ const PrivateGists = () => {
 
   useEffect(() => {
     getPrivateGists(loading, setLoading, privateGistsList, setPrivateGistsList)
-  }, []);
+ /* eslint-disable */
+}, []);
+/* eslint-enable */
 
   return (
     <Section>
