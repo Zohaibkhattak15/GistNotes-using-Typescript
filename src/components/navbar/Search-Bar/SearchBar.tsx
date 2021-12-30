@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { GistContext } from "../../../context/GistContext";
 import { Div } from "./style";
 import { Input, Tooltip, } from "antd";
@@ -9,17 +9,20 @@ const { Search } = Input;
 const SearchBar = () => {
   const [value, setValue] = useState<string>("");
   const { dispatch } = useContext(GistContext);
-  const searchGists = () => {
-    if(value){
-    dispatch({
-      type: SEARCH,
-      payload: {
-        searchValue: value,
-        tab: 10,
-      },
-    });
-  }
-  };
+
+  const handleSearch = useCallback((value) => {
+    if (value) {
+      dispatch({
+        type: SEARCH,
+        payload: {
+          searchValue: value,
+          tab: 10,
+        },
+      });
+      setValue("");
+    }
+  }, [dispatch]);
+
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value)
   }
@@ -30,7 +33,8 @@ const SearchBar = () => {
           placeholder="Enter search text"
           size="large"
           onChange={handleSearchInput}
-          onSearch={searchGists}
+          onSearch={handleSearch}
+          value={value}
         />
       </Tooltip>
     </Div>

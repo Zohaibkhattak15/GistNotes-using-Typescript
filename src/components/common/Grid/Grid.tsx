@@ -8,8 +8,8 @@ import { privateFilesRecord, publicFilesRecord } from "../../../utils/GridUtils"
 
 const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
-  const pubFiles = publicFilesRecord(publicGistsDisplay);
-  const priFiles = privateFilesRecord(privateGistsDisplay);
+  const publicFiles = publicFilesRecord(publicGistsDisplay);
+  const privateFiles = privateFilesRecord(privateGistsDisplay);
 
   const showUniqueGistRecord = useCallback((id: string) => {
     dispatch({
@@ -19,9 +19,7 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
         gistID: id,
       },
     });
-    /* eslint-disable */
-  },[]);
-/* eslint-enable */
+  },[dispatch]);
 
   return (
     <>
@@ -30,13 +28,13 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
           <PublicGistsGrid
             publicGistsDisplay={publicGistsDisplay}
             showUniqueGistRecord={showUniqueGistRecord}
-            publicFiles={pubFiles}
+            publicFiles={publicFiles}
           />
         ) : (
           <PrivateGistsGrid
             privateGistsDisplay={privateGistsDisplay}
             showUniqueGistRecord={showUniqueGistRecord}
-            privateFiles={priFiles}
+            privateFiles={privateFiles}
           />
         )}
       </Row>
