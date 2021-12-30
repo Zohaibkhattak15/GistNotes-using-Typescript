@@ -1,6 +1,6 @@
-import { useMemo, useReducer} from 'react';
+import { useMemo, useReducer } from 'react';
 import Navbar from './components/navbar/Navbar';
-import {GistReducer,initialState,GistContext} from './context/GistContext';
+import { GistReducer, initialState, GistContext } from './context/GistContext';
 import LoginScreen from './pages/LoginScreen';
 import ListsPublicGistScreen from './pages/ListsPublicGistScreen';
 import ListPrivateGistsScreen from './pages/ListPrivateGistsScreen';
@@ -12,8 +12,8 @@ import SearchGistScreen from './pages/SearchGistScreen';
 import EdistGistScreen from './pages/EdistGistScreen';
 import './App.css';
 
-const App:React.FC = () => {
-  const [state, dispatch] = useReducer( GistReducer , initialState);
+const App: React.FC = () => {
+  const [state, dispatch] = useReducer(GistReducer, initialState);
   const { tab } = state;
 
   const displayScreenTabs = useMemo(() => {
@@ -37,11 +37,11 @@ const App:React.FC = () => {
       case 10:
         return <SearchGistScreen />;
       case 11:
-        return  <EdistGistScreen />;
+        return <EdistGistScreen />;
       default:
         return <ListsPublicGistScreen />;
     }
-  },[tab]);
+  }, [tab]);
 
   return (
     <GistContext.Provider value={{ state, dispatch }}>

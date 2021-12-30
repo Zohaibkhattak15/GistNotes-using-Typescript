@@ -75,7 +75,7 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
                       return (
                         <span>
                           <p>
-                            <Span1>{index+=index}</Span1> {content}
+                            <Span1>{++index}</Span1> {content}
                           </p>
                         </span>
                       );

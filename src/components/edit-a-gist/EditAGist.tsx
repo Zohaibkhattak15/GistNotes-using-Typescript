@@ -13,9 +13,8 @@ const EditAGist = () => {
   const getAGist = useCallback(async () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
-    /* eslint-disable */
   }, []);
-  /* eslint-enable */
+  
   const editGist = useCallback(async () => {
     const { description } = gistData;
     await updateAGist(gistID, description);

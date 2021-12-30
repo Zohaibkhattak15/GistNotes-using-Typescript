@@ -21,22 +21,15 @@ const SearchGists = () => {
         gistID: gistID,
       },
     });
-    /* eslint-disable */
-  }, []);
- /* eslint-enable */
+  }, [dispatch]);
 
   const onRow = useCallback((record: any) => {
     return { onClick: () => showUniqueGistRecord(record?.id) };
-    /* eslint-disable */
   }, [])
-  /* eslint-enable */
-
 
   useEffect(() => {
     getFilterData(searchValue , loading , setLoading , searchRecordsData , setSearchRecordsData );
-    /* eslint-disable */
   }, []);
-  /* eslint-enable */
 
   return (
     loading ? (

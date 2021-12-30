@@ -4,7 +4,7 @@ import { Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter }
 const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles }: any) => {
 
   const dispPublicFiles = publicFiles &&
-    publicFiles?.map((content: any, index: number) => {
+    publicFiles?.map((content: string, index: number) => {
        return(
         <span key={index}>
           <p>

@@ -51,9 +51,7 @@ const UniqueGist = () => {
   useEffect(() => {
     getGistData(uniqueData, setUniqueData, gistID);
     checkGist(gistStarValue, setGistStarValue, gistID);
-    /* eslint-disable */
   }, []);
-  /* eslint-enable */
   return (
     <Div>
       <Section>

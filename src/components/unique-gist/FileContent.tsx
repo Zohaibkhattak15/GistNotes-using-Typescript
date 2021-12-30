@@ -1,35 +1,32 @@
 import { NOCONTENT } from "../../constants/index";
-import { CardBody , Icon , Filename , CardBodyContent , SpanText} from "./style";
+import { CardBody, Icon, Filename, CardBodyContent, SpanText } from "./style";
 
-const FileContent = ({filename , uniqueData}: any) => {
+const FileContent = ({ filename, uniqueData }: any) => {
+  const { files } = uniqueData;
+  let content: any;
+  let myContentArray;
 
-    const { files } = uniqueData;
-    let content : any;
-    let myContentArray;
-  
-    if (files) {
-      Object.values(files).map((file: any) => {
-        filename = file.filename;
-        content = file.content;
-      });
-      myContentArray = content.split("\n");
-    }
-  
-
-    const UserFileContent =
-    myContentArray 
-      ? myContentArray?.map((content : any, index : number) => {
-          return (
-            <span key={index}>
-              <p>
-                <SpanText>
-                  {index += index}
-                </SpanText>
-                {content}
-              </p>
-            </span>
-          );
-        })
+  if (files) {
+    Object.values(files).map((file: any) => {
+      filename = file.filename;
+      content = file.content;
+    });
+    myContentArray = content.split("\n");
+  }
+  const UserFileContent =
+    myContentArray
+      ? myContentArray?.map((content: any, index: number) => {
+        return (
+          <span key={index}>
+            <p>
+              <SpanText>
+                {index += index}
+              </SpanText>
+              {content}
+            </p>
+          </span>
+        );
+      })
       : <p> {NOCONTENT} </p>;
   return (
     <>

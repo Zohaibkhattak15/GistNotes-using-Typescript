@@ -25,7 +25,7 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        },[])}
+        },[dispatch])}
       >
         <p>Your Gists</p>
       </Menu.Item>
@@ -39,7 +39,7 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        },[])}
+        },[dispatch])}
       >
         <p>Stared Gists</p>
       </Menu.Item>
@@ -53,7 +53,7 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        },[])}
+        },[dispatch])}
       >
         <p>Create A Gist</p>
       </Menu.Item>
@@ -71,7 +71,7 @@ const DropdownMenu = () => {
               gistID: "",
             },
           });
-        },[])}
+        },[dispatch])}
       >
         <p> Your Github Profile</p>
       </Menu.Item>
@@ -85,7 +85,7 @@ const DropdownMenu = () => {
               tab : 1
             }
           });
-        },[])}
+        },[dispatch])}
       >
         <p> SignOut</p>
       </Menu.Item>

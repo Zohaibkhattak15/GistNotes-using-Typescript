@@ -4,7 +4,7 @@ import { Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter }
 const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFiles }: any) => {
   const dispPrivateFiles =
     privateFiles &&
-    privateFiles?.map((content: any, index: number) => {
+    privateFiles?.map((content: string, index: number) => {
       return (
         <span key={index=0}>
           <p>
@@ -13,7 +13,7 @@ const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFi
         </span>
       );
     });
-    const fileName = (gist : any) => Object.keys(gist?.files)[0];
+    const fileName = (gist:any) => Object.keys(gist?.files)[0];
 
   return (
     privateGistsDisplay.map((gist: any, index: number) => (

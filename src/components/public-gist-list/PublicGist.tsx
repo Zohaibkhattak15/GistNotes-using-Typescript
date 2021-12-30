@@ -29,9 +29,7 @@ const PublicGists = () => {
 
   useEffect(() => {
     getPublicGists(loading , setLoading ,publicGistsList , setPublicGistsList);
- /* eslint-disable */
 }, []);
-/* eslint-enable */
 
   return (
     <Section>
@@ -48,5 +46,4 @@ const PublicGists = () => {
     </Section>
   );
 };
-
 export default PublicGists;

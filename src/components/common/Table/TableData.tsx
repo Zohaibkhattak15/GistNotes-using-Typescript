@@ -18,9 +18,7 @@ const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
           gistID: id,
         },
       });
-      /* eslint-disable */
-    },[]);
-    /* eslint-enable */
+    },[dispatch]);
 
   const getID = useCallback((record: any) => {
     return {
