@@ -3,7 +3,7 @@ import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
 import { Section, Wrapper, SpanBorder, ViewIcon } from "../public-gist-list/style";
-import { getPrivateGists } from "../../utils/PrivateGistUtilis";
+import { getPrivateGists } from "../../utils/PrivateGistUtils";
 
 const PrivateGists = () => {
   const [loading, setLoading] = useState(false);

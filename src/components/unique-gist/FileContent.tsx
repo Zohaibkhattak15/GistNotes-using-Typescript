@@ -20,7 +20,7 @@ const FileContent = ({ filename, uniqueData }: any) => {
           <span key={index}>
             <p>
               <SpanText>
-                {index += index}
+                {++index}
               </SpanText>
               {content}
             </p>

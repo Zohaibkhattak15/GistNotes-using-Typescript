@@ -9,10 +9,10 @@ import {
   ProfileImage,
 } from "./style";
 import CardaContent from "./CardaContent";
-import { getLoginData, getGists, } from "../../utils/GitHubProfileUtilis";
+import { getLoginData, getGists, } from "../../utils/GitHubProfileUtils";
 
 
-const GitHubProfilePage = () => {
+const GitHubProfilePage: React.FC = () => {
   const [authUserRecord, setAuthUserRecord] = useState<any>();
   const [gists, setGists] = useState<any>("");
   const [gistStarValue] = useState<number>(0);

@@ -1,6 +1,6 @@
 import StaredGists from "../components/stared-gists/StaredGists";
 
-const StarGistScreen = () => {
+const StarGistScreen: React.FC = () => {
   return (
     <>
       <StaredGists />

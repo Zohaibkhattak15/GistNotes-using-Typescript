@@ -4,7 +4,7 @@ import { GistContext } from "../../context/GistContext";
 import Loader from "../common/Spinner/Spinner";
 import { Section } from "./style";
 import { VISIBLESCREEN } from '../../constants/index';
-import { columns, getStared } from '../../utils/StarGistUtilis';
+import { columns, getStared } from '../../utils/StarGistUtils';
 
 const StaredGists: FC = () => {
   const [staredGists, setStaredGists] = useState<any>();

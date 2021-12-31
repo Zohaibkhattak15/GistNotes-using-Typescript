@@ -2,12 +2,12 @@ import { useState, useContext, useEffect, useCallback } from "react";
 import { Table } from "antd";
 import { GistContext } from "../../context/GistContext";
 import { Section } from "../stared-gists/style";
-import { columns } from '../../utils/StarGistUtilis';
+import { columns } from '../../utils/StarGistUtils';
 import { VISIBLESCREEN } from "../../constants";
-import { getFilterData } from "../../utils/SearchGistUserUtilis";
+import { getFilterData } from "../../utils/SearchGistUserUtils";
 import Spinner from "../common/Spinner/Spinner";
 
-const SearchGists = () => {
+const SearchGists: React.FC = () => {
   const [searchRecordsData, setSearchRecordsData] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const { state, dispatch } = useContext(GistContext);

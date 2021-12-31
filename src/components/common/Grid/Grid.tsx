@@ -1,15 +1,18 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { Row } from "antd";
 import { GistContext } from "../../../context/GistContext";
 import PublicGistsGrid from "./PublicGistsGrid";
 import PrivateGistsGrid from "./PrivateGistsGrid";
 import { VISIBLESCREEN } from "../../../constants/index";
 import { privateFilesRecord, publicFilesRecord } from "../../../utils/GridUtils";
+import { Pagination } from 'antd';
+
 
 const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
   const publicFiles = publicFilesRecord(publicGistsDisplay);
   const privateFiles = privateFilesRecord(privateGistsDisplay);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const showUniqueGistRecord = useCallback((id: string) => {
     dispatch({
@@ -19,7 +22,7 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
         gistID: id,
       },
     });
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <>
@@ -37,6 +40,11 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
             privateFiles={privateFiles}
           />
         )}
+
+        <Pagination
+
+        />
+
       </Row>
     </>
   );

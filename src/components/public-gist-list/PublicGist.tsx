@@ -3,10 +3,10 @@ import TableData from "../common/Table/TableData";
 import GridDisplay from "../common/Grid/Grid";
 import Loader from "../common/Spinner/Spinner";
 import { Section, Wrapper, SpanBorder, ViewIcon } from "./style";
-import { getPublicGists } from "../../utils/PublicGistUtilis";
+import { getPublicGists } from "../../utils/PublicGistUtils";
 
 
-const PublicGists = () => {
+const PublicGists: React.FC = () => {
   const [publicGistsList, setPublicGistsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isListView, setIsListView] = useState(true);

@@ -1,6 +1,6 @@
 import Login from '../components/login/Login'
 
-const LoginScreen = () => {
+const LoginScreen: React.FC = () => {
     return (
         <>
             <Login />

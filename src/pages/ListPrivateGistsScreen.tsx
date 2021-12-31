@@ -1,6 +1,6 @@
 import PrivateGists from "../components/private-gist-list/PrivateGists";
 
-const ListPrivateGistsScreen = () => {
+const ListPrivateGistsScreen: React.FC = () => {
   return (
     <>
       <PrivateGists />

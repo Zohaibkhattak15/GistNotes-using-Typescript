@@ -1,5 +1,5 @@
 import { USERNAME } from "../constants";
-import {  loginAuthUser, privateGistsRecord } from "./FetchAPIs";
+import { loginAuthUser, privateGistsRecord } from "./FetchAPIs";
 
 export const getLoginData = async (setAuthUserRecord: any, authUserRecord: any) => {
     await loginAuthUser(USERNAME).then(resp => {

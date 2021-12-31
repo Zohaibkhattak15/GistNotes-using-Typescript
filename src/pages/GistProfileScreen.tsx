@@ -1,6 +1,6 @@
 import GitHubProfilePage from '../components/github-profile-page/GithubProfilePage'
 
-const GistProfileScreen = () => {
+const GistProfileScreen: React.FC = () => {
     return (
         <>
           <GitHubProfilePage />  

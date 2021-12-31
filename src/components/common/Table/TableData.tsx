@@ -2,7 +2,7 @@ import { useContext, useCallback } from "react";
 import { GistContext } from "../../../context/GistContext";
 import { Table } from "antd";
 import { Section } from "./style";
-import { columns } from "../../../utils/TableDataUtilis";
+import { columns } from "../../../utils/TableDataUtils";
 import { VISIBLESCREEN } from "../../../constants";
 
 const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {

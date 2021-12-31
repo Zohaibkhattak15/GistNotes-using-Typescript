@@ -5,7 +5,7 @@ import { GistContext } from "../../../context/GistContext";
 import Zohaib from "../../../assets/zohaib.png";
 import { Img } from './style';
 
-const DropdownMenu = () => {
+const DropdownMenu: React.FC = () => {
   const { dispatch } = useContext(GistContext);
   const menu = (
     <Menu>

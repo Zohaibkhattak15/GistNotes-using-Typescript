@@ -1,6 +1,6 @@
 import SearchGists from '../components/search-user-gist/SearchUserGist'
 
-const SearchGistScreen = () =>{
+const SearchGistScreen: React.FC = () =>{
     return (
         <>
           <SearchGists />  

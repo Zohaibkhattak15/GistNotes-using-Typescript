@@ -7,7 +7,7 @@ import { GistContext } from "../../context/GistContext";
 import { Button, Col, Row } from "antd";
 import { VISIBLESCREEN } from "../../constants/index";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const { state, dispatch } = useContext(GistContext);
   const { isLoggedin } = state;
 

@@ -1,6 +1,7 @@
 import {LOGIN,USERNAME,VISIBLESCREEN} from "../constants";
 import {loginAuthUser} from "./FetchAPIs";
-import { openNotification } from "./CommonUtilis";
+import { openNotification } from "./CommonUtils";
+import { dispatch } from "../types/ContextTypes";
 
   export const loginInputFormRules = (required : boolean , name : string)  =>{
     return ([
@@ -11,7 +12,7 @@ import { openNotification } from "./CommonUtilis";
      ])
    }
 
-  export const loginAuth = (values:string | any , dispatch:any) => {
+  export const loginAuth = (values:string | any , dispatch:dispatch) => {
      if(values.username === USERNAME){
     loginAuthUser(values.username).then(resp => resp)
          dispatch({

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { USERNAME, BASE_URL, PAT } from "../constants/index";
-import { dataType } from '../types/index';
+import { dataType } from '../types/CreateGistFormTypes';
 
 declare module 'axios' {
   interface AxiosRequestConfig {

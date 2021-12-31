@@ -12,9 +12,9 @@ import {
 import { GistContext } from "../../context/GistContext";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";
-import { getGistData, checkGist, updateGist, deleteGist } from "../../utils/UniqueGist";
+import { getGistData, checkGist, updateGist, deleteGist } from "../../utils/UniqueGistUtils";
 
-const UniqueGist = () => {
+const UniqueGist: React.FC = () => {
   const [uniqueData, setUniqueData] = useState<any>([]);
   const [gistStarValue, setGistStarValue] = useState<number>(0);
   const [gistForkValue, setGistForkValue] = useState<number>(0);

@@ -1,15 +1,7 @@
 import { createContext } from "react";
 import { GISTINITIALSTATE } from "../constants/index";
 import { LOGIN, LOGOUT, VISIBLESCREEN, SEARCH } from "../constants/index";
-
-export type StateType = {
-  userName: string;
-  PAT: string;
-  isLoggedin: boolean;
-  tab: number;
-  gistID: string;
-  searchValue: string;
-}
+import { dispatch, StateType } from "../types/ContextTypes";
 
 export const initialState: StateType = GISTINITIALSTATE;
 
@@ -41,7 +33,7 @@ export type Action =
 
 export const GistContext = createContext<{
   state: StateType;
-  dispatch: React.Dispatch<Action>;
+  dispatch: dispatch;
 }>({
   state: initialState,
   dispatch: () => undefined,

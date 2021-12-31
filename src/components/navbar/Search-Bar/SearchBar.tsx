@@ -6,7 +6,7 @@ import { SEARCH } from "../../../constants/index";
 
 const { Search } = Input;
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   const [value, setValue] = useState<string>("");
   const { dispatch } = useContext(GistContext);
 

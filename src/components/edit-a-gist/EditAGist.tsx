@@ -5,7 +5,7 @@ import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
 import { VISIBLESCREEN } from "../../constants";
 
-const EditAGist = () => {
+const EditAGist: React.FC = () => {
   const [gistData, setGistData] = useState<any>();
   const { state, dispatch } = useContext(GistContext);
   const { gistID } = state;

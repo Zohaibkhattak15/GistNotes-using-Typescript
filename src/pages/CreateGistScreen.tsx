@@ -1,6 +1,6 @@
 import CreateGistForm from "../components/create-a-gist/CreateGistForm";
 
-const CreateGistPage = () => {
+const CreateGistPage: React.FC = () => {
   return <CreateGistForm /> ;
 };
 
