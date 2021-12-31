@@ -11,14 +11,13 @@ import { openNotification } from "./CommonUtilis";
      ])
    }
 
-  export const loginAuth = (name:string , dispatch:any) => {
-    console.log(name)
-     if(name === USERNAME){
-    loginAuthUser(name).then(resp => resp)
+  export const loginAuth = (values:string | any , dispatch:any) => {
+     if(values.username === USERNAME){
+    loginAuthUser(values.username).then(resp => resp)
          dispatch({
            type: LOGIN,
            payload: {
-             userName: name,
+             userName: values.username,
              isLoggedin: true
            },
          });
