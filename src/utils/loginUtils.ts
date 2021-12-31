@@ -11,7 +11,8 @@ import { openNotification } from "./CommonUtilis";
      ])
    }
 
-  export const loginAuth = (name : string , dispatch : any) => {
+  export const loginAuth = (name:string , dispatch:any) => {
+    console.log(name)
      if(name === USERNAME){
     loginAuthUser(name).then(resp => resp)
          dispatch({

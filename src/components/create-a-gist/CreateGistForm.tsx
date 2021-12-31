@@ -1,10 +1,13 @@
 import { useState, useContext, useCallback } from "react";
 import { Heading, Section } from "./style";
 import { GistContext } from "../../context/GistContext";
-import { Form, Input, Select, Button } from "antd";
+import { Button } from "antd";
 import { formInputRules , creatGist} from "../../utils/CreateGistUtilis";
 import { CREATEGISTOBJ } from "../../constants/index";
-import { gistDataFormType } from '../../types/index'
+import { gistDataFormType } from '../../types/index';
+import { Form,Input , Select  } from 'formik-antd';
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -31,14 +34,29 @@ const CreateAGist = () => {
       content: event.currentTarget.value
     });
   };
+  const CreateGistFormSchema =  Yup.object().shape({
+    description: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    fileName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+      content: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+  });
 
-  const handleFinish = useCallback(() => {
-    creatGist(gistFormData , dispatch);
-  },[gistFormData])
+  const handleFinish = useCallback((values) => {
+    creatGist(values , dispatch)
+  },[])
 
   return (
     <Section>
-      <Form onFinish={handleFinish}  >
+      <Formik initialValues={gistFormData} onSubmit={handleFinish} validationSchema={CreateGistFormSchema} >
+      <Form>
         <Heading>Create A Gist</Heading>
         <Form.Item
           rules={formInputRules(true, "description")}
@@ -48,13 +66,17 @@ const CreateAGist = () => {
             size="large"
             placeholder="Enter gist Discription..."
             onChange={changeDescription}
+            type="description"
+            id="description"
+            name="description"
           />
         </Form.Item>
-        <Form.Item name="filename" rules={formInputRules(true, "filename")} >
+        <Form.Item name="fileName" rules={formInputRules(true, "filename")} >
           <Input
             placeholder="Enter File name..."
             size="large"
             onChange={changeFileName}
+            name="fileName"
           />
         </Form.Item>
         <Form.Item name="content" rules={formInputRules(true, "content")} >
@@ -63,22 +85,23 @@ const CreateAGist = () => {
             placeholder="Enter File Content..."
             size="large"
             onChange={changeContent}
+            name="content"
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item name="privacy">
           <Select
             size="large"
+            name="privacy"
           >
             <Option value="public"> Public</Option>
             <Option value="private">Private</Option>
           </Select>
         </Form.Item>
-        <Form.Item>
           <Button size="large" htmlType="submit">
             Create Gist
           </Button>
-        </Form.Item>
       </Form>
+      </Formik>
     </Section>
   );
 };
