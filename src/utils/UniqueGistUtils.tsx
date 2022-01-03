@@ -1,9 +1,9 @@
-import React from "react"
-import { VISIBLESCREEN } from "../constants";
-import { getPublicGist, checkGistStared, delAGist } from "./fetchAPIs";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Modal } from "antd";
-import { dispatch } from "../types/ContextTypes";
+import React from 'react';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
+import { VISIBLESCREEN } from '../constants';
+import { getPublicGist, checkGistStared, delAGist } from './FetchAPIs';
+import { dispatch } from '../types/ContextTypes';
 
 const { confirm } = Modal;
 
@@ -28,16 +28,16 @@ export const updateGist = (id: string, dispatch: dispatch) => {
 
 export const deleteGist = (id: string, dispatch: dispatch) => {
   confirm({
-    title: "Do you Want to delete these Gist?",
+    title: 'Do you Want to delete these Gist?',
     icon: <ExclamationCircleOutlined />,
-    content: "",
+    content: '',
     onOk() {
       delAGist(id);
       dispatch({
         type: VISIBLESCREEN,
         payload: {
           tab: 3,
-          gistID: "",
+          gistID: '',
         },
       });
     },
@@ -46,7 +46,7 @@ export const deleteGist = (id: string, dispatch: dispatch) => {
         type: VISIBLESCREEN,
         payload: {
           tab: 9,
-          gistID: "",
+          gistID: '',
         },
       });
     },

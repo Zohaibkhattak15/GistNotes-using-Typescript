@@ -1,11 +1,7 @@
-import SearchGists from '../components/search-user-gist/SearchUserGist'
+import SearchGists from '../components/search-user-gist/SearchUserGist';
 
-const SearchGistScreen: React.FC = () =>{
-    return (
-        <>
-          <SearchGists />  
-        </>
-    )
-}
+const SearchGistScreen: React.FC = () => (
+  <SearchGists />
+);
 
-export default SearchGistScreen
+export default SearchGistScreen;

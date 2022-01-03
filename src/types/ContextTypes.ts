@@ -1,4 +1,4 @@
-import { Action } from "../context/GistContext"
+import { Action } from '../context/GistContext';
 
 export type StateType = {
     userName: string;

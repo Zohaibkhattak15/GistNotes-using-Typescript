@@ -1,18 +1,22 @@
-import { useState, useContext, useEffect, useCallback } from "react";
+import {
+  useState, useContext, useEffect, useCallback,
+} from 'react';
 import {
   Div,
   Section,
   ContentBody,
-} from "./style";
+} from './style';
 import {
   staredAGist,
   unStaredAGist,
   forkedGist,
-} from "../../utils/fetchAPIs";
-import { GistContext } from "../../context/GistContext";
-import ProfileContent from "./ProfileContent";
-import FileContent from "./FileContent";
-import { getGistData, checkGist, updateGist, deleteGist } from "../../utils/UniqueGistUtils";
+} from '../../utils/FetchAPIs';
+import { GistContext } from '../../context/GistContext';
+import ProfileContent from './ProfileContent';
+import FileContent from './FileContent';
+import {
+  getGistData, checkGist, updateGist, deleteGist,
+} from '../../utils/UniqueGistUtils';
 
 const UniqueGist: React.FC = () => {
   const [uniqueData, setUniqueData] = useState<any>([]);
@@ -32,7 +36,7 @@ const UniqueGist: React.FC = () => {
         .then(() => setGistStarValue(gistStarValue - 1))
         .catch((err) => err);
     }
-  }, [gistID,gistStarValue]);
+  }, [gistID, gistStarValue]);
 
   const forkThisGist = useCallback(async () => {
     let alreadyFork = 0;
@@ -42,10 +46,10 @@ const UniqueGist: React.FC = () => {
     if (alreadyFork) {
       setGistForkValue(gistForkValue + 1);
     }
-  }, [gistForkValue,gistID]);
+  }, [gistForkValue, gistID]);
 
-  const handleUpdate = useCallback(() => updateGist(gistID, dispatch),[gistID,dispatch]);
-  const handleDelete = useCallback(() => deleteGist(gistID, dispatch),[gistID,dispatch]);
+  const handleUpdate = useCallback(() => updateGist(gistID, dispatch), [gistID, dispatch]);
+  const handleDelete = useCallback(() => deleteGist(gistID, dispatch), [gistID, dispatch]);
 
   useEffect(() => {
     getGistData(uniqueData, setUniqueData, gistID);

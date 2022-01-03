@@ -1,11 +1,11 @@
-import { useCallback, useContext } from "react";
-import { Nav, Imgdiv, SearchDiv } from "./style";
-import Logo from "../../assets/emumba-logo.png";
-import DropdownMenu from "./Dropdown/DropdownMenu";
-import SearchBar from "./Search-Bar/SearchBar";
-import { GistContext } from "../../context/GistContext";
-import { Button, Col, Row } from "antd";
-import { VISIBLESCREEN } from "../../constants/index";
+import { useCallback, useContext } from 'react';
+import { Button, Col, Row } from 'antd';
+import { Nav, Imgdiv, SearchDiv } from './style';
+import Logo from '../../assets/emumba-logo.png';
+import DropdownMenu from './Dropdown/DropdownMenu';
+import SearchBar from './Search-Bar/SearchBar';
+import { GistContext } from '../../context/GistContext';
+import { VISIBLESCREEN } from '../../constants/index';
 
 const Navbar: React.FC = () => {
   const { state, dispatch } = useContext(GistContext);
@@ -16,20 +16,20 @@ const Navbar: React.FC = () => {
       type: VISIBLESCREEN,
       payload: {
         tab: 1,
-        gistID: "",
+        gistID: '',
       },
     });
-  },[dispatch]);
+  }, [dispatch]);
 
   const GoToLoginScreen = useCallback(() => {
     dispatch({
       type: VISIBLESCREEN,
       payload: {
         tab: 2,
-        gistID: "",
+        gistID: '',
       },
     });
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <Row>
@@ -60,4 +60,3 @@ const Navbar: React.FC = () => {
   );
 };
 export default Navbar;
-

@@ -1,41 +1,36 @@
-import { useContext, useCallback } from "react";
-import { GistContext } from "../../../context/GistContext";
-import { Table } from "antd";
-import { Section } from "./style";
-import { columns } from "../../../utils/TableDataUtils";
-import { VISIBLESCREEN } from "../../../constants";
+import { useContext, useCallback } from 'react';
+import { Table } from 'antd';
+import { GistContext } from '../../../context/GistContext';
+import { Section } from './style';
+import { columns } from '../../../utils/TableDataUtils';
+import { VISIBLESCREEN } from '../../../constants';
 
 const TableData = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
-  const dataSource = publicGistsDisplay ? publicGistsDisplay : privateGistsDisplay;
+  const dataSource = publicGistsDisplay || privateGistsDisplay;
 
-  const showUniqueGistRecord = useCallback(
-    (id) => {
-      dispatch({
-        type: VISIBLESCREEN,
-        payload: {
-          tab: 9,
-          gistID: id,
-        },
-      });
-    },[dispatch]);
+  const showUniqueGistRecord = useCallback((id) => {
+    dispatch({
+      type: VISIBLESCREEN,
+      payload: {
+        tab: 9,
+        gistID: id,
+      },
+    });
+  }, [dispatch]);
 
-  const getID = useCallback((record: any) => {
-    return {
-      onClick: () => showUniqueGistRecord(record?.id)
-    }
-  },[showUniqueGistRecord])
+  const getID = useCallback((record: any) => ({
+    onClick: () => showUniqueGistRecord(record?.id),
+  }), [showUniqueGistRecord]);
   return (
-    <>
-      <Section>
-        <Table
-          rowKey="id"
-          columns={columns}
-          dataSource={dataSource}
-          onRow={record => getID(record)}
-        />
-      </Section>
-    </>
+    <Section>
+      <Table
+        rowKey="id"
+        columns={columns}
+        dataSource={dataSource}
+        onRow={(record) => getID(record)}
+      />
+    </Section>
   );
 };
 export default TableData;

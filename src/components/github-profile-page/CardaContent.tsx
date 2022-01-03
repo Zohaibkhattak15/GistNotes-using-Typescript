@@ -1,4 +1,5 @@
-import { NOCONTENT } from "../../constants/index";
+import { useCallback } from 'react';
+import { NOCONTENT } from '../../constants/index';
 import {
   CardHeader,
   ProfileCol,
@@ -10,28 +11,27 @@ import {
   Icon1,
   Img,
   Span1,
-} from "./style";
-import { Span, SpanValues, Icon } from "../unique-gist/style";
-import { useCallback } from "react";
+} from './style';
+import { Span, SpanValues, Icon } from '../unique-gist/style';
 
 const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
-  const starType = gistStarValue === 0 ? "far fa-star" : "fas fa-star";
+  const starType = gistStarValue === 0 ? 'far fa-star' : 'fas fa-star';
   const { files } = gists;
   let filename : string;
   let content : any;
-  let myContentArray: any[] ;
+  let myContentArray: any[];
 
   if (files) {
     Object.values(files).map((file : any) => {
       filename = file.filename;
       content = file.content;
     });
-    myContentArray = content.split("\n");
+    myContentArray = content.split('\n');
   }
-  const fileName = useCallback((item) => Object.keys(item?.files)[0],[]); 
+  const fileName = useCallback((item) => Object.keys(item?.files)[0], []);
   return (
-      gists &&
-        gists.map((item : any, index : number) => (
+    gists
+        && gists.map((item : any, index : number) => (
           <CardHeader key={index}>
             <LeftSec>
               <ProfileCol>
@@ -39,11 +39,13 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
                 <div>
                   <span>
                     <h4>
-                      {item?.owner?.login}/{fileName(item)}
+                      {item?.owner?.login}
+                      /
+                      {fileName(item)}
                     </h4>
                     <span>{item?.updated_at}</span>
                     <br />
-                    <span></span>
+                    <span />
                   </span>
                 </div>
               </ProfileCol>
@@ -57,7 +59,9 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
                 </Icon1>
                 <Icon1>
                   <Span>
-                    <Icon className="fas fa-code-branch" /> Fork
+                    <Icon className="fas fa-code-branch" />
+                    {' '}
+                    Fork
                   </Span>
                   <SpanValues>0</SpanValues>
                 </Icon1>
@@ -66,20 +70,20 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
 
             <ContentBody>
               <CardBody>
-                <i className="fas fa-code"></i>
+                <i className="fas fa-code" />
                 <span>{Object.keys(item?.files)[0]}</span>
               </CardBody>
               <CardBodyContent>
                 {myContentArray
-                  ? myContentArray?.map((content, index) => {
-                      return (
-                        <span>
-                          <p>
-                            <Span1>{++index}</Span1> {content}
-                          </p>
-                        </span>
-                      );
-                    })
+                  ? myContentArray?.map((content, index) => (
+                    <span>
+                      <p>
+                        <Span1>{++index}</Span1>
+                        {' '}
+                        {content}
+                      </p>
+                    </span>
+                  ))
                   : NOCONTENT}
               </CardBodyContent>
             </ContentBody>

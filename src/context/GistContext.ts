@@ -1,37 +1,39 @@
-import { createContext } from "react";
-import { GISTINITIALSTATE } from "../constants/index";
-import { LOGIN, LOGOUT, VISIBLESCREEN, SEARCH ,PROFILEIMG } from "../constants/index";
-import { dispatch, StateType } from "../types/ContextTypes";
+import { createContext } from 'react';
+import {
+  GISTINITIALSTATE, LOGIN, LOGOUT, VISIBLESCREEN, SEARCH, PROFILEIMG,
+} from '../constants/index';
+
+import { dispatch, StateType } from '../types/ContextTypes';
 
 export const initialState: StateType = GISTINITIALSTATE;
 
 export type Action =
   | {
-    type: "LOGIN", payload: {
+    type: 'LOGIN', payload: {
       isLoggedin: boolean,
       userName: string
     }
   }
   | {
-    type: "LOGOUT", payload: {
+    type: 'LOGOUT', payload: {
       isLoggedin: boolean,
       tab: number
     }
   }
   | {
-    type: "VISIBLESCREEN", payload: {
+    type: 'VISIBLESCREEN', payload: {
       gistID: string,
       tab: number
     }
   }
   | {
-    type: "SEARCH", payload: {
+    type: 'SEARCH', payload: {
       searchValue: string,
       tab: number
     }
   }
   | {
-    type: "PROFILEIMG" , payload:{
+    type: 'PROFILEIMG', payload:{
       imgURL : string
     }
   }
@@ -42,7 +44,7 @@ export const GistContext = createContext<{
 }>({
   state: initialState,
   dispatch: () => undefined,
-});;
+});
 
 export const GistReducer = (state: StateType, action: Action): StateType => {
   const {
@@ -59,7 +61,7 @@ export const GistReducer = (state: StateType, action: Action): StateType => {
       return {
         ...state,
         isLoggedin: false,
-        tab: action.payload.tab
+        tab: action.payload.tab,
       };
 
     case VISIBLESCREEN:
@@ -74,11 +76,11 @@ export const GistReducer = (state: StateType, action: Action): StateType => {
         searchValue: action.payload.searchValue,
         tab: action.payload.tab,
       };
-      case PROFILEIMG:
-        return {
-          ...state,
-          imgURL : action.payload.imgURL
-        }
+    case PROFILEIMG:
+      return {
+        ...state,
+        imgURL: action.payload.imgURL,
+      };
     default:
       return state;
   }

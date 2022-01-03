@@ -1,20 +1,21 @@
 import { Col } from 'antd';
-import { Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter } from './style';
+import {
+  Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter,
+} from './style';
 
 const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles }: any) => {
+  const dispPublicFiles = publicFiles
+    && publicFiles?.map((content: string, index: number) => (
+      <span key={index}>
+        <p>
+          <Span1>{++index}</Span1>
+          {' '}
+          {content}
+        </p>
+      </span>
+    ));
+  const fileName = (gist : any) => Object.keys(gist?.files)[0];
 
-  const dispPublicFiles = publicFiles &&
-    publicFiles?.map((content: string, index: number) => {
-       return(
-        <span key={index}>
-          <p>
-            <Span1>{++index}</Span1> {content}
-          </p>
-        </span>
-      );
-    });
-    const fileName = (gist : any) => Object.keys(gist?.files)[0];
-    
   return (
     publicGistsDisplay.map((gist: any, index: number) => (
       <Col xs={{ span: 12, offset: 1 }} lg={{ span: 6, offset: 1 }} key={index}>
@@ -29,7 +30,11 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
             <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login} / {fileName}
+                  {gist?.owner?.login}
+                  {' '}
+                  /
+                  {' '}
+                  {fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />
@@ -38,6 +43,6 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
           </FooterWrapper>
         </Grid>
       </Col>
-    )))
-}
-export default PublicGistsGrid
+    )));
+};
+export default PublicGistsGrid;

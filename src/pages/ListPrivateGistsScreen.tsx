@@ -1,11 +1,7 @@
-import PrivateGists from "../components/private-gist-list/PrivateGists";
+import PrivateGists from '../components/private-gist-list/PrivateGists';
 
-const ListPrivateGistsScreen: React.FC = () => {
-  return (
-    <>
-      <PrivateGists />
-    </>
-  );
-};
+const ListPrivateGistsScreen: React.FC = () => (
+  <PrivateGists />
+);
 
 export default ListPrivateGistsScreen;

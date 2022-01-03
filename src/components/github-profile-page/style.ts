@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Section = styled.section`
   display: flex;
@@ -90,15 +90,15 @@ export const ProfileImage = styled.img`
   width: 200px;
   height: 200px;
   margin-bottom: 30px;
-`
+`;
 export const Img = styled.img` 
  align-self: center;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-`
+`;
 
 export const Span1 = styled.span`
      font-Weight: "700";
      margin-Right: "10px";
-`
+`;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Section = styled.section`
   margin-top: 60px;
@@ -9,7 +9,7 @@ export const SpanBorder = styled.span`
    padding: 0px;
    background-color: #5acba1;
    }
-`
+`;
 export const Wrapper = styled.div`
   display: flex;
   width: 80%;
@@ -29,9 +29,9 @@ type viewIconsProps = {
 }
 export const ViewIcon = styled.i<viewIconsProps>` 
    &.fa-list{
-     ${(props) => props.isListView ? `color: #5acba1;` : `color: black;` }
+     ${(props) => (props.isListView ? 'color: #5acba1;' : 'color: black;')}
    }
    &.fa-th-large{
-     ${props => !props.isListView ? `color: #5acba1;` : `color: black;` }
+     ${(props) => (!props.isListView ? 'color: #5acba1;' : 'color: black;')}
   }
-`
+`;

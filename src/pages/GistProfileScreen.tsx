@@ -1,11 +1,7 @@
-import GitHubProfilePage from '../components/github-profile-page/GithubProfilePage'
+import GitHubProfilePage from '../components/github-profile-page/GithubProfilePage';
 
-const GistProfileScreen: React.FC = () => {
-    return (
-        <>
-          <GitHubProfilePage />  
-        </>
-    )
-}
+const GistProfileScreen: React.FC = () => (
+  <GitHubProfilePage />
+);
 
-export default GistProfileScreen
+export default GistProfileScreen;

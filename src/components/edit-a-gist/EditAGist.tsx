@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Section, Heading } from "../create-a-gist/style";
-import { getGistObj, updateAGist } from "../../utils/fetchAPIs";
-import { GistContext } from "../../context/GistContext";
-import { Form, Input, Button } from "antd";
-import { VISIBLESCREEN } from "../../constants";
+import React, {
+  useState, useEffect, useContext, useCallback,
+} from 'react';
+import { Form, Input, Button } from 'antd';
+import { Section, Heading } from '../create-a-gist/style';
+import { getGistObj, updateAGist } from '../../utils/FetchAPIs';
+import { GistContext } from '../../context/GistContext';
+import { VISIBLESCREEN } from '../../constants';
 
 const EditAGist: React.FC = () => {
   const [gistData, setGistData] = useState<any>();
@@ -14,7 +16,7 @@ const EditAGist: React.FC = () => {
     const resp = await getGistObj(gistID);
     setGistData(resp);
   }, []);
-  
+
   const editGist = useCallback(async () => {
     const { description } = gistData;
     await updateAGist(gistID, description);
@@ -22,7 +24,7 @@ const EditAGist: React.FC = () => {
       type: VISIBLESCREEN,
       payload: {
         tab: 3,
-        gistID: "",
+        gistID: '',
       },
     });
   }, [updateAGist, gistData]);

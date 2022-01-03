@@ -1,11 +1,7 @@
-import Login from '../components/login/Login'
+import Login from '../components/login/Login';
 
-const LoginScreen: React.FC = () => {
-    return (
-        <>
-            <Login />
-        </>
-    )
-}
+const LoginScreen: React.FC = () => (
+  <Login />
+);
 
-export default LoginScreen
+export default LoginScreen;

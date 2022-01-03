@@ -1,7 +1,5 @@
-import CreateGistForm from "../components/create-a-gist/CreateGistForm";
+import CreateGistForm from '../components/create-a-gist/CreateGistForm';
 
-const CreateGistPage: React.FC = () => {
-  return <CreateGistForm /> ;
-};
+const CreateGistPage: React.FC = () => <CreateGistForm />;
 
 export default CreateGistPage;

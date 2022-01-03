@@ -1,19 +1,19 @@
 import { Col } from 'antd';
-import { Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter } from './style';
+import {
+  Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter,
+} from './style';
 
 const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFiles }: any) => {
-  const dispPrivateFiles =
-    privateFiles &&
-    privateFiles?.map((content: string, index: number) => {
-      return (
-        <span key={index=0}>
-          <p>
-            <Span1>{++index}</Span1>{content}
-          </p>
-        </span>
-      );
-    });
-    const fileName = (gist:any) => Object.keys(gist?.files)[0];
+  const dispPrivateFiles = privateFiles
+    && privateFiles?.map((content: string, index: number) => (
+      <span key={index = 0}>
+        <p>
+          <Span1>{++index}</Span1>
+          {content}
+        </p>
+      </span>
+    ));
+  const fileName = (gist:any) => Object.keys(gist?.files)[0];
 
   return (
     privateGistsDisplay.map((gist: any, index: number) => (
@@ -29,7 +29,11 @@ const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFi
             <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login} / {fileName}
+                  {gist?.owner?.login}
+                  {' '}
+                  /
+                  {' '}
+                  {fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />
@@ -39,6 +43,6 @@ const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFi
         </Grid>
       </Col>
     ))
-  )
-}
+  );
+};
 export default PrivateGistsGrid;

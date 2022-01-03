@@ -1,11 +1,7 @@
-import UniqueGist from "../components/unique-gist/UniqueGist";
+import UniqueGist from '../components/unique-gist/UniqueGist';
 
-const UniqueGistScreen: React.FC = () => {
-  return (
-    <>
-      <UniqueGist />
-    </>
-  );
-};
+const UniqueGistScreen: React.FC = () => (
+  <UniqueGist />
+);
 
 export default UniqueGistScreen;

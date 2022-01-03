@@ -14,6 +14,3 @@ export interface dataType {
   privacy: boolean,
   files: Files
 }
-
-
-

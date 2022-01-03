@@ -1,18 +1,15 @@
-import { VISIBLESCREEN } from "../constants";
-import { createAGist } from "./fetchAPIs";
+import { VISIBLESCREEN } from '../constants';
+import { createAGist } from './FetchAPIs';
 import { gistDataFormType } from '../types/CreateGistFormTypes';
-import { dispatch } from "../types/ContextTypes";
+import { dispatch } from '../types/ContextTypes';
 import { openNotification } from './CommonUtils';
 
-
-export const formInputRules = (required: boolean, name: string) => {
-  return ([
-    {
-      required: required,
-      message: `Please input your ${name}!`,
-    },
-  ])
-}
+export const formInputRules = (required: boolean, name: string) => ([
+  {
+    required,
+    message: `Please input your ${name}!`,
+  },
+]);
 
 export const creatGist = (gistFormData: gistDataFormType, dispatch: dispatch) => {
   const gistData = {
@@ -23,14 +20,14 @@ export const creatGist = (gistFormData: gistDataFormType, dispatch: dispatch) =>
         content: gistFormData?.content,
       },
     },
-  }
+  };
   createAGist(gistData);
-  openNotification("Gist Created", "Your gist has been created.");
+  openNotification('Gist Created', 'Your gist has been created.');
   dispatch({
     type: VISIBLESCREEN,
     payload: {
       tab: 3,
-      gistID: "",
+      gistID: '',
     },
   });
 };

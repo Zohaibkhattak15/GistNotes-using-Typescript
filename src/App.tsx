@@ -51,6 +51,6 @@ const App: React.FC = () => {
       </div>
     </GistContext.Provider>
   );
-}
+};
 
 export default App;

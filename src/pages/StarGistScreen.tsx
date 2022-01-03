@@ -1,11 +1,7 @@
-import StaredGists from "../components/stared-gists/StaredGists";
+import StaredGists from '../components/stared-gists/StaredGists';
 
-const StarGistScreen: React.FC = () => {
-  return (
-    <>
-      <StaredGists />
-    </>
-  );
-};
+const StarGistScreen: React.FC = () => (
+  <StaredGists />
+);
 
 export default StarGistScreen;

@@ -1,4 +1,4 @@
-import { USERNAME } from "../../constants/index";
+import { USERNAME } from '../../constants/index';
 import {
   Span,
   Icon,
@@ -6,8 +6,8 @@ import {
   ProfileImage,
   Heading,
   SpanValues,
-} from "./style";
-import { GistIcons, Icon1 } from "../github-profile-page/style";
+} from './style';
+import { GistIcons, Icon1 } from '../github-profile-page/style';
 
 const ProfileContent = ({
   data,
@@ -19,25 +19,23 @@ const ProfileContent = ({
   forkThisGist,
   gistForkValue,
 }: any) => {
-
-    const {owner} = data;
-    const dispDelandUpdIcons = owner?.login === USERNAME ? (
-      <>
-        <Span>
-          <Icon className="far fa-edit" onClick={() => updateGist(data?.id)} />
-          Edit
-        </Span>
-        <Span>
-          <Icon
-            className="far fa-trash-alt"
-            onClick={() => deleteGist(data?.id)}
-          />
-          Delete
-        </Span>
-      </>
-    ) : null;
-  const getStarClass = (gistStarValue : number) =>
-    gistStarValue === 0 ? "far fa-star" : "fas fa-star";
+  const { owner } = data;
+  const dispDelandUpdIcons = owner?.login === USERNAME ? (
+    <>
+      <Span>
+        <Icon className="far fa-edit" onClick={() => updateGist(data?.id)} />
+        Edit
+      </Span>
+      <Span>
+        <Icon
+          className="far fa-trash-alt"
+          onClick={() => deleteGist(data?.id)}
+        />
+        Delete
+      </Span>
+    </>
+  ) : null;
+  const getStarClass = (gistStarValue : number) => (gistStarValue === 0 ? 'far fa-star' : 'fas fa-star');
 
   return (
     <>
@@ -48,7 +46,10 @@ const ProfileContent = ({
         <div>
           <span>
             <Heading>
-              {owner?.login}/{filename}{" "}
+              {owner?.login}
+              /
+              {filename}
+              {' '}
             </Heading>
             <span>{data?.created_at}</span>
             <br />

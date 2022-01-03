@@ -1,13 +1,13 @@
-import React, { useState, useContext, useCallback } from "react";
-import { GistContext } from "../../../context/GistContext";
-import { Div } from "./style";
-import { Input, Tooltip, } from "antd";
-import { SEARCH } from "../../../constants/index";
+import React, { useState, useContext, useCallback } from 'react';
+import { Input, Tooltip } from 'antd';
+import { GistContext } from '../../../context/GistContext';
+import { Div } from './style';
+import { SEARCH } from '../../../constants/index';
 
 const { Search } = Input;
 
 const SearchBar: React.FC = () => {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   const { dispatch } = useContext(GistContext);
 
   const handleSearch = useCallback((value) => {
@@ -19,16 +19,16 @@ const SearchBar: React.FC = () => {
           tab: 10,
         },
       });
-      setValue("");
+      setValue('');
     }
   }, [dispatch]);
 
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>): void => {
-    setValue(e.currentTarget.value)
-  }
+    setValue(e.currentTarget.value);
+  };
   return (
     <Div>
-      <Tooltip placement="topLeft" title={"Search User"}>
+      <Tooltip placement="topLeft" title="Search User">
         <Search
           placeholder="Enter search text"
           size="large"

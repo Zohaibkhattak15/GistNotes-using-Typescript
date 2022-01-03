@@ -1,11 +1,9 @@
-import './style.css'
+import './style.css';
 
-const Spinner = () => {
-  return (
-    <div>
-      <div className="loader">Loading...</div>
-    </div>
-  );
-};
+const Spinner = () => (
+  <div>
+    <div className="loader">Loading...</div>
+  </div>
+);
 
 export default Spinner;

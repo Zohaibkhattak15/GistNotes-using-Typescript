@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Section = styled.section`
   width: 80%;
   margin: 15px auto;
   padding-bottom: 200px;
 
-`
+`;
 export const Table = styled.table`
   display: table;
   width: 80%;

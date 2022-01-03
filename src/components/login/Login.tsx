@@ -1,41 +1,49 @@
-import React, { useCallback, useContext, useState } from "react";
-import { FormWrapper } from "./style";
-import { GistContext } from "../../context/GistContext";
-import { Button } from "antd";
-import { loginAuth, loginInputFormRules } from "../../utils/loginUtils";
-import { Form, Input } from 'antd';
+import React, {
+  useCallback, useContext, useMemo, useState,
+} from 'react';
+import { Button } from 'antd';
+import { Form, Input } from 'formik-antd';
+import { Formik } from 'formik';
+import { FormWrapper } from './style';
+import { GistContext } from '../../context/GistContext';
+import { loginAuth, loginInputFormRules } from '../../utils/LoginUtils';
+import { CreateLoginFormSchema } from '../../validations';
 
 const Login = () => {
-  const [name, setName] = useState<any>("");
+  const initialValue = { name: '' };
+  const [name, setName] = useState<any>('');
   const { dispatch } = useContext(GistContext);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setName(e.currentTarget.value);
   };
-  const handleFinish = () =>{
-     loginAuth(name, dispatch);
-    };
-  
+
+  const validations = useMemo(() => CreateLoginFormSchema(), []);
+  const handleFinish = useCallback((values) => {
+    loginAuth(values, dispatch);
+  }, []);
 
   return (
     <FormWrapper>
-        <Form onFinish={handleFinish}>
+      <Formik initialValues={initialValue} onSubmit={handleFinish} validationSchema={validations}>
+        <Form>
           <Form.Item
-            name="name"
-            rules={loginInputFormRules(true, "username")}
+            name="username"
+            rules={loginInputFormRules(true, 'username')}
           >
             <Input
               size="large"
               placeholder="Enter username"
               value={name}
               onChange={handleInputChange}
-              name="name"
+              name="username"
             />
           </Form.Item>
           <Button type="primary" size="large" htmlType="submit">
             Login
           </Button>
         </Form>
+      </Formik>
     </FormWrapper>
   );
 };
