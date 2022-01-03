@@ -16,9 +16,10 @@ export const loginInputFormRules = (required: boolean, name: string) => [
 ];
 
 // eslint-disable-next-line no-shadow
-export const loginAuth = (username: string, dispatch: dispatch) => {
-  if (username === USERNAME) {
-    loginAuthUser(username).then((resp) => {
+export const loginAuth = (name: string, dispatch: dispatch) => {
+  console.log(name);
+  if (name === USERNAME) {
+    loginAuthUser(name).then((resp) => {
       dispatch({
         type: PROFILEIMG,
         payload: {
@@ -30,7 +31,7 @@ export const loginAuth = (username: string, dispatch: dispatch) => {
     dispatch({
       type: LOGIN,
       payload: {
-        userName: username,
+        userName: name,
         isLoggedin: true,
       },
     });

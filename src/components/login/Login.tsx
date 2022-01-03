@@ -1,49 +1,40 @@
 import React, {
-  useCallback, useContext, useMemo, useState,
+  useContext, useState,
 } from 'react';
-import { Button } from 'antd';
-import { Form, Input } from 'formik-antd';
-import { Formik } from 'formik';
+import { Button, Form, Input } from 'antd';
 import { FormWrapper } from './style';
 import { GistContext } from '../../context/GistContext';
 import { loginAuth, loginInputFormRules } from '../../utils/LoginUtils';
-import { CreateLoginFormSchema } from '../../validations';
 
 const Login = () => {
-  const initialValue = { name: '' };
-  const [name, setName] = useState<any>('');
+  const [userName, setUserName] = useState<string>('');
   const { dispatch } = useContext(GistContext);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    setName(e.currentTarget.value);
+    setUserName(e.currentTarget.value);
   };
 
-  const validations = useMemo(() => CreateLoginFormSchema(), []);
-  const handleFinish = useCallback((values) => {
-    loginAuth(values, dispatch);
-  }, []);
+  const handleFinish = (userName: string) => {
+    loginAuth(userName, dispatch);
+  };
 
   return (
     <FormWrapper>
-      <Formik initialValues={initialValue} onSubmit={handleFinish} validationSchema={validations}>
-        <Form>
-          <Form.Item
-            name="username"
-            rules={loginInputFormRules(true, 'username')}
-          >
-            <Input
-              size="large"
-              placeholder="Enter username"
-              value={name}
-              onChange={handleInputChange}
-              name="username"
-            />
-          </Form.Item>
-          <Button type="primary" size="large" htmlType="submit">
-            Login
-          </Button>
-        </Form>
-      </Formik>
+      <Form onFinish={handleFinish}>
+        <Form.Item
+          rules={loginInputFormRules(true, 'username')}
+        >
+          <Input
+            size="large"
+            placeholder="Enter username"
+            value={userName}
+            onChange={handleInputChange}
+          />
+        </Form.Item>
+        <Button type="primary" size="large" htmlType="submit">
+          Login
+        </Button>
+      </Form>
     </FormWrapper>
   );
 };
