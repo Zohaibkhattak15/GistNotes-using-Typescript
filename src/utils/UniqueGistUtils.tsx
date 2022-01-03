@@ -1,5 +1,5 @@
 import { VISIBLESCREEN } from "../constants";
-import { getPublicGist, checkGistStared, delAGist } from "./FetchAPIs";
+import { getPublicGist, checkGistStared, delAGist } from "./fetchAPIs";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import { dispatch } from "../types/ContextTypes";

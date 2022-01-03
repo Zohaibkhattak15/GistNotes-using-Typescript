@@ -1,4 +1,4 @@
-import { searchRecords } from "./FetchAPIs"
+import { searchRecords } from "./fetchAPIs"
 
 export const getFilterData = async (searchValue: string, loading: boolean, setLoading: (loading: boolean) => void, searchRecordsData: any, setSearchRecordsData: any) => {
   setLoading(true);

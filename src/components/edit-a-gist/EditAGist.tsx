@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Section, Heading } from "../create-a-gist/style";
-import { getGistObj, updateAGist } from "../../utils/FetchAPIs";
+import { getGistObj, updateAGist } from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import { Form, Input, Button } from "antd";
 import { VISIBLESCREEN } from "../../constants";
@@ -48,9 +48,7 @@ const EditAGist: React.FC = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Button size="large" htmlType="submit">
-            Save Gist
-          </Button>
+          <Button size="large" htmlType="submit"> Save Gist </Button>
         </Form.Item>
       </Form>
     </Section>

@@ -1,5 +1,5 @@
 import {LOGIN,USERNAME,VISIBLESCREEN} from "../constants";
-import {loginAuthUser} from "./FetchAPIs";
+import {loginAuthUser} from "./fetchAPIs";
 import { openNotification } from "./CommonUtils";
 import { dispatch } from "../types/ContextTypes";
 

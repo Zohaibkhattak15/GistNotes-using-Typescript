@@ -2,13 +2,12 @@ import React, { useCallback, useContext, useState } from "react";
 import { FormWrapper } from "./style";
 import { GistContext } from "../../context/GistContext";
 import { Button } from "antd";
-import { loginAuth, loginInputFormRules } from "../../utils/LoginUtils";
+import { loginAuth, loginInputFormRules } from "../../utils/loginUtils";
 import { Form, Input } from 'formik-antd';
-import * as Yup from 'yup';
 import { Formik } from "formik";
+import * as Yup from 'yup';
 
 const Login = () => {
-  const initialValue ={ name : ""}
   const [name, setName] = useState<any>("");
   const { dispatch } = useContext(GistContext);
 
@@ -16,18 +15,14 @@ const Login = () => {
     setName(e.currentTarget.value);
   };
   const handleFinish = useCallback((values) =>{
-    loginAuth(values, dispatch)
+    //  loginAuth(values, dispatch)
+    console.log(values)
     },[]);
-  const CreateLoginFormSchema = Yup.object({
-    username: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required UserName'),
-  });
+  
 
   return (
     <FormWrapper>
-      <Formik initialValues={initialValue} onSubmit={handleFinish} validationSchema={CreateLoginFormSchema} >
+      <Formik initialValues={name} onSubmit={handleFinish} >
         <Form>
           <Form.Item
             name="username"

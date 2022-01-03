@@ -1,5 +1,5 @@
 import { VISIBLESCREEN } from "../constants";
-import { createAGist } from "./FetchAPIs";
+import { createAGist } from "./fetchAPIs";
 import { gistDataFormType } from '../types/CreateGistFormTypes';
 import { dispatch } from "../types/ContextTypes";
 import { openNotification } from './CommonUtils';

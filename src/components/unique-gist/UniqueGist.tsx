@@ -8,7 +8,7 @@ import {
   staredAGist,
   unStaredAGist,
   forkedGist,
-} from "../../utils/FetchAPIs";
+} from "../../utils/fetchAPIs";
 import { GistContext } from "../../context/GistContext";
 import ProfileContent from "./ProfileContent";
 import FileContent from "./FileContent";

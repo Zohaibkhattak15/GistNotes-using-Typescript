@@ -1,4 +1,4 @@
-import { publicGistsRecord } from "./FetchAPIs";
+import { publicGistsRecord } from "./fetchAPIs";
 
   export const getPublicGists = async (loading:boolean , setLoading:(loading :boolean) => void ,publicGistsList:any , setPublicGistsList:any ) => {
     setLoading(true);
