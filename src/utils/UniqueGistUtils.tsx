@@ -1,3 +1,4 @@
+import React from "react"
 import { VISIBLESCREEN } from "../constants";
 import { getPublicGist, checkGistStared, delAGist } from "./fetchAPIs";
 import { ExclamationCircleOutlined } from "@ant-design/icons";

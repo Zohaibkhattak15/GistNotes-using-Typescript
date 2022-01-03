@@ -7,6 +7,7 @@ export type StateType = {
     tab: number;
     gistID: string;
     searchValue: string;
+    imgURL : string
 }
 
 export type dispatch = React.Dispatch<Action>;

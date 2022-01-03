@@ -3,9 +3,7 @@ import { FormWrapper } from "./style";
 import { GistContext } from "../../context/GistContext";
 import { Button } from "antd";
 import { loginAuth, loginInputFormRules } from "../../utils/loginUtils";
-import { Form, Input } from 'formik-antd';
-import { Formik } from "formik";
-import * as Yup from 'yup';
+import { Form, Input } from 'antd';
 
 const Login = () => {
   const [name, setName] = useState<any>("");
@@ -14,18 +12,16 @@ const Login = () => {
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setName(e.currentTarget.value);
   };
-  const handleFinish = useCallback((values) =>{
-    //  loginAuth(values, dispatch)
-    console.log(values)
-    },[]);
+  const handleFinish = () =>{
+     loginAuth(name, dispatch);
+    };
   
 
   return (
     <FormWrapper>
-      <Formik initialValues={name} onSubmit={handleFinish} >
-        <Form>
+        <Form onFinish={handleFinish}>
           <Form.Item
-            name="username"
+            name="name"
             rules={loginInputFormRules(true, "username")}
           >
             <Input
@@ -33,14 +29,13 @@ const Login = () => {
               placeholder="Enter username"
               value={name}
               onChange={handleInputChange}
-              name="username"
+              name="name"
             />
           </Form.Item>
           <Button type="primary" size="large" htmlType="submit">
             Login
           </Button>
         </Form>
-      </Formik>
     </FormWrapper>
   );
 };

@@ -2,11 +2,11 @@ import { Menu, Dropdown } from "antd";
 import { useCallback,useContext } from "react";
 import { LOGOUT, VISIBLESCREEN } from "../../../constants/index";
 import { GistContext } from "../../../context/GistContext";
-import Zohaib from "../../../assets/zohaib.png";
 import { Img } from './style';
 
 const DropdownMenu: React.FC = () => {
-  const { dispatch } = useContext(GistContext);
+  const { state,dispatch } = useContext(GistContext);
+  const {imgURL} = state; 
   const menu = (
     <Menu>
       <Menu.Item key="0">
@@ -96,7 +96,7 @@ const DropdownMenu: React.FC = () => {
       <p className="ant-dropdown-link" onClick={e => e.preventDefault()}>
         <Img
          className="imgsize"
-          src={Zohaib}
+          src={imgURL}
         />
       </p>
     </Dropdown>

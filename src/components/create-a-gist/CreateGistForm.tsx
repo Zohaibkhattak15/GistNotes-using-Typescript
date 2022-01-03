@@ -1,24 +1,25 @@
-import { useState, useContext, useCallback, useMemo } from "react";
-import { Heading, Section } from "./style";
-import { GistContext } from "../../context/GistContext";
-import { Button } from "antd";
-import { formInputRules, creatGist } from "../../utils/CreateGistUtils";
-import { CREATEGISTOBJ } from "../../constants/index";
-import { gistDataFormType } from "../../types/CreateGistFormTypes";
-import { Form, Input, Select } from "formik-antd";
-import { Formik } from "formik";
-import { CreateGistFormSchema } from "../../validations";
+import { Button } from 'antd';
+import { Formik } from 'formik';
+import { Form, Input, Select } from 'formik-antd';
+import {
+  useCallback, useContext, useMemo, useState,
+} from 'react';
+import { CREATEGISTOBJ } from '../../constants/index';
+import { GistContext } from '../../context/GistContext';
+import { gistDataFormType } from '../../types/CreateGistFormTypes';
+import { creatGist, formInputRules } from '../../utils/CreateGistUtils';
+import { CreateGistFormSchema } from '../../validations';
+import { Heading, Section } from './style';
 
 const { TextArea } = Input;
 const { Option } = Select;
 
 const CreateAGist: React.FC = () => {
-  const [gistFormData, setGistFormData] =
-    useState<gistDataFormType>(CREATEGISTOBJ);
+  const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ);
   const { dispatch } = useContext(GistContext);
 
   const changeDescription = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     setGistFormData({
       ...gistFormData,
@@ -32,7 +33,7 @@ const CreateAGist: React.FC = () => {
     });
   };
   const changeContent = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ): void => {
     setGistFormData({
       ...gistFormData,
@@ -56,7 +57,7 @@ const CreateAGist: React.FC = () => {
         <Form>
           <Heading>Create A Gist</Heading>
           <Form.Item
-            rules={formInputRules(true, "description")}
+            rules={formInputRules(true, 'description')}
             name="description"
           >
             <Input
@@ -68,7 +69,7 @@ const CreateAGist: React.FC = () => {
               name="description"
             />
           </Form.Item>
-          <Form.Item name="fileName" rules={formInputRules(true, "filename")}>
+          <Form.Item name="fileName" rules={formInputRules(true, 'filename')}>
             <Input
               placeholder="Enter File name..."
               size="large"
@@ -76,7 +77,7 @@ const CreateAGist: React.FC = () => {
               name="fileName"
             />
           </Form.Item>
-          <Form.Item name="content" rules={formInputRules(true, "content")}>
+          <Form.Item name="content" rules={formInputRules(true, 'content')}>
             <TextArea
               rows={4}
               placeholder="Enter File Content..."

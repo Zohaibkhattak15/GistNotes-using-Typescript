@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { GISTINITIALSTATE } from "../constants/index";
-import { LOGIN, LOGOUT, VISIBLESCREEN, SEARCH } from "../constants/index";
+import { LOGIN, LOGOUT, VISIBLESCREEN, SEARCH ,PROFILEIMG } from "../constants/index";
 import { dispatch, StateType } from "../types/ContextTypes";
 
 export const initialState: StateType = GISTINITIALSTATE;
@@ -28,6 +28,11 @@ export type Action =
     type: "SEARCH", payload: {
       searchValue: string,
       tab: number
+    }
+  }
+  | {
+    type: "PROFILEIMG" , payload:{
+      imgURL : string
     }
   }
 
@@ -69,6 +74,11 @@ export const GistReducer = (state: StateType, action: Action): StateType => {
         searchValue: action.payload.searchValue,
         tab: action.payload.tab,
       };
+      case PROFILEIMG:
+        return {
+          ...state,
+          imgURL : action.payload.imgURL
+        }
     default:
       return state;
   }
