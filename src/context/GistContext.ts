@@ -52,7 +52,6 @@ export const GistReducer = (state: StateType, action: Action): StateType => {
   } = action;
   switch (type) {
     case LOGIN:
-      console.log(action);
       return {
         ...state,
         isLoggedin: true,

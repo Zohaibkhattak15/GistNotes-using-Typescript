@@ -15,15 +15,15 @@ export const loginAuthUser = async (UserName: string) => {
         Authorization: `Basic ${btoa(`${UserName}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp?.data)
-    .catch((err) => err);
+    .then((resp: { data: any; }) => resp?.data)
+    .catch((err: any) => err);
   return authUserRecord;
 };
 
 export const publicGistsRecord = async () => {
   const publicGistsRecords = await axios
     .get(`${BASE_URL}/gists`)
-    .then((resp) => resp?.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp?.data).catch((err: any) => err);
   return publicGistsRecords;
 };
 
@@ -32,7 +32,7 @@ export const getPublicGist = async (id: string) => {
     .get(`${BASE_URL}/gists/${id}`, {
       gist_id: id,
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return getPublicGistObj;
 };
 
@@ -43,7 +43,7 @@ export const privateGistsRecord = async () => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return privateGistsRecord;
 };
 
@@ -52,8 +52,8 @@ export const searchRecords = async (name: string) => {
     .get(`${BASE_URL}/users/${name}/gists`, {
       username: name,
     })
-    .then((resp) => resp?.data)
-    .catch((err) => err);
+    .then((resp: { data: any; }) => resp?.data)
+    .catch((err: any) => err);
   return searchedUserRecords;
 };
 
@@ -65,7 +65,7 @@ export const createAGist = async (data: dataType) => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return createGist;
 };
 
@@ -76,7 +76,7 @@ export const delAGist = async (id: string) => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return delAGist;
 };
 
@@ -102,7 +102,7 @@ export const getGistObj = async (id: string) => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return getGists;
 };
 
@@ -113,7 +113,7 @@ export const getStaredGists = async () => {
         Authorization: `Basic ${btoa(`${USERNAME}:${PAT}`)}`,
       },
     })
-    .then((resp) => resp.data).catch((err) => err);
+    .then((resp: { data: any; }) => resp.data).catch((err: any) => err);
   return getStaredGists;
 };
 
@@ -163,7 +163,7 @@ export const forkedGist = async (gistId: string) => {
         },
       },
     )
-    .then((resp) => resp?.status)
-    .catch((err) => err);
+    .then((resp: { status: any; }) => resp?.status)
+    .catch((err: any) => err);
   return forkAGist;
 };
