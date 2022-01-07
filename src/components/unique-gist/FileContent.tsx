@@ -1,7 +1,8 @@
-import { NOCONTENT } from '../../constants/index';
+import React from 'react'
+import { NOCONTENT } from '../../constants/index'
 import {
   CardBody, Icon, Filename, CardBodyContent, SpanText,
-} from './style';
+} from './style'
 
 const FileContent = ({ filename, uniqueData }: any) => {
   const { files } = uniqueData;

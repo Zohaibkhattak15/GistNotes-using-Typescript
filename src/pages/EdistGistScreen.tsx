@@ -1,4 +1,5 @@
-import EditAGist from '../components/edit-a-gist/EditAGist';
+import React from 'react'
+import EditAGist from '../components/edit-a-gist/EditAGist'
 
 const EdistGistScreen: React.FC = () => (
   <EditAGist />

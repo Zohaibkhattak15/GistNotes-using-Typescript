@@ -1,4 +1,5 @@
-import SearchGists from '../components/search-user-gist/SearchUserGist';
+import React from 'react'
+import SearchGists from '../components/search-user-gist/SearchUserGist'
 
 const SearchGistScreen: React.FC = () => (
   <SearchGists />

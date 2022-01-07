@@ -1,4 +1,5 @@
-import { Col } from 'antd';
+import React from 'react'
+import { Col } from 'antd'
 import {
   Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter,
 } from './style';
@@ -9,12 +10,11 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
       <span key={index}>
         <p>
           <Span1>{++index}</Span1>
-          {' '}
           {content}
         </p>
       </span>
     ));
-  const fileName = (gist : any) => Object.keys(gist?.files)[0];
+  const fileName = (gist : any) => Object.keys(gist?.files)[0]
 
   return (
     publicGistsDisplay.map((gist: any, index: number) => (
@@ -30,11 +30,7 @@ const PublicGistsGrid = ({ publicGistsDisplay, showUniqueGistRecord, publicFiles
             <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login}
-                  {' '}
-                  /
-                  {' '}
-                  {fileName}
+                  {gist?.owner?.login}/{fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />

@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import { NOCONTENT } from '../../constants/index';
+import React, { useCallback } from 'react'
+import { NOCONTENT } from '../../constants/index'
 import {
   CardHeader,
   ProfileCol,
@@ -12,23 +12,21 @@ import {
   Img,
   Span1,
 } from './style';
-import { Span, SpanValues, Icon } from '../unique-gist/style';
+import { Span, SpanValues, Icon } from '../unique-gist/style'
 
 const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
-  const starType = gistStarValue === 0 ? 'far fa-star' : 'fas fa-star';
-  const { files } = gists;
-  let filename : string;
-  let content : any;
-  let myContentArray: any[];
+  const starType = gistStarValue === 0 ? 'far fa-star' : 'fas fa-star'
+  const { files } = gists
+  let content : any
+  let myContentArray: any[]
 
   if (files) {
     Object.values(files).map((file : any) => {
-      filename = file.filename;
-      content = file.content;
+      content = file.content
     });
     myContentArray = content.split('\n');
   }
-  const fileName = useCallback((item) => Object.keys(item?.files)[0], []);
+  const fileName = useCallback((item) => Object.keys(item?.files)[0], [])
   return (
     gists
         && gists.map((item : any, index : number) => (
@@ -76,10 +74,9 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
               <CardBodyContent>
                 {myContentArray
                   ? myContentArray?.map((content, index) => (
-                    <span>
+                    <span key={index}>
                       <p>
                         <Span1>{++index}</Span1>
-                        {' '}
                         {content}
                       </p>
                     </span>
@@ -92,4 +89,4 @@ const CardData = ({ gists, gistStarValue, starThisGist } : any) => {
   );
 };
 
-export default CardData;
+export default CardData

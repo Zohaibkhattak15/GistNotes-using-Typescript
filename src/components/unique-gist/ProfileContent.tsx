@@ -1,4 +1,5 @@
-import { USERNAME } from '../../constants/index';
+import React from 'react'
+import { USERNAME } from '../../constants/index'
 import {
   Span,
   Icon,
@@ -7,7 +8,7 @@ import {
   Heading,
   SpanValues,
 } from './style';
-import { GistIcons, Icon1 } from '../github-profile-page/style';
+import { GistIcons, Icon1 } from '../github-profile-page/style'
 
 const ProfileContent = ({
   data,

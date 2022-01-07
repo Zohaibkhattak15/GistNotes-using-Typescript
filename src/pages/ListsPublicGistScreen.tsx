@@ -1,4 +1,5 @@
-import PublicGists from '../components/public-gist-list/PublicGist';
+import React from 'react'
+import PublicGists from '../components/public-gist-list/PublicGist'
 
 const ListsPublicGistScreen: React.FC = () => (
   <PublicGists />

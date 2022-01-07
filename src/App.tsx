@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from 'react';
+import React, { useMemo, useReducer } from 'react';
 import Navbar from './components/navbar/Navbar';
 import { GistReducer, initialState, GistContext } from './context/GistContext';
 import LoginScreen from './pages/LoginScreen';

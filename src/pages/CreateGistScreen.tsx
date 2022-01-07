@@ -1,4 +1,5 @@
-import CreateGistForm from '../components/create-a-gist/CreateGistForm';
+import React from 'react'
+import CreateGistForm from '../components/create-a-gist/CreateGistForm'
 
 const CreateGistPage: React.FC = () => <CreateGistForm />;
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Col, Row } from 'antd';
 import { StarOutlined, ForkOutlined } from '@ant-design/icons/lib/icons';
 import { UserNameSection, Username, Img } from '../components/common/Table/style';

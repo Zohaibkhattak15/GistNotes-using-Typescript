@@ -1,5 +1,5 @@
+import React, { useCallback, useContext } from 'react';
 import { Menu, Dropdown } from 'antd';
-import { useCallback, useContext } from 'react';
 import { LOGOUT, VISIBLESCREEN } from '../../../constants/index';
 import { GistContext } from '../../../context/GistContext';
 import { Img } from './style';

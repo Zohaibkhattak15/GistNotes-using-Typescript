@@ -1,8 +1,9 @@
-import { ColumnsType } from 'antd/lib/table';
-import { StarOutlined, ForkOutlined } from '@ant-design/icons/lib/icons';
-import { Row, Col } from 'antd';
-import { UserNameSection, Img, Username } from '../components/common/Table/style';
-import { getStaredGists } from './FetchAPIs';
+import React from 'react'
+import { ColumnsType } from 'antd/lib/table'
+import { StarOutlined, ForkOutlined } from '@ant-design/icons/lib/icons'
+import { Row, Col } from 'antd'
+import { UserNameSection, Img, Username } from '../components/common/Table/style'
+import { getStaredGists } from './FetchAPIs'
 
 export const columns: ColumnsType<any> = [
   {
@@ -53,7 +54,7 @@ export const columns: ColumnsType<any> = [
     key: '6',
     title: 'Actions',
     dataIndex: '',
-    render: (value: any) => (
+    render: () => (
       <Row gutter={[16, 16]}>
         <Col>
           <StarOutlined className="color" style={{ color: '#5acba1' }} />

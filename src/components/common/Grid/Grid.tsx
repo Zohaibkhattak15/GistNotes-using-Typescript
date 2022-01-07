@@ -1,26 +1,31 @@
-import { useCallback, useContext, useState } from 'react';
-import { Row, Pagination } from 'antd';
-import { GistContext } from '../../../context/GistContext';
-import PublicGistsGrid from './PublicGistsGrid';
-import PrivateGistsGrid from './PrivateGistsGrid';
-import { VISIBLESCREEN } from '../../../constants/index';
-import { privateFilesRecord, publicFilesRecord } from '../../../utils/GridUtils';
+import React, { useCallback, useContext } from "react"
+import { Row, Pagination } from "antd"
+import { GistContext } from "../../../context/GistContext"
+import PublicGistsGrid from "./PublicGistsGrid"
+import PrivateGistsGrid from "./PrivateGistsGrid"
+import { VISIBLESCREEN } from "../../../constants/index"
+import {
+  privateFilesRecord,
+  publicFilesRecord,
+} from "../../../utils/GridUtils"
 
 const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
   const { dispatch } = useContext(GistContext);
   const publicFiles = publicFilesRecord(publicGistsDisplay);
   const privateFiles = privateFilesRecord(privateGistsDisplay);
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const showUniqueGistRecord = useCallback((id: string) => {
-    dispatch({
-      type: VISIBLESCREEN,
-      payload: {
-        tab: 9,
-        gistID: id,
-      },
-    });
-  }, [dispatch]);
+  const showUniqueGistRecord = useCallback(
+    (id: string) => {
+      dispatch({
+        type: VISIBLESCREEN,
+        payload: {
+          tab: 9,
+          gistID: id,
+        },
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <Row gutter={[16, 100]}>
@@ -39,7 +44,6 @@ const GridDisplay = ({ publicGistsDisplay, privateGistsDisplay }: any) => {
       )}
 
       <Pagination />
-
     </Row>
   );
 };

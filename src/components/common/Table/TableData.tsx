@@ -1,4 +1,4 @@
-import { useContext, useCallback } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Table } from 'antd';
 import { GistContext } from '../../../context/GistContext';
 import { Section } from './style';

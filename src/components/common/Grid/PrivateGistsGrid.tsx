@@ -1,4 +1,5 @@
-import { Col } from 'antd';
+import React from 'react'
+import { Col } from 'antd'
 import {
   Grid, FooterWrapper, Span1, ProfilePic, ProfileWrapper, ProfileFooter,
 } from './style';
@@ -29,11 +30,7 @@ const PrivateGistsGrid = ({ privateGistsDisplay, showUniqueGistRecord, privateFi
             <ProfileWrapper>
               <ProfileFooter>
                 <h4>
-                  {gist?.owner?.login}
-                  {' '}
-                  /
-                  {' '}
-                  {fileName}
+                  {gist?.owner?.login}/{fileName}
                 </h4>
                 <span>{gist?.created_at}</span>
                 <br />

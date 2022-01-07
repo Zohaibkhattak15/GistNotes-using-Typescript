@@ -1,17 +1,17 @@
-import {
+import React, {
   FC, useState, useEffect, useContext, useCallback,
-} from 'react';
-import { Table } from 'antd';
-import { GistContext } from '../../context/GistContext';
-import Loader from '../common/Spinner/Spinner';
-import { Section } from './style';
-import { VISIBLESCREEN } from '../../constants/index';
-import { columns, getStared } from '../../utils/StarGistUtils';
+} from 'react'
+import { Table } from 'antd'
+import { GistContext } from '../../context/GistContext'
+import Loader from '../common/Spinner/Spinner'
+import { Section } from './style'
+import { VISIBLESCREEN } from '../../constants/index'
+import { columns, getStared } from '../../utils/StarGistUtils'
 
 const StaredGists: FC = () => {
-  const [staredGists, setStaredGists] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const { dispatch } = useContext(GistContext);
+  const [staredGists, setStaredGists] = useState<any>()
+  const [loading, setLoading] = useState<boolean>(false)
+  const { dispatch } = useContext(GistContext)
 
   const showUniqueGistRecord = useCallback((id) => {
     dispatch({
@@ -26,7 +26,7 @@ const StaredGists: FC = () => {
   const onRow = useCallback((record: any) => ({ onClick: () => showUniqueGistRecord(record?.id) }), []);
 
   useEffect(() => {
-    getStared(staredGists, setStaredGists, loading, setLoading);
+    getStared(staredGists, setStaredGists, loading, setLoading)
   }, []);
 
   return (

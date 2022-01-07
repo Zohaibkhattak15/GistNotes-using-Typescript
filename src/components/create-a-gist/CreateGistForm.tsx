@@ -1,22 +1,22 @@
-import { Button } from 'antd';
-import { Formik } from 'formik';
-import { Form, Input, Select } from 'formik-antd';
-import {
+import React, {
   useCallback, useContext, useMemo, useState,
-} from 'react';
-import { CREATEGISTOBJ } from '../../constants/index';
-import { GistContext } from '../../context/GistContext';
-import { gistDataFormType } from '../../types/CreateGistFormTypes';
-import { creatGist, formInputRules } from '../../utils/CreateGistUtils';
-import { CreateGistFormSchema } from '../../validations';
-import { Heading, Section } from './style';
+} from 'react'
+import { Button } from 'antd'
+import { Formik } from 'formik'
+import { Form, Input, Select } from 'formik-antd'
+import { CREATEGISTOBJ } from '../../constants/index'
+import { GistContext } from '../../context/GistContext'
+import { gistDataFormType } from '../../types/CreateGistFormTypes'
+import { creatGist, formInputRules } from '../../utils/CreateGistUtils'
+import { CreateGistFormSchema } from '../../validations'
+import { Heading, Section } from './style'
 
-const { TextArea } = Input;
-const { Option } = Select;
+const { TextArea } = Input
+const { Option } = Select
 
 const CreateAGist: React.FC = () => {
-  const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ);
-  const { dispatch } = useContext(GistContext);
+  const [gistFormData, setGistFormData] = useState<gistDataFormType>(CREATEGISTOBJ)
+  const { dispatch } = useContext(GistContext)
 
   const changeDescription = (
     event: React.ChangeEvent<HTMLInputElement>,

@@ -1,4 +1,5 @@
-import StaredGists from '../components/stared-gists/StaredGists';
+import React from 'react'
+import StaredGists from '../components/stared-gists/StaredGists'
 
 const StarGistScreen: React.FC = () => (
   <StaredGists />
